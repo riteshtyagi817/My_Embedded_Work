@@ -1,13 +1,15 @@
+CC=gcc
+FLAGS=-c -g
 demo: main.o getArray.o displayArray.o getValues.o
-	gcc -o demo main.o getArray.o displayArray.o getValues.o
+	$(CC)  -o demo main.o getArray.o displayArray.o getValues.o
 getArray.o: getArray.c headers.h declarations.h
-	gcc -c getArray.c
+	${CC} ${FLAGS} getArray.c
 main.o: main.c headers.h declarations.h
-	gcc -c main.c
+	${CC} ${FLAGS} main.c
 displayArray.o: displayArray.c headers.h declarations.h
-	gcc -c displayArray.c
+	${CC} ${FLAGS} displayArray.c
 getValues.o: getValues.c headers.h declarations.h
-	gcc -c getValues.c
+	${CC} ${FLAGS} getValues.c
 clean:
 	-rm *.o
 	-rm demo
