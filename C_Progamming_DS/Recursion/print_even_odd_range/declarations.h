@@ -1,1 +1,1 @@
-void print1ToN(int num);
+void printRangeOddEven(int start, int end, int choice);
