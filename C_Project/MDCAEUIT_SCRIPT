@@ -1,0 +1,40 @@
+#!/bin/bash
+#: This script will take care of checkin all the related files and creating executable out of them.
+#: This will run the final executable as well.
+#: This will also checkout all the related files for further modification.
+
+echo "Checkin all the headers files "
+ci *.h
+
+echo "Checkin all source files "
+ci *.c
+
+echo "Checkin Make file "
+ci Makefile
+
+echo "Cleaning old obj's and exectuables "
+make clean
+
+echo "Running Make to build all object files and executable mdcaeuit as the final result "
+make
+
+echo "Now we are running the executable "
+./mdcaeuit
+
+echo "Now starting the process of checking out all the files "
+
+echo "Checking out all the header files one by one "
+co -l *.h,v
+
+echo "Checking out all the source files one by one "
+co -l *.c,v
+
+echo "Checking out the Makefile "
+co -l Makefile
+
+echo "Exiting the script now..."
+
+exit 0
+
+
+
