@@ -1,5 +1,11 @@
 #!/bin/bash
-# This is the first script
+#: This is the first script
+#: Title : first_script
+#: Date : 2024-06-23
+#: Author : Ritesh Tyagi (riteshtyagi725@gmail.com)
+#: Version : 1.0
+#: Description: print Hello,World and some info about system
+#: Options: None
 
 echo "Hello World"
 who
