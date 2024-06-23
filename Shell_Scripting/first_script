@@ -1,0 +1,9 @@
+#!/bin/bash
+# This is the first script
+
+echo "Hello World"
+who
+date
+pwd
+uname -rpm 
+echo "Bye for now"
