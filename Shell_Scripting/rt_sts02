@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "This Script will demonstrate return values for various commands "
+ls 
+echo $?
+
+adnsb
+echo $?
+
+ls /binn
+echo $?
+exit 0

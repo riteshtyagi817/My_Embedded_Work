@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "This script will demonstrate the env variables printing using echo"
+
+VARIABLE=value
+echo "The value of the VARIABLE is $VARIABLE "
+echo -n " -n option does "
+echo -n " not put new line "
+
