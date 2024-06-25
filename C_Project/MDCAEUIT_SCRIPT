@@ -12,6 +12,16 @@ ci *.c
 echo "Checkin Make file "
 ci Makefile
 
+
+echo "Checkout all the header files for Make file  Compilation in read mode. "
+co *.h,v
+
+echo "Checkout all the source files for Make file compilation in read mode. "
+co *.c,v
+
+echo "Checkout Makefile in read mode."
+co Makefile
+
 echo "Cleaning old obj's and exectuables "
 make clean
 
@@ -21,7 +31,7 @@ make
 echo "Now we are running the executable "
 ./mdcaeuit
 
-echo "Now starting the process of checking out all the files "
+echo "Now starting the process of checking out all the files in read/write mode. "
 
 echo "Checking out all the header files one by one "
 co -l *.h,v

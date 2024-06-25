@@ -6,6 +6,7 @@ int mainMenu()
 #ifdef DEBUG
 	printf("%s begin\n", __func__);
 #endif
+	printf("____________________MENU___________________________\n");
 	printf("Please select the choice from the given Menu Items\n");
 	printf("Choice 1 --> Compression\n");
 	printf("Choice 2 --> DeCompression\n");

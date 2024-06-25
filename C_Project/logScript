@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "This is the log script , it will log all the activites related to rcs"
+
+logFileName=log_`date +%d%m%y`
+
+touch $logFileName
+
+rlog *.h,v >> $logFileName
+rlog *.c,v >> $logFileName
+
+echo "Exiting from the log script for now\n"
+exit 0
+

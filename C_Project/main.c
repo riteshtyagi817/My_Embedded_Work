@@ -7,33 +7,34 @@ int main()
 #ifdef DEBUG
 	printf("%s begin\n", __func__);
 #endif
+	init();
 	while(1)
 	{
-		choice = mainMenu();
+		choice = (*maMe)();
 		switch(choice)
 		{
 			case 1:
-				ret = compression();
+				ret = (*comp)();
 				if(ret != 0)
 					perror("compression function had some issue\n");
 				break;
 			case 2:
-				ret = deCompression();
+				ret = (*dcomp)();
 				if(ret != 0)
 					perror("deCompression function had some issue\n");
 				break;
 			case 3:
-				ret = compressionStats();
+				ret = (*comStats)();
 				if(ret != 0)
 					perror("compressionStats function had some issue\n");
 				break;
 			case 4:
-				ret = deCompressionStats();
+				ret = (*deCompStats)();
 				if(ret != 0)
 					perror("deCompressionStats function had some issue\n");
 				break;
 			case 5:
-				ret = exitProgram("success");
+				ret = (*extP)("success");
 				if(ret != 0)
 					perror("exitProgram function had some issue\n");
 				break;
