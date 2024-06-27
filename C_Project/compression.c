@@ -4,7 +4,7 @@ int compression()
 {
 	int fileFd = 0;
 	int fs = 0;
-	char ch[1];
+	char ch;
 #ifdef DEBUG
 	printf("%s begin\n", __func__);
 #endif
@@ -23,13 +23,13 @@ int compression()
 	lseek(fileFd,0,SEEK_SET);
 	while(fs)
 	{
-		int num = read(fileFd,ch,1);
+		int num = read(fileFd,&ch,1);
 		if(num < 0)
 		{
 			perror("read from the file failed in compression function\n");
 			exit(EXIT_FAILURE);
 		}
-		printf("%c",ch[0]);
+		printf("%c",ch);
 		fs--;
 
 	}

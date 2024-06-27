@@ -27,8 +27,9 @@ int openFile(char *mode)
 	}while(1);
 	*(inpFile + idx) = '\0';
 	printf("You have entered filename as %s\n", inpFile);
-	if(0 == strncmp("reading",mode,7) == 0)
+	if(0 == strncmp("reading",mode,7))
 	{
+		printf("Inside reading mode\n");
 		iFd = open(inpFile,O_RDONLY);
 		if(iFd < 0)
 		{
@@ -38,7 +39,7 @@ int openFile(char *mode)
 		}
 		
 	}
-	else if(0 == strncmp("writing",mode,7) == 0)
+	else if(0 == strncmp("writing",mode,7))
 	{
 		iFd = open(inpFile,O_WRONLY);
 		if(iFd < 0)
@@ -48,9 +49,9 @@ int openFile(char *mode)
 
 		}
 	}
-	else if(0 == strncmp("create",mode,5) == 0)
+	else if(0 == strncmp("create",mode,5))
 	{
-		iFd = open(inpFile,O_RDWR);
+		iFd = open(inpFile,O_CREAT|O_RDWR);
 		if(iFd < 0)
 		{
 			perror("File open fail\n");
