@@ -1,0 +1,384 @@
+
+RCS file: declarations.h,v
+Working file: declarations.h
+head: 1.6
+branch:
+locks: strict
+	ritesh: 1.6
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 6;	selected revisions: 6
+description:
+Adding header file for functions delcarations...
+Project: MDCAEUIT...
+----------------------------
+revision 1.6	locked by: ritesh;
+date: 2024/06/25 00:10:50;  author: ritesh;  state: Exp;  lines: +3 -0
+added the declaration for openFile function .
+----------------------------
+revision 1.5
+date: 2024/06/24 23:23:48;  author: ritesh;  state: Exp;  lines: +17 -6
+Added function pointers for all the old functions.
+----------------------------
+revision 1.4
+date: 2024/06/23 17:16:38;  author: ritesh;  state: Exp;  lines: +1 -1
+modified the return value for mainMenu function
+----------------------------
+revision 1.3
+date: 2024/06/23 16:13:24;  author: ritesh;  state: Exp;  lines: +2 -2
+correction in naming conventions for few functions.
+----------------------------
+revision 1.2
+date: 2024/06/23 07:17:15;  author: ritesh;  state: Exp;  lines: +6 -0
+Added declarations for compression, deCompression, compressionStats, deCompressionStats..
+exitProgram..
+----------------------------
+revision 1.1
+date: 2024/06/21 00:37:59;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: headers.h,v
+Working file: headers.h
+head: 1.4
+branch:
+locks: strict
+	ritesh: 1.4
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 4;	selected revisions: 4
+description:
+this file will contain all std libs headers files included
+added stdio.h and stdlib.h for now.
+----------------------------
+revision 1.4	locked by: ritesh;
+date: 2024/06/27 01:13:15;  author: ritesh;  state: Exp;  lines: +1 -1
+typo in unistd
+----------------------------
+revision 1.3
+date: 2024/06/27 01:11:26;  author: ritesh;  state: Exp;  lines: +1 -0
+added unistd header file for lseek function.
+----------------------------
+revision 1.2
+date: 2024/06/25 00:34:55;  author: ritesh;  state: Exp;  lines: +1 -1
+added fcntl.h for open call.
+----------------------------
+revision 1.1
+date: 2024/06/23 07:21:23;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: compression.c,v
+Working file: compression.c
+head: 1.12
+branch:
+locks: strict
+	ritesh: 1.12
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 12;	selected revisions: 12
+description:
+This function is going to compress,
+just added basic start and stop headers for now.
+----------------------------
+revision 1.12	locked by: ritesh;
+date: 2024/06/27 01:36:10;  author: ritesh;  state: Exp;  lines: +3 -3
+correction in read call.
+----------------------------
+revision 1.11
+date: 2024/06/27 01:34:55;  author: ritesh;  state: Exp;  lines: +1 -1
+correction in read function
+----------------------------
+revision 1.10
+date: 2024/06/27 01:33:56;  author: ritesh;  state: Exp;  lines: +17 -0
+added read functionality to read 1 byte everytime.
+----------------------------
+revision 1.9
+date: 2024/06/27 01:25:53;  author: ritesh;  state: Exp;  lines: +1 -1
+typo.
+----------------------------
+revision 1.8
+date: 2024/06/27 01:11:41;  author: ritesh;  state: Exp;  lines: +1 -1
+typo correction.
+----------------------------
+revision 1.7
+date: 2024/06/27 01:10:00;  author: ritesh;  state: Exp;  lines: +3 -0
+added lseek functiom to find the file size using lseek.
+----------------------------
+revision 1.6
+date: 2024/06/27 01:02:49;  author: ritesh;  state: Exp;  lines: +2 -1
+to clear the buffer
+----------------------------
+revision 1.5
+date: 2024/06/27 00:59:49;  author: ritesh;  state: Exp;  lines: +1 -1
+typo
+----------------------------
+revision 1.4
+date: 2024/06/27 00:58:03;  author: ritesh;  state: Exp;  lines: +1 -1
+typo correction
+----------------------------
+revision 1.3
+date: 2024/06/27 00:56:38;  author: ritesh;  state: Exp;  lines: +1 -0
+added getchar() with print before calling openFile function.
+----------------------------
+revision 1.2
+date: 2024/06/25 00:25:07;  author: ritesh;  state: Exp;  lines: +7 -0
+added the call for openFile function using function pointer.
+----------------------------
+revision 1.1
+date: 2024/06/23 07:33:10;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: compressionStats.c,v
+Working file: compressionStats.c
+head: 1.1
+branch:
+locks: strict
+	ritesh: 1.1
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+This function is going to give compression statistics
+just adding start , end headers for now.
+----------------------------
+revision 1.1	locked by: ritesh;
+date: 2024/06/23 07:43:24;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: deCompression.c,v
+Working file: deCompression.c
+head: 1.1
+branch:
+locks: strict
+	ritesh: 1.1
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+added deCompress function.
+just added starting and ending header for now.
+----------------------------
+revision 1.1	locked by: ritesh;
+date: 2024/06/23 16:16:00;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: deCompressionStats.c,v
+Working file: deCompressionStats.c
+head: 1.1
+branch:
+locks: strict
+	ritesh: 1.1
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+This function is going to give deCompression statistics.
+just added start and end header for now.
+----------------------------
+revision 1.1	locked by: ritesh;
+date: 2024/06/23 16:21:10;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: exitProgram.c,v
+Working file: exitProgram.c
+head: 1.1
+branch:
+locks: strict
+	ritesh: 1.1
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+It takes the exit status string as an argument
+added start and end header.
+check the status using strncmp() and return the exit status accordingly.
+----------------------------
+revision 1.1	locked by: ritesh;
+date: 2024/06/23 16:30:25;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: init.c,v
+Working file: init.c
+head: 1.4
+branch:
+locks: strict
+	ritesh: 1.4
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 4;	selected revisions: 4
+description:
+Added init() function for initliazation of function pointers with respective functions.
+----------------------------
+revision 1.4	locked by: ritesh;
+date: 2024/06/25 00:25:07;  author: ritesh;  state: Exp;  lines: +4 -0
+added the call for openFile function using function pointer.
+----------------------------
+revision 1.3
+date: 2024/06/24 23:37:34;  author: ritesh;  state: Exp;  lines: +1 -1
+typo of exitP
+----------------------------
+revision 1.2
+date: 2024/06/24 23:36:09;  author: ritesh;  state: Exp;  lines: +2 -0
+included headers.h .
+----------------------------
+revision 1.1
+date: 2024/06/24 23:32:49;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: main.c,v
+Working file: main.c
+head: 1.5
+branch:
+locks: strict
+	ritesh: 1.5
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 5;	selected revisions: 5
+description:
+Adding first file as the initial file for the project...
+it only contains simple main function and starting messages
+----------------------------
+revision 1.5	locked by: ritesh;
+date: 2024/06/24 23:47:35;  author: ritesh;  state: Exp;  lines: +7 -6
+added init function and replacted the old function calls with function pointers.
+----------------------------
+revision 1.4
+date: 2024/06/23 17:10:08;  author: ritesh;  state: Exp;  lines: +1 -1
+type in switch default case
+----------------------------
+revision 1.3
+date: 2024/06/23 16:52:22;  author: ritesh;  state: Exp;  lines: +48 -3
+Getting ret value/choice from mainMenu() function.
+Depending of choice called appropriate function using switch
+int compression()
+int deCompression()
+int compressionStats()
+int deCompressionStats()
+int exitProgram(char *str)
+----------------------------
+revision 1.2
+date: 2024/06/21 00:44:39;  author: ritesh;  state: Exp;  lines: +3 -2
+added mainMenu function call.
+----------------------------
+revision 1.1
+date: 2024/06/21 00:25:12;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: mainMenu.c,v
+Working file: mainMenu.c
+head: 1.5
+branch:
+locks: strict
+	ritesh: 1.5
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 5;	selected revisions: 5
+description:
+Added another file to add the functionality in the project...
+Project: Multiple Data Compression and Encryption using Iterative Technique.
+Just printed begin and end in the function.
+----------------------------
+revision 1.5	locked by: ritesh;
+date: 2024/06/24 23:43:05;  author: ritesh;  state: Exp;  lines: +1 -0
+added the line for Menu display.
+----------------------------
+revision 1.4
+date: 2024/06/23 17:19:12;  author: ritesh;  state: Exp;  lines: +1 -1
+removed extra space
+----------------------------
+revision 1.3
+date: 2024/06/23 17:16:59;  author: ritesh;  state: Exp;  lines: +12 -2
+Display all the menu items.
+gets the choice from the user and return choice to calling function which is main here.
+----------------------------
+revision 1.2
+date: 2024/06/21 00:45:07;  author: ritesh;  state: Exp;  lines: +1 -1
+modifed the ending function line...
+----------------------------
+revision 1.1
+date: 2024/06/21 00:35:58;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: openFile.c,v
+Working file: openFile.c
+head: 1.12
+branch:
+locks: strict
+	ritesh: 1.12
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 12;	selected revisions: 12
+description:
+Added the function openFile.
+Allocating space for input file name
+taking input file name character by character using getchar()
+printing filename.
+----------------------------
+revision 1.12	locked by: ritesh;
+date: 2024/06/27 01:41:05;  author: ritesh;  state: Exp;  lines: +1 -1
+correction in read.
+----------------------------
+revision 1.11
+date: 2024/06/27 01:40:13;  author: ritesh;  state: Exp;  lines: +1 -1
+added correction in open call.
+----------------------------
+revision 1.10
+date: 2024/06/27 01:26:44;  author: ritesh;  state: Exp;  lines: +1 -1
+typo in mode.
+----------------------------
+revision 1.9
+date: 2024/06/27 01:25:53;  author: ritesh;  state: Exp;  lines: +31 -0
+typo.
+----------------------------
+revision 1.8
+date: 2024/06/27 01:02:49;  author: ritesh;  state: Exp;  lines: +1 -0
+commented buffer clear alternative method.
+----------------------------
+revision 1.7
+date: 2024/06/27 00:56:38;  author: ritesh;  state: Exp;  lines: +1 -1
+added getchar() with print before calling openFile function.
+----------------------------
+revision 1.6
+date: 2024/06/25 00:35:40;  author: ritesh;  state: Exp;  lines: +0 -8
+removed open call for now.
+----------------------------
+revision 1.5
+date: 2024/06/25 00:33:43;  author: ritesh;  state: Exp;  lines: +9 -0
+added open function call for opening the file in read mode.
+----------------------------
+revision 1.4
+date: 2024/06/25 00:30:41;  author: ritesh;  state: Exp;  lines: +2 -0
+tried to correct the functionality .
+----------------------------
+revision 1.3
+date: 2024/06/25 00:28:31;  author: ritesh;  state: Exp;  lines: +1 -1
+removed newline which is restricting to take the input file char by char.
+----------------------------
+revision 1.2
+date: 2024/06/25 00:17:16;  author: ritesh;  state: Exp;  lines: +1 -1
+typo related to getChar()
+----------------------------
+revision 1.1
+date: 2024/06/25 00:11:10;  author: ritesh;  state: Exp;
+Initial revision
+=============================================================================
