@@ -1,0 +1,8 @@
+#!/bin/bash
+if ( wc -l & ls )
+then 
+	echo "both wc and ls successfully got executed"
+else
+	echo "both could not be executed successfully"
+fi
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+if df -h
+then
+	echo "df -h succesfully executed"
+	echo "df -h returned the status $?"
+else
+	echo "df -h could not be executed successfully"
+	echo "df -h returned status $?"
+fi

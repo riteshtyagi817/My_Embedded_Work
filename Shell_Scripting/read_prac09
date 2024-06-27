@@ -1,0 +1,4 @@
+#!/bin/bash
+read 
+echo "I have entered $REPLY " 
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+read -p "Enter the first string to match: " str1
+read -p "Enter the second string to match: " str2
+if [ $str1 = $str2 ]
+then
+	echo "$str1 and $str2 are equal "
+else
+	echo "$str1 and $str2 are not equal "
+fi

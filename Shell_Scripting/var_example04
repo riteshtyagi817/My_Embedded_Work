@@ -1,0 +1,4 @@
+#!/bin/bash
+VARIABLE=A value
+ls df
+echo "My Variable holds: $VARIABLE"

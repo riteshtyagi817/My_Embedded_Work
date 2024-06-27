@@ -1,0 +1,3 @@
+#!/bin/bash
+ls 
+echo "The command ls returned status $?"
