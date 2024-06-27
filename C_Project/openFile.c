@@ -17,7 +17,8 @@ int openFile(char *mode)
 	memset(inpFile,'\0',20);
 	printf("Enter the input file name for reading purpose which will be used in compression: ");
 	char ch;
-	while((ch = getchar()) != '\n');
+	// another method to clear buffer
+	//while((ch = getchar()) != '\n');
 	do
 	{
 		*(inpFile+idx) = getchar();
@@ -26,6 +27,37 @@ int openFile(char *mode)
 	}while(1);
 	*(inpFile + idx) = '\0';
 	printf("You have entered filename as %s\n", inpFile);
+	if(0 == strncmp("reading",mode,7) == 0)
+	{
+		iFd = open(inpFile,O_RDONLY);
+		if(iFd < 0)
+		{
+			perror("File open fail\n");
+			exit(EXIT_FAILURE);
+
+		}
+		
+	}
+	else if(0 == strncmp("writing",mode,7) == 0)
+	{
+		iFd = open(inpFile,O_WRONLY);
+		if(iFd < 0)
+		{
+			perror("File open fail\n");
+			exit(EXIT_FAILURE);
+
+		}
+	}
+	else if(0 == strncmp("create",mode,5) == 0)
+	{
+		iFd = open(inpFile,O_RDWR);
+		if(iFd < 0)
+		{
+			perror("File open fail\n");
+			exit(EXIT_FAILURE);
+
+		}
+	}
 
 
 #ifdef DEBUG
