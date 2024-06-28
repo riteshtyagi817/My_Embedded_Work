@@ -1,0 +1,37 @@
+#!/bin/bash
+
+read -p "Enter first string to compare: "  str1
+read -p "Enter second string to compare: " str2
+if [ $str1 = $str2 ]
+then
+	echo " str1 is same as str2 " 
+elif [ $str1 != $str2 ]
+then
+	echo " str1 is not same as str2 "
+fi
+
+if [ $str1 < $str2 ]
+then
+	echo " str1 is less than str2 "
+elif [ $str1 > $str2 ]
+then
+	echo " str1 is greater than str2 "
+fi
+
+if [ -n $str1 ]
+then
+	echo " str1 has a length greater than zero "
+elif [ -z $str1 ]
+then
+	echo " str1 has a zero length "
+fi
+
+if [ -n $str2 ]
+then
+	echo " str2 has a length greater than zero "
+elif [ -z $str2 ]
+then
+	echo " str2 has a zero length "
+fi
+exit 0
+
