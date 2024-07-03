@@ -3,39 +3,43 @@
 int main()
 {
 	int choice = 0;
-	int ret = 0;
+	int *ret = (int *)malloc(1*sizeof(int));
+	if(!ret){
+		perror("Malloc failed in main \n");
+		exit(EXIT_FAILURE);
+	}
 #ifdef DEBUG
 	printf("%s begin\n", __func__);
 #endif
 	init();
 	while(1)
 	{
-		choice = (*maMe)();
+		choice = *(int *)(*funcPtr[0])(NULL);
 		switch(choice)
 		{
 			case 1:
-				ret = (*comp)();
-				if(ret != 0)
+				ret = (int *)(*funcPtr[1])(NULL);
+				if(!ret)
 					perror("compression function had some issue\n");
 				break;
 			case 2:
-				ret = (*dcomp)();
-				if(ret != 0)
+				ret = (int *)(*funcPtr[2])(NULL);
+				if(!ret)
 					perror("deCompression function had some issue\n");
 				break;
 			case 3:
-				ret = (*comStats)();
-				if(ret != 0)
+				ret = (int *)(*funcPtr[3])(NULL);
+				if(!ret)
 					perror("compressionStats function had some issue\n");
 				break;
 			case 4:
-				ret = (*deCompStats)();
-				if(ret != 0)
+				ret = (int *)(*funcPtr[4])(NULL);
+				if(!ret)
 					perror("deCompressionStats function had some issue\n");
 				break;
 			case 5:
-				ret = (*extP)("success");
-				if(ret != 0)
+				ret = (int *)(*funcPtr[5])((void *)"success");
+				if(!ret)
 					perror("exitProgram function had some issue\n");
 				break;
 			default:

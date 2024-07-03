@@ -1,13 +1,18 @@
 #include"headers.h"
 #include"declarations.h"
-int openFile(char *mode)
+void * openFile(void *arg)
 {
-	int iFd = 0;
+	int *iFd = (int *)malloc(1*sizeof(int));
+	if(!iFd){
+		perror("Malloc failed in openFile\n");
+		return NULL;
+	}
 	int idx = 0;
+	char *mode = (char *)arg;
 #ifdef DEBUG
 	printf("%s begin\n", __func__);
 #endif
-	char *MD = mode;
+	char *MD = (char *)arg;
 	char *inpFile = (char *)malloc(20*sizeof(char));
 	if(!inpFile)
 	{
@@ -30,33 +35,32 @@ int openFile(char *mode)
 	if(0 == strncmp("reading",mode,7))
 	{
 		printf("Inside reading mode\n");
-		iFd = open(inpFile,O_RDONLY);
-		if(iFd < 0)
+		*iFd = open(inpFile,O_RDONLY);
+		if(*iFd < 0)
 		{
 			perror("File open fail\n");
-			exit(EXIT_FAILURE);
+			return NULL;
 
 		}
 		
 	}
 	else if(0 == strncmp("writing",mode,7))
 	{
-		iFd = open(inpFile,O_WRONLY);
-		if(iFd < 0)
+		*iFd = open(inpFile,O_WRONLY);
+		if(*iFd < 0)
 		{
 			perror("File open fail\n");
-			exit(EXIT_FAILURE);
+			return NULL;
 
 		}
 	}
 	else if(0 == strncmp("create",mode,5))
 	{
-		iFd = open(inpFile,O_CREAT|O_RDWR);
-		if(iFd < 0)
+		*iFd = open(inpFile,O_CREAT|O_RDWR);
+		if(*iFd < 0)
 		{
 			perror("File open fail\n");
-			exit(EXIT_FAILURE);
-
+			return NULL;
 		}
 	}
 
@@ -64,5 +68,5 @@ int openFile(char *mode)
 #ifdef DEBUG
 	printf("%s end\n", __func__);
 #endif
-	return iFd;
+	return (void *)iFd;
 }

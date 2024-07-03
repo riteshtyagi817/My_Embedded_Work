@@ -3,8 +3,8 @@ CC = gcc
 CFLAGS = -c -g
 LFLAGS = -o 
 DBFLAG = -DDEBUG
-mdcaeuit : main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o
-	$(CC) $(LFLAGS) mdcaeuit main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o
+mdcaeuit : main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o
+	$(CC) $(LFLAGS) mdcaeuit main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o
 main.o : main.c headers.h declarations.h
 	$(CC) ${CFLAGS} $(DBFLAG) main.c
 init.o : init.c 
@@ -23,6 +23,8 @@ deCompressionStats.o : deCompressionStats.c headers.h declarations.h
 	$(CC) ${CFLAGS} $(DBFLAG) deCompressionStats.c
 exitProgram.o : exitProgram.c headers.h declarations.h
 	$(CC) ${CFLAGS} $(DBFLAG) exitProgram.c
+createMArray.o : createMArray.c headers.h declarations.h
+	$(CC) ${CFLAGS} $(DBFLAG) createMArray.c
 run:
 	./mdcaeuit
 clean:
