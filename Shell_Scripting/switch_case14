@@ -1,0 +1,20 @@
+#!/bin/bash
+read -p "Enter the choice: " choice
+
+case $choice in
+1)
+	echo "You selected 1 as the choice."
+	;;
+2)
+	echo " you entered 2 so date is $(date)."
+	echo " this is the decent option to diplay date."
+	;;
+-a)
+	echo "You have selected -a as the option."
+	echo "Try another option. "
+	;;
+*)
+	echo "no option match. Bye."
+	;;
+esac
+exit 0

@@ -1,0 +1,36 @@
+#!/bin/bash
+read -p "Enter the file name to check: " fileName
+read -p "Enter the directory name to check: " dirName
+if test -e $fileName
+then
+	echo "file exists. "
+fi
+
+if [ -f $fileName ]
+then
+	echo "This is a regular file. "
+fi
+
+if  test -d $dirName
+then
+	echo " Directory exists. "
+fi
+
+if [ -r $fileName ] 
+then
+	echo "file is readable. "
+fi
+
+if [ -w $fileName ] 
+then
+	echo "file is writable."
+fi
+
+if test -x $fileName
+then
+	echo "file is executable."
+fi
+exit 0
+
+
+

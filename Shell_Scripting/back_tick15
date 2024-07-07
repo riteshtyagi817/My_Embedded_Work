@@ -1,0 +1,4 @@
+#!/bin/bash
+Date=`date`
+echo "Date is $Date and we trying to see the use of back tick."
+exit 0
