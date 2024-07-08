@@ -6,7 +6,7 @@ void * compression(void *arg)
 	if(!status){
 		perror("malloc failed in compression\n");
 	}
-	status = EXIT_SUCCESS;
+	*status = EXIT_SUCCESS;
 	int *fileFd = (int *)malloc(1*sizeof(int));
 	if(!fileFd)
 	{
@@ -21,7 +21,7 @@ void * compression(void *arg)
 	// to clear the buffer for next functton call taking input file name
 	getchar(); 
 	fileFd = (int *)(*funcPtr[6])((void *)"reading");
-	if(*fileFd < 0)
+	if(!fileFd)
 	{
 		perror("File opening failed\n");
 		return NULL;
@@ -33,6 +33,7 @@ void * compression(void *arg)
 		perror("Error in CreateMasterArray\n");
 		return NULL;
 	}
+	printf("%s\n",cM);
 
 
 #ifdef DEBUG

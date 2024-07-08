@@ -2,7 +2,7 @@
 #include "declarations.h"
 int main()
 {
-	int choice = 0;
+	int *choicePtr = 0;
 	int *ret = (int *)malloc(1*sizeof(int));
 	if(!ret){
 		perror("Malloc failed in main \n");
@@ -14,44 +14,14 @@ int main()
 	init();
 	while(1)
 	{
-		choice = *(int *)(*funcPtr[0])(NULL);
-		switch(choice)
-		{
-			case 1:
-				ret = (int *)(*funcPtr[1])(NULL);
-				if(!ret)
-					perror("compression function had some issue\n");
-				break;
-			case 2:
-				ret = (int *)(*funcPtr[2])(NULL);
-				if(!ret)
-					perror("deCompression function had some issue\n");
-				break;
-			case 3:
-				ret = (int *)(*funcPtr[3])(NULL);
-				if(!ret)
-					perror("compressionStats function had some issue\n");
-				break;
-			case 4:
-				ret = (int *)(*funcPtr[4])(NULL);
-				if(!ret)
-					perror("deCompressionStats function had some issue\n");
-				break;
-			case 5:
-				ret = (int *)(*funcPtr[5])((void *)"success");
-				if(!ret)
-					perror("exitProgram function had some issue\n");
-				break;
-			default:
-				printf("Please select the valid option again\n");
-				break;
-
-
-
+		choicePtr = (int *)(*funcPtr[0])(NULL);
+		if(!choicePtr){
+			perror("Some Issue while calling mainMenu function\n");
+			return EXIT_FAILURE;
 		}
-		if(5 == choice)
+		if(*(int *)choicePtr == 5)
 		{
-			printf("Bye-Bye User\n");
+			printf("bye-bye\n");
 			break;
 
 		}

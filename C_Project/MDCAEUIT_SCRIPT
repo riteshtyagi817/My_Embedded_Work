@@ -3,45 +3,70 @@
 #: This will run the final executable as well.
 #: This will also checkout all the related files for further modification.
 
-echo "Checkin all the headers files "
-ci *.h
+read -n1 -p "Do you want to check in the files(y/n)"
+if [ $REPLY = y ]
+then
 
-echo "Checkin all source files "
-ci *.c
+	echo "Checkin all the headers files "
+	ci *.h
 
-echo "Checkin Make file "
-ci Makefile
+	echo "Checkin all source files "
+	ci *.c
+
+	echo "Checkin Make file "
+	ci Makefile
+
+fi
+
+read -n1 -p "Do you want to build(y,n)"
+if [ $REPLY = y ]
+then
+	echo "Checkout all the header files for Make file  Compilation in read mode. "
+	co *.h,v
+
+	echo "Checkout all the source files for Make file compilation in read mode. "
+	co *.c,v
+
+	echo "Checkout Makefile in read mode."
+	co Makefile
+
+	echo "Cleaning old obj's and exectuables "
+	make clean
+
+	echo "Running Make to build all object files and executable mdcaeuit as the final result "
+	make
+
+fi
+
+read -n1 -p "Do you want to run the project(y,n)" 
+
+if [ $REPLY = y ]
+then
 
 
-echo "Checkout all the header files for Make file  Compilation in read mode. "
-co *.h,v
+	echo "Now we are running the executable "
+	./mdcaeuit
 
-echo "Checkout all the source files for Make file compilation in read mode. "
-co *.c,v
+fi
 
-echo "Checkout Makefile in read mode."
-co Makefile
+read -n1 -p "Do you want to check out the files(y,n)"
 
-echo "Cleaning old obj's and exectuables "
-make clean
+if [ $REPLY = y ]
+then
 
-echo "Running Make to build all object files and executable mdcaeuit as the final result "
-make
 
-echo "Now we are running the executable "
-./mdcaeuit
+	echo "Now starting the process of checking out all the files in read/write mode. "
 
-echo "Now starting the process of checking out all the files in read/write mode. "
+	echo "Checking out all the header files one by one "
+	co -l *.h,v
 
-echo "Checking out all the header files one by one "
-co -l *.h,v
+	echo "Checking out all the source files one by one "
+	co -l *.c,v
 
-echo "Checking out all the source files one by one "
-co -l *.c,v
+	echo "Checking out the Makefile "
+	co -l Makefile
 
-echo "Checking out the Makefile "
-co -l Makefile
-
+fi
 echo "Exiting the script now..."
 
 exit 0
