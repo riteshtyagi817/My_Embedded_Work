@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Redirect to the file"
+read -p "Enter the string " str
+while [ $str = "ritesh" ]
+do
+	
+
+
+done > while_log  
+exit 0

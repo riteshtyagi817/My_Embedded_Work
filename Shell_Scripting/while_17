@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "demo of while loop with condition"
+read -p "Enter the number as the loop max iteration " loop
+while [ $loop -ne 0 ]
+do
+	echo "Inside the while loop"
+	echo "value of loop is $loop"
+	loop=$[ $loop - 1]
+done
+exit 0

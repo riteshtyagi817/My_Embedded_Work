@@ -1,0 +1,19 @@
+#!/bin/bash
+echo "Demo: How to move out of two while loops using break "
+read -p "Enter the number " num
+while true
+do
+while [ $num -ne 0 ]
+do
+	if [ $num -gt 1 ]
+	then
+		break 2
+	fi
+	num=$[ $num - 1 ]
+done
+echo "outside first while loop "
+done
+echo "outside 2nd while loop "
+
+exit 0
+

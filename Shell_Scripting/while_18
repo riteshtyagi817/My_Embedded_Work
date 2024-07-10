@@ -1,0 +1,18 @@
+#!/bin/bash
+echo "Demo of while exit using break "
+read -p "Enter the string as test as str " str
+read -p "Enter the number " num
+
+
+while  [ $str = "test" ] && [ $num -ne 0 ]
+echo "This line is just before do keyboard "
+do
+	echo "Inside while loop"
+	num=$[num-1]
+	if [ $num -eq 0 ]
+	then
+		break
+	fi
+done
+exit 0
+
