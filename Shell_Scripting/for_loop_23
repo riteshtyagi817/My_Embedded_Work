@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for item in `ls -ltr`
+do
+echo "$item"
+done
+exit 0

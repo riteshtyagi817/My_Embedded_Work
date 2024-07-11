@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for var  in $(ls -ltr) check
+do
+echo " variable: $var "
+done
+exit 0

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+list=" one two three"
+list=$list" four"
+for item in $list
+do
+echo "item: $item"
+done
+exit 0

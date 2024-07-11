@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for state in Rajasthan Himachal Uttar Pradesh Haryana
+do
+	echo "States are  $state"
+done
+exit 0
