@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo " Demo of use of special parameters "
+
+echo " PID of the current process is $$ "
+echo "this file is $0"
+echo " Count of command line are $# "
+echo "PID of the latest command executed in background : $!"
+
+echo "Last argument passed to this script is $_"
+echo "$*"
+echo "$@"
+
+exit 0
