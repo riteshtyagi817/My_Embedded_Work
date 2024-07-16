@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "\$*:$*"
+echo "\S@:$@"
+echo "\$$:$$"
+
+echo "\$#:$#"
+
+exit 0

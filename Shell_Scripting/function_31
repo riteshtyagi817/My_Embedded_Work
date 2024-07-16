@@ -1,0 +1,17 @@
+#!/bin/bash
+
+num=0
+
+function printHello
+{
+	echo "Hello from PrintHello"
+
+}
+while [ $num -lt 5 ] 
+do
+	printHello
+	num=$[ $num + 1 ] 	
+
+done
+echo "Function has been printed already"
+exit 0

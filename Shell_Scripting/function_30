@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "Demo of function call"
+
+printHello()
+{
+	echo "Begin Function"
+	echo "Hello World"
+	printBye
+	echo "End Function"
+
+
+}
+function printBye
+{
+	echo "Bye-Bye"
+
+
+}
+printHello
+
+exit 0

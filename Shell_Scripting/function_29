@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Demo of the function "
+function printHello
+{
+	echo "Begin Function"
+	echo "Hello"
+	echo "End Function "
+
+}
+printHello
+
+exit 0
