@@ -1,0 +1,20 @@
+#!/bin/bash
+
+myFunc()
+{
+	echo "\$1: $1"
+	echo "\$2: $2"
+
+}
+function Func2
+{
+
+	echo "\$1: $1"
+	echo "\$2: $2"
+
+
+	
+}
+myFunc one two
+Func2 $2 $3
+exit 0

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "demo of RANDOM and tee"
+
+
+printf "%s\n" $RANDOM $RANDOM $RANDOM $RANDOM | tee file
+
+exit 0

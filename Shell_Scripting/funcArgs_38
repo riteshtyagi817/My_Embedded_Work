@@ -1,0 +1,22 @@
+#!/bin/bash
+
+func()
+{
+	echo "Begin Func"
+	echo "\$0:$0"
+	echo "\$1:$1"
+	echo "\$$:$$"
+	echo "\$#:$#"
+	echo "End Func"
+
+}
+func one two
+echo "Now printing in the main script"
+
+echo "\$0:$0"
+echo "\$1:$1"
+echo "\$$:$$"
+echo "\$#:$#"
+
+exit 0
+

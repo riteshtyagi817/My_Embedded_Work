@@ -1,0 +1,11 @@
+#!/bin/bash
+
+read a b c d
+
+echo $a
+echo $b
+echo $c
+echo $d
+
+exit 0
+
