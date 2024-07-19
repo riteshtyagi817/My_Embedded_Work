@@ -1,0 +1,16 @@
+#!/bin/bash
+echo " This script has some advanced concepts just used it as an example for now"
+
+load=$(uptime | awk '{print $10}' | sed 's/,//')
+if (( $(echo "$load < 1.0" | bc -l) ))
+then
+	echo "System load is low"
+elif (( $(echo "$load >= 1.0 && $load < 2.0" | bc -l) ))
+then
+	echo " System load is moderate"
+else
+	echo "system load is high"
+fi
+
+exit 0
+	

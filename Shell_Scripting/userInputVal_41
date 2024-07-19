@@ -1,0 +1,12 @@
+#!/bin/bash
+
+read -p "Enter the number between 1 and 10: " number
+
+if [ $number -ge 1 ] && [ $number -le 10 ] 
+then
+	echo "Valid Number: $number"
+else
+	echo "Invalid Number: $number"
+fi
+exit 0
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+read -p "Enter the file name to check if it exist or not: " filename
+if [ -e $filename ] 
+then
+	echo "The file $filename exists"
+else	
+	echo "The file $filename does not exist"
+fi
+exit 0
