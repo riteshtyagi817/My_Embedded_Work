@@ -24,6 +24,10 @@ void * openFile(void *arg);
 void  *createMasterArray(void *arg);
 
 void * (*funcPtr[10])(void *);
+
+void * isUnique(void *);
+int flag  = 0;
+
  char *menu[] = {
           "____________________MENU___________________________\n",
           "Please select the choice from the given Menu Items\n",
@@ -49,6 +53,7 @@ int init()
 	funcPtr[5] = exitProgram;
 	funcPtr[6] = openFile;
 	funcPtr[7] = createMasterArray;
+	funcPtr[8] = isUnique;
 
 #ifdef DEBUG
 	printf("%s end\n", __func__);

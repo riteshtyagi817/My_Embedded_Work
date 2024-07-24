@@ -3,29 +3,56 @@
 #: This will run the final executable as well.
 #: This will also checkout all the related files for further modification.
 
-read -n1 -p "Do you want to check in the files(y/n)"
+#read -n1 -p "Do you want to check in the files(y/n)"
+read -p "Do you want to check in the files(y/n)"
 if [ $REPLY = y ]
 then
 
+	# using for loop
+
 	echo "Checkin all the headers files "
-	ci *.h
+	#ci *.h
+	for file in $( ls *h )
+	do
+	ci $file
+	done
 
 	echo "Checkin all source files "
-	ci *.c
+	for file in $( ls *c ) 
+	do
+	ci $file
+	done
+	#ci *.c
 
 	echo "Checkin Make file "
-	ci Makefile
+	#ci Makefile
+	for mf in Makefile
+	do
+	ci $mf
+	done
+
 
 fi
 
-read -n1 -p "Do you want to build(y,n)"
+read -p "Do you want to build(y,n)"
 if [ $REPLY = y ]
 then
 	echo "Checkout all the header files for Make file  Compilation in read mode. "
-	co *.h,v
+	# using for loop for below case
+	#co *.h,v
+
+	for file in $( ls *h,v )
+	do
+	co $file
+	done
 
 	echo "Checkout all the source files for Make file compilation in read mode. "
-	co *.c,v
+	#co *.c,v
+
+	for file in $( ls *.c,v )
+	do
+	co $file
+	done
 
 	echo "Checkout Makefile in read mode."
 	co Makefile
@@ -38,7 +65,7 @@ then
 
 fi
 
-read -n1 -p "Do you want to run the project(y,n)" 
+read -p "Do you want to run the project(y,n)" 
 
 if [ $REPLY = y ]
 then
@@ -49,7 +76,7 @@ then
 
 fi
 
-read -n1 -p "Do you want to check out the files(y,n)"
+read  -p "Do you want to check out the files(y,n)"
 
 if [ $REPLY = y ]
 then
@@ -58,10 +85,20 @@ then
 	echo "Now starting the process of checking out all the files in read/write mode. "
 
 	echo "Checking out all the header files one by one "
-	co -l *.h,v
+	#co -l *.h,v
+	#using for loop for above task
+	for file in `ls *h,v`
+	do
+	co -l $file
+	done
 
 	echo "Checking out all the source files one by one "
-	co -l *.c,v
+	#co -l *.c,v
+
+	for file in $( ls *.c,v )
+	do
+	co -l $file
+	done
 
 	echo "Checking out the Makefile "
 	co -l Makefile

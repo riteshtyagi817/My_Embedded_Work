@@ -1,6 +1,6 @@
 #ifndef DECLARATIONS_H
 #define NOF 10
-
+extern int flag;
 extern char *menu[];
 
 int init();
@@ -30,6 +30,11 @@ extern void * openFile(void *arg);
 
 extern void * createMasterArray(void *arg);
 
+
+extern void * isUnique(void *arg);
+
 // Generic array of function pointers
 extern void * (*funcPtr[NOF])(void *);
+
+
 #endif

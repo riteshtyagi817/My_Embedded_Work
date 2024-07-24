@@ -6,9 +6,15 @@ logFileName=log_`date +%d%m%y`
 
 touch $logFileName
 
-rlog *.h,v >> $logFileName
-rlog *.c,v >> $logFileName
+#using for loop for now
+#rlog *.h,v >> $logFileName
+#rlog *.c,v >> $logFileName
 
-echo "Exiting from the log script for now\n"
+for file in $( ls *h,v ) $( ls *c,v )
+do
+rlog $file >> $logFileName 
+done
+
+echo "Exiting from the log script for now"
 exit 0
 

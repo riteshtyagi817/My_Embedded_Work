@@ -2,9 +2,10 @@
 CC = gcc
 CFLAGS = -c -g
 LFLAGS = -o 
-DBFLAG = -DDEBUG
-mdcaeuit : main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o
-	$(CC) $(LFLAGS) mdcaeuit main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o
+#DBFLAG = -DDEBUG
+DBFLAG = 
+mdcaeuit : main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o isUnique.o
+	$(CC) $(LFLAGS) mdcaeuit main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o isUnique.o
 main.o : main.c headers.h declarations.h
 	$(CC) ${CFLAGS} $(DBFLAG) main.c
 init.o : init.c 
@@ -23,8 +24,10 @@ deCompressionStats.o : deCompressionStats.c headers.h declarations.h
 	$(CC) ${CFLAGS} $(DBFLAG) deCompressionStats.c
 exitProgram.o : exitProgram.c headers.h declarations.h
 	$(CC) ${CFLAGS} $(DBFLAG) exitProgram.c
-createMArray.o : createMArray.c headers.h declarations.h
+createMArray.o : createMArray.c headers.h declarations.h dataStructures.h
 	$(CC) ${CFLAGS} $(DBFLAG) createMArray.c
+isUnique.o : isUnique.c headers.h declarations.h dataStructures.h
+	$(CC) ${CFLAGS} $(DBFLAG) isUnique.c
 run:
 	./mdcaeuit
 clean:
