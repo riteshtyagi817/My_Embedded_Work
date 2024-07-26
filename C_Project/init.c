@@ -1,4 +1,7 @@
 #include "headers.h"
+#ifndef NOF
+#define NOF 10
+#endif
 // commenting the function pointer to make use of array of function pointers
 void * mainMenu(void *arg);
 //int (*maMe)();
@@ -23,9 +26,11 @@ void * openFile(void *arg);
 
 void  *createMasterArray(void *arg);
 
-void * (*funcPtr[10])(void *);
+void * (*funcPtr[NOF])(void *);
 
 void * isUnique(void *);
+
+void * cMaxBits(void *);
 int flag  = 0;
 
  char *menu[] = {
@@ -54,6 +59,7 @@ int init()
 	funcPtr[6] = openFile;
 	funcPtr[7] = createMasterArray;
 	funcPtr[8] = isUnique;
+	funcPtr[9] = cMaxBits;
 
 #ifdef DEBUG
 	printf("%s end\n", __func__);

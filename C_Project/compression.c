@@ -34,7 +34,8 @@ void * compression(void *arg)
 		return NULL;
 	}
 	printf("%s\n",cM);
-
+	int maxBits = *(int *)cMaxBits((void *)cM);
+	printf("Max Bits need to represent all the unique characters is %d\n",maxBits);
 
 #ifdef DEBUG
 	printf("%s end\n", __func__);

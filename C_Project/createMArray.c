@@ -15,7 +15,7 @@ void * createMasterArray(void *arg)
 	int fileFd = *(int *)arg;
 	unique->size = 0;
 	unique->ch  = '\0';
-	char *copy = NULL;
+	//char *copy = NULL;
 #ifdef DEBUG
 	printf("%s begin\n", __func__);
 #endif
@@ -29,7 +29,7 @@ void * createMasterArray(void *arg)
 		return NULL;
 
 	}
-	copy = unique->ma;
+	//copy = unique->ma;
 	memset(unique->ma,'\0',fs+1);
 	// again resetting it to the start
 	lseek(fileFd,0,SEEK_SET);
@@ -43,13 +43,10 @@ void * createMasterArray(void *arg)
  			perror("read from the file failed in createMaster function\n");
  			exit(EXIT_FAILURE);
  		}
- 		//printf("%c",ch);
 		if(*(int *)(*funcPtr[8])((void *)unique))
 		{
 			*(unique->ma + unique->size) = unique->ch;
-			//(unique->ma)++;
 			(unique->size)++;
-			//printf("size: %d\n",unique->size);
 		}
 		fs--;
 
@@ -58,5 +55,5 @@ void * createMasterArray(void *arg)
 #ifdef DEBUG
 	printf("%s end\n", __func__);
 #endif
-	return (void *)copy;
+	return (void *)unique->ma;
 }

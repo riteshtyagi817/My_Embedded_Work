@@ -36,5 +36,6 @@ extern void * isUnique(void *arg);
 // Generic array of function pointers
 extern void * (*funcPtr[NOF])(void *);
 
+extern void * cMaxBits(void *);
 
 #endif
