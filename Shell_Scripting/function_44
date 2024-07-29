@@ -1,0 +1,43 @@
+#! /bin/bash
+
+
+function firstFunc
+{
+	echo " I am first Func "
+	echo "\$1: $1"
+	echo "\$2: $2"
+	ls sdfsdfs
+
+}
+
+secondFunc()
+{
+	
+	echo " I am Second Func "
+	echo "\$1: $1"
+	echo "\$2: $2"
+	return 22
+
+}
+
+function thirdFunction
+{
+	
+	echo " I am third Func "
+	echo "\$1: $1"
+	echo "\$2: $2"
+	
+	
+}
+
+echo "demo of return methods of function"
+
+firstFunc one two
+echo $?
+secondFunc three four
+echo $?
+RETVAL=`thirdFunction five six`
+echo "After the function call"
+echo $RETVAL
+
+exit 0;
