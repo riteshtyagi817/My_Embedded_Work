@@ -5,3 +5,11 @@ typedef struct
 	int size;
 
 }MUnique;
+
+typedef struct
+{
+	int *fileFd;
+	char *ma;
+
+
+}SCompress;

@@ -31,6 +31,20 @@ void * (*funcPtr[NOF])(void *);
 void * isUnique(void *);
 
 void * cMaxBits(void *);
+
+void *compression2(void *);
+
+void *compression3(void *);
+
+void *compression4(void *);
+
+void *compression5(void *);
+
+void *compression6(void *);
+
+void *compression7(void *);
+
+void *compression8(void *);
 int flag  = 0;
 
  char *menu[] = {
@@ -60,6 +74,13 @@ int init()
 	funcPtr[7] = createMasterArray;
 	funcPtr[8] = isUnique;
 	funcPtr[9] = cMaxBits;
+	funcPtr[10] = compression2;
+	funcPtr[11] = compression3;
+	funcPtr[12] = compression4;
+	funcPtr[13] = compression5;
+	funcPtr[14] = compression6;
+	funcPtr[15] = compression7;
+	funcPtr[16] = compression8;
 
 #ifdef DEBUG
 	printf("%s end\n", __func__);

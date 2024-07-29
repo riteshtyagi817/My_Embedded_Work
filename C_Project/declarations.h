@@ -1,5 +1,5 @@
 #ifndef DECLARATIONS_H
-#define NOF 10
+#define NOF 17
 extern int flag;
 extern char *menu[];
 
@@ -37,5 +37,20 @@ extern void * isUnique(void *arg);
 extern void * (*funcPtr[NOF])(void *);
 
 extern void * cMaxBits(void *);
+
+extern void * compression2(void *);
+
+extern void * compression3(void *);
+
+extern void * compression4(void *);
+
+extern void * compression5(void *);
+
+extern void * compression6(void *);
+
+extern void * compression7(void *);
+
+extern void * compression8(void *);
+
 
 #endif
