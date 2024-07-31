@@ -1,0 +1,49 @@
+#! /bin/bash
+echo "Checking your command paths for shells..."
+if ( sh -c exit > /dev/null 2>/dev/null )
+then
+echo "sh found"
+else
+echo "sh not found"
+fi
+
+
+if ( bash -c exit > /dev/null 2>&1 )
+then
+echo "bash found"
+else
+echo "bash not found"
+fi
+
+
+if ( ksh -c exit > /dev/null &>1 )
+then
+echo "ksh found"
+else
+echo "ksh not found"
+fi
+
+
+if ( csh -c exit > /dev/null &>1 )
+then
+echo "csh found"
+else
+echo "csh not found"
+fi
+
+if ( tcsh -c exit > /dev/null &>1 )
+then
+echo "tcsh found"
+else
+echo "tcsh not found"
+
+fi
+if ( ash -c exit > /dev/null &>1 )
+then
+echo "ash found"
+else
+echo "ash not found"
+fi
+
+
+exit 0

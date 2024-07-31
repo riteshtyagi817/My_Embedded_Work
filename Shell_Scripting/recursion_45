@@ -1,0 +1,24 @@
+#! /bin/bash
+echo "Demo of recursion"
+
+count=5
+
+recursionFunc()
+{
+
+	if [ $1 -lt 0 ]
+	then
+		return 0
+	fi
+	$1=$[ expr `$1 - 1` ]
+	
+	recursionFunc $1
+	echo $?
+
+
+
+}
+echo "Now I will call recursion function "
+recursionFunc $count
+
+exit 0
