@@ -4,9 +4,11 @@ CFLAGS = -c -g
 LFLAGS = -o 
 DBFLAG = -DDEBUG
 #DBFLAG = 
-mdcaeuit : main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o isUnique.o cMaxBits.o compression2.o compression3.o compression4.o compression5.o compression6.o compression7.o compression8.o
-	$(CC) $(LFLAGS) mdcaeuit main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o isUnique.o cMaxBits.o compression2.o compression3.o compression4.o compression5.o compression6.o compression7.o compression8.o
+mdcaeuit : main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o isUnique.o cMaxBits.o compression2.o compression3.o compression4.o compression5.o compression6.o compression7.o compression8.o getPos.o
+	$(CC) $(LFLAGS) mdcaeuit main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o isUnique.o cMaxBits.o compression2.o compression3.o compression4.o compression5.o compression6.o compression7.o compression8.o getPos.o
 
+getPos.o : getPos.c headers.h declarations.h dataStructures.h
+	$(CC) ${CFLAGS} $(DBFLAG) getPos.c
 compression2.o : compression2.c headers.h declarations.h dataStructures.h
 	$(CC) ${CFLAGS} $(DBFLAG) compression2.c
 compression3.o : compression3.c headers.h declarations.h dataStructures.h

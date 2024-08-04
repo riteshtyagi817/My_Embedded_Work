@@ -20,7 +20,7 @@ void * openFile(void *arg)
 		exit(EXIT_FAILURE);
 	}
 	memset(inpFile,'\0',20);
-	printf("Enter the input file name for reading purpose which will be used in compression: ");
+	printf("Enter the input file name for  mode: %s which will be used in compression:\n", mode);
 	char ch;
 	// another method to clear buffer
 	//while((ch = getchar()) != '\n');
@@ -49,6 +49,14 @@ void * openFile(void *arg)
 		*iFd = open(inpFile,O_WRONLY);
 		if(*iFd < 0)
 		{
+		
+			printf("writing mode failed\n");
+			*iFd = open(inpFile,O_CREAT|O_RDWR, 00777);
+			if(*iFd < 0)
+			{
+				perror("File open fail\n");
+				return NULL;
+			}
 			perror("File open fail\n");
 			return NULL;
 
@@ -56,7 +64,7 @@ void * openFile(void *arg)
 	}
 	else if(0 == strncmp("create",mode,5))
 	{
-		*iFd = open(inpFile,O_CREAT|O_RDWR);
+		*iFd = open(inpFile,O_CREAT|O_RDWR,00777);
 		if(*iFd < 0)
 		{
 			perror("File open fail\n");

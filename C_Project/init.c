@@ -1,6 +1,6 @@
 #include "headers.h"
 #ifndef NOF
-#define NOF 10
+#define NOF 20
 #endif
 // commenting the function pointer to make use of array of function pointers
 void * mainMenu(void *arg);
@@ -47,6 +47,8 @@ void *compression7(void *);
 void *compression8(void *);
 int flag  = 0;
 
+void * getPos(void *arg);
+
  char *menu[] = {
           "____________________MENU___________________________\n",
           "Please select the choice from the given Menu Items\n",
@@ -81,6 +83,7 @@ int init()
 	funcPtr[14] = compression6;
 	funcPtr[15] = compression7;
 	funcPtr[16] = compression8;
+	funcPtr[17] = getPos;
 
 #ifdef DEBUG
 	printf("%s end\n", __func__);
