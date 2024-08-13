@@ -1,0 +1,13 @@
+#!/bin/bash
+
+read -p "Enter a number to check: " num
+
+if [ $num -gt 0 ] 
+then
+	echo "The number is positive."
+else
+	echo "The number is non-positive."
+
+fi
+
+exit 0

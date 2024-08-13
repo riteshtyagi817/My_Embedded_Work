@@ -1,0 +1,28 @@
+#!/bin/bash
+
+read -p "Enter the user's age " age
+
+if [ $age -lt 10 ]
+then
+	echo "The user is a child."
+else
+	if test $age -lt 18 
+	then
+		echo "The user is a teenager."
+	else
+
+		if test $age -lt 60 
+		then
+			echo "The user is an adult."
+		else
+			if [ $age -ge 60 ]  && [ $age -lt 200 ]
+			then
+				echo "The user is a senior citizen."
+			else
+				echo "Invalid age"
+			fi
+		fi
+	fi
+fi
+
+exit 0
