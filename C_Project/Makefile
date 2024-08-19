@@ -2,8 +2,8 @@
 CC = gcc
 CFLAGS = -c -g
 LFLAGS = -o 
-DBFLAG = -DDEBUG
-#DBFLAG = 
+#DBFLAG = -DDEBUG
+DBFLAG = 
 mdcaeuit : main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o isUnique.o cMaxBits.o compression2.o compression3.o compression4.o compression5.o compression6.o compression7.o compression8.o getPos.o
 	$(CC) $(LFLAGS) mdcaeuit main.o init.o mainMenu.o compression.o openFile.o compressionStats.o deCompression.o deCompressionStats.o exitProgram.o createMArray.o isUnique.o cMaxBits.o compression2.o compression3.o compression4.o compression5.o compression6.o compression7.o compression8.o getPos.o
 

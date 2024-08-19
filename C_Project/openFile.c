@@ -2,23 +2,28 @@
 #include"declarations.h"
 void * openFile(void *arg)
 {
-	int *iFd = (int *)malloc(1*sizeof(int));
-	if(!iFd){
-		perror("Malloc failed in openFile\n");
-		return NULL;
-	}
-	int idx = 0;
-	char *mode = (char *)arg;
 #ifdef DEBUG
 	printf("%s begin\n", __func__);
 #endif
+	int *iFd = (int *)malloc(1*sizeof(int));
+	if(!iFd){
+		perror("Malloc failed in openFile\n");
+		//return NULL;
+		return (int *)(*funcPtr[5])((void *)"failure");
+	}
+
+	int idx = 0;
+	char *mode = (char *)arg;
 	char *MD = (char *)arg;
+
 	char *inpFile = (char *)malloc(20*sizeof(char));
 	if(!inpFile)
 	{
 		perror("Malloc call failed\n");
-		exit(EXIT_FAILURE);
+		//exit(EXIT_FAILURE);
+		return (int *)(*funcPtr[5])((void *)"failure");
 	}
+
 	memset(inpFile,'\0',20);
 	printf("Enter the input file name for  mode: %s which will be used in compression:\n", mode);
 	char ch;
@@ -30,8 +35,10 @@ void * openFile(void *arg)
 		if ('\n' == *(inpFile +idx)) break; 
 		else idx++;
 	}while(1);
+
 	*(inpFile + idx) = '\0';
 	printf("You have entered filename as %s\n", inpFile);
+
 	if(0 == strncmp("reading",mode,7))
 	{
 		printf("Inside reading mode\n");
@@ -39,7 +46,8 @@ void * openFile(void *arg)
 		if(*iFd < 0)
 		{
 			perror("File open fail\n");
-			return NULL;
+			//return NULL;
+			return (int *)(*funcPtr[5])((void *)"failure");
 
 		}
 		
@@ -49,27 +57,22 @@ void * openFile(void *arg)
 		*iFd = open(inpFile,O_WRONLY);
 		if(*iFd < 0)
 		{
-		
-			printf("writing mode failed\n");
-			*iFd = open(inpFile,O_CREAT|O_RDWR, 00777);
-			if(*iFd < 0)
-			{
-				perror("File open fail\n");
-				return NULL;
-			}
 			perror("File open fail\n");
-			return NULL;
+			//return NULL;
+			return (int *)(*funcPtr[5])((void *)"failure");
 
 		}
 	}
-	else if(0 == strncmp("create",mode,5))
+	else if(0 == strncmp("creating",mode,8))
 	{
-		*iFd = open(inpFile,O_CREAT|O_RDWR,00777);
+		*iFd = open(inpFile,O_CREAT|O_WRONLY,00750);
 		if(*iFd < 0)
 		{
-			perror("File open fail\n");
-			return NULL;
+			perror("File creation fail\n");
+			//return NULL;
+			return (int *)(*funcPtr[5])((void *)"failure");
 		}
+		
 	}
 
 
