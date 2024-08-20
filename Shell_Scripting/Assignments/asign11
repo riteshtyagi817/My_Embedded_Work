@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo -n  "Enter the name of directory to be created: "
+
+read dirName
+
+command=`mkdir $dirName`
+
+if [ $? -eq 0 ] 
+then
+	echo "Directory $dirName has been created."
+
+else
+	echo "Directory $dirName could not be created."
+
+
+fi
+
+
+exit 0

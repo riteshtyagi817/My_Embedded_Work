@@ -1,0 +1,15 @@
+#!/bin/bash
+
+read -p "Enter first number: " num1
+
+read -p "Enter second number: " num2
+
+if [ $num1 -gt 0  ] && [ $num2 -gt 0 ] 
+then
+	echo "Both the numbers are positive."
+else
+	echo "Both the numbers are not positive."
+
+fi
+
+exit 0

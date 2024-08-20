@@ -1,0 +1,15 @@
+#!/bin/bash
+
+read -p "Enter the user name: " userName
+
+read -p "Enter the user age: " age
+
+if !(test -z $userName)   && [ $age -gt 18 ]
+then
+	echo " user name \"$userName\" is not empty and age is greater than 18."
+else
+	echo "Either user name is empty or age is lesser than or equal to 18."
+
+fi
+
+exit 0
