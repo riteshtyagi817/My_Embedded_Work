@@ -1,0 +1,22 @@
+#!/bin/bash
+
+read -p "Enter the string to check whether it starts with \"A\" and Ends with \"Z\": " str
+
+if [[ $str == A*Z ]] 
+then
+	echo "$str starts with \"A\" and ends with \"Z\"."
+
+elif [[ $str == A* ]]
+then
+	echo "$str starts with \"A\" but not ends with \"Z\"."
+
+elif [[ $str == *Z ]]
+then
+	echo "$str does not start with \"A\" but ends with \"Z\"."		
+
+else
+	echo "It does not start with \"A\" and ends with \"Z\"."
+
+fi
+
+exit 0

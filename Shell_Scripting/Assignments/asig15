@@ -1,0 +1,20 @@
+#!/bin/bash
+
+read -p "Enter the file name to check: " fileName
+
+if test -e $fileName
+then
+	echo "$fileName exists."
+	if test -r $fileName
+	then
+		echo "$fileName is readable."
+	fi
+	if [ -w $fileName ] 
+	then
+		echo "$fileName is writable."
+	fi
+else
+	echo "$fileName not exists."
+fi
+
+exit 0

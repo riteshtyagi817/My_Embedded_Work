@@ -1,0 +1,17 @@
+#!/bin/bash
+
+read -p "Enter the filename as the input: " fileName
+
+case $fileName in
+*.txt)
+	echo "$fileName is a text file."
+	;;
+*.jpg|*.png)
+	echo "$fileName is image file."
+	;;
+*) 
+	echo "$fileName is unknown type."
+	;;
+esac
+
+exit 0 

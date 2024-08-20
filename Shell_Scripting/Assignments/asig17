@@ -1,0 +1,17 @@
+#!/bin/bash
+
+read -p "Enter the day of the week in complete form Eg:Monday: " day
+
+case $day in
+Monday|Tuesday|"Wednesday"|Thursday|Friday)
+	echo "It's a weekday."
+	;;
+Saturday|Sunday)
+	echo "It's a weekend."
+	;;
+*)
+	echo "It's an invalid day."
+	;;
+esac
+
+exit 0
