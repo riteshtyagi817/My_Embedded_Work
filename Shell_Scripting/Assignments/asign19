@@ -1,0 +1,18 @@
+#!/bin/bash
+
+case $1 in
+start)
+	echo "This is a start command."
+	;;
+stop)
+	echo "This is a stop command."
+	;;
+restart)
+	echo "This is a restart command."
+	;;
+*)
+	echo "Usage is \"Executable [start/stop/restart]\", please try again."
+
+esac
+
+exit 0   

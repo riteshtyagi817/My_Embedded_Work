@@ -1,0 +1,32 @@
+#!/bin/bash
+
+read -p "Enter the day as the input Eg:Monday: " day
+
+read -p "Enter the time as the input Eg:(morning, afternoon, evening): " time
+
+case $day in
+Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)
+	case $time in
+	morning) 
+		echo "This is $day morning."
+		;;	
+	afternoon) 
+		echo "This is $day afternoon."
+		;;
+	evening) 
+		echo "This is $day evening."
+		;;
+	*)
+		echo "Invalid time entered."
+		;;
+	esac
+	;;
+
+*)
+	echo "Invalid day entered."
+	;;
+		
+esac
+
+exit 0
+

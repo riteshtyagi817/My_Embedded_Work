@@ -1,0 +1,6 @@
+#!/bin/bash
+
+read -p "Enter the username: " userName
+read -s -p "Enter the password(entered password will be hidden for security purposes): " password
+
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+read -p "Enter the username to be searched in the stored array of usernames: " user
+
+users=("ritesh" "tyagi" "vishwajeet" "tyagi" "sudheer")
+
+case "${users[@]}" in
+*$user*)
+	echo "$user is present in the list."
+	;;
+*)
+	echo "Sorry $user is not present in the list."
+	;;
+esac
+
+exit 0

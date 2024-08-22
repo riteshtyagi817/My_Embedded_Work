@@ -1,0 +1,128 @@
+#!/bin/bash
+
+read -p "Enter the day as the input Eg:Monday: " day
+
+read -p "Enter the time as the input Eg:(morning, afternoon, evening): " time
+
+case $day in
+Monday)
+	case $time in
+	morning) 
+		echo "This is Monday morning."
+		;;	
+	afternoon) 
+		echo "This is Monday afternoon."
+		;;
+	evening) 
+		echo "This is Monday evening."
+		;;
+	*)
+		echo "Invalid time entered."
+		;;
+	esac
+	;;
+
+Tuesday)
+	case $time in
+	morning) 
+		echo "This is Tuesday morning."
+		;;	
+	afternoon) 
+		echo "This is Tuesday afternoon."
+		;;
+	evening) 
+		echo "This is Tuesday evening."
+		;;
+	*)
+		echo "Invalid time entered."
+		;;
+	esac
+	;;
+Wednesday)
+	case $time in
+	morning) 
+		echo "This is Wednesday morning."
+		;;	
+	afternoon) 
+		echo "This is Wednesday afternoon."
+		;;
+	evening) 
+		echo "This is Wednesday evening."
+		;;
+	*)
+		echo "Invalid time entered."
+		;;
+	esac
+	;;
+Thursday)
+	case $time in
+	morning) 
+		echo "This is Thursday morning."
+		;;	
+	afternoon) 
+		echo "This is Thursday afternoon."
+		;;
+	evening) 
+		echo "This is Thursday evening."
+		;;
+	*)
+		echo "Invalid time entered."
+		;;
+	esac
+	;;
+Friday)
+	case $time in
+	morning) 
+		echo "This is Friday morning."
+		;;	
+	afternoon) 
+		echo "This is Friday afternoon."
+		;;
+	evening) 
+		echo "This is Friday evening."
+		;;
+	*)
+		echo "Invalid time entered."
+		;;
+	esac
+	;;
+Saturday)
+	case $time in
+	morning) 
+		echo "This is Saturday morning."
+		;;	
+	afternoon) 
+		echo "This is Saturday afternoon."
+		;;
+	evening) 
+		echo "This is Saturday evening."
+		;;
+	*)
+		echo "Invalid time entered."
+		;;
+	esac
+	;;
+Sunday)
+	case $time in
+	morning) 
+		echo "This is Sunday morning."
+		;;	
+	afternoon) 
+		echo "This is Sunday afternoon."
+		;;
+	evening) 
+		echo "This is Sunday evening."
+		;;
+	*)
+		echo "Invalid time entered."
+		;;
+	esac
+	;;
+*)
+	echo "Invalid day entered."
+	;;
+		
+esac
+
+exit 0
+
