@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "This Task is to print numbers from 1 to 10 using for loop."
+
+echo "Task begins"
+
+for ((count=1;count <= 10;count++))
+do
+	echo "$count "
+done
+
+echo "Task ends"
+exit 0

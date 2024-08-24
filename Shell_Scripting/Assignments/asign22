@@ -3,4 +3,35 @@
 read -p "Enter the username: " userName
 read -s -p "Enter the password(entered password will be hidden for security purposes): " password
 
+userTable=(
+	"ritesh changeMe1#"
+	"vishwajeet test123"
+	"sudheer Password"
+)
 
+row=0
+while [ $row -lt ${#userTable[@]} ]
+do
+	entry=(${userTable[$row]})
+	case ${entry[0]} in
+		$userName)
+			if [ $password == ${entry[1]} ]
+			then
+				echo "$userName and $password matched."
+				exit 0
+			else
+				echo "Sorry password did not match for $userName."
+				exit 0
+			fi
+			;;
+		*)
+					
+			;;
+	
+	esac
+	row=$((row + 1))
+
+done
+echo "Sorry $userName is not present in the stored table."
+
+exit 0

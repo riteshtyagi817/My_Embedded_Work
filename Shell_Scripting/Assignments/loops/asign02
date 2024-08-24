@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "This task is to iterate over a list of fruits and print each of them."
+
+echo "Task begins"
+echo ""
+#both ways work
+#for fruit in apple banana cherry
+for fruit in "apple" "banana" "cherry"
+do
+	echo $fruit
+
+done
+
+echo ""
+echo "Task ends"
+
+exit 0
