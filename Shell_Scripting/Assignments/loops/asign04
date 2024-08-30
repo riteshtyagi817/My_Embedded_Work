@@ -1,0 +1,17 @@
+#!/bin/bash
+echo "This task is to print the mul table(1 to 10 using nested for loops)"
+
+echo "Task starts"
+
+
+for((i=1;i <= 10;i++))
+do
+	for((j=1;j <= 10;j++))
+	do
+		echo "$i * $j = " $(($i*$j))
+	done
+	echo ""
+done
+
+echo "Task ends"
+exit 0  

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "This task is to read the words from the file and print."
+
+echo "task starts"
+
+fileName="input.txt"
+while IFS= read -r line
+do
+	for word in $line
+	do
+		echo $word
+	done
+
+done < $fileName
+
+echo "task ends"
+
+exit 0

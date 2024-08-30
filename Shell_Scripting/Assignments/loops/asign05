@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "This task is to create a countdown timer from 10 to 0."
+echo "task starts"
+timer=10
+
+while [ $timer -ge 0 ]
+do
+	echo $timer
+	timer=$(($timer - 1))
+	sleep 1
+done
+echo "task ends"
+exit 0
+	

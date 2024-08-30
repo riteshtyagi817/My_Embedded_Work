@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "This task is to read a  file line by line and print each line."
+
+echo "task starts"
+
+fileName="input.txt"
+
+while IFS= read -r line
+do
+	echo $line
+done < $fileName
+
+
+echo "task ends"
+
+exit 0
