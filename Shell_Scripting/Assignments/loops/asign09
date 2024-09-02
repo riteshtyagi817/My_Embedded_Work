@@ -1,0 +1,19 @@
+#!/bin/bash
+
+inputFile="input.txt"
+errorFile="error_log.txt"
+
+echo "task starts"
+
+while IFS= read -r line
+do
+	if [[ $line == *"ERROR"* ]]
+	then
+	echo $line >> $errorFile
+	fi
+
+done < $inputFile 
+
+echo "task ends"
+
+exit 0

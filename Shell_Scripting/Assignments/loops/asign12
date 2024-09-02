@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "task starts"
+
+for((num=1;num <= 10;num++))
+do
+	if [ $num -eq 5 ]
+	then
+		break;
+	else
+		echo $num
+	fi
+
+done 
+
+echo "task ends"
+
+exit 0

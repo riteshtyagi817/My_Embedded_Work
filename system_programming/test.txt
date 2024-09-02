@@ -1,0 +1,1 @@
+this content should be written to the file as 1 has been already closed

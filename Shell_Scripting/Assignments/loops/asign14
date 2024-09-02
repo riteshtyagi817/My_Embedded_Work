@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo "task starts"
+dir="./"
+for file in $dir*.txt
+do
+	echo "File name: $file"
+	while IFS= read -r line
+	do
+		echo $line
+	done < $file
+
+
+done
+
+echo "task ends"
+
+
+
+exit 0

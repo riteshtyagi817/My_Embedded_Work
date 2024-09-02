@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo "this task is related to select loop"
+
+echo "task starts"
+
+echo "Plase select an option: "
+
+select option in "Start" "Stop" "Restart" "Quit"
+do
+	case $option in
+	Start)
+		echo "Task has been started."
+		;;
+	"Stop") 
+		echo "Task has been stopped."
+		;;
+	Restart)
+		echo "Task has been restarted."
+		;;
+	"Quit")
+		echo "Task Quit case."
+		break;
+		;;
+	*)
+		echo "Invalid option."
+		;;
+	esac
+done
+
+
+
+
+echo "task ends"
+
+exit 0

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo "task starts"
+
+num=1
+sum=0
+
+while [ $num -le 100 ] 
+do
+	if [ $((num % 2)) -eq 0 ] 
+	then
+		echo "num: $num"
+		sum=$(($sum + $num))
+	fi
+	num=$((num+1))
+
+done
+echo "The sum of even numbers from 1 to 100 is $sum."
+
+
+echo "task ends"
+
+exit 0
+
+
