@@ -1,0 +1,32 @@
+#!/bin/bash
+
+echo "task starts"
+
+for((num=1;num <= 10; num++))
+do
+	if [ $num -eq 4 ]
+	then
+		break;
+	fi
+	echo "Outer loop count is $num."
+	for((count=1;count <= 4;count++))
+	do
+		if [ $count -eq 3 ]
+		then
+			continue
+		fi
+		echo "Inner loop count is $count."
+	done
+done
+
+exit 0
+
+
+
+
+
+
+
+
+
+echo "task ends"
