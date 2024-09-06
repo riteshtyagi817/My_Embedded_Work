@@ -1,0 +1,35 @@
+#!/bin/bash
+
+echo "task starts"
+outFile="summary_report.txt"
+rm $outFile
+echo "file $outFile removed."
+dir="./"
+for file in $dir*.log
+do
+	echo "Processing file: $file"
+	line_number=1
+	error_count=0
+	
+	while IFS= read -r line
+	do		
+		for word in $line
+		
+		do
+			
+			if [ $word == "Error" ]
+			then
+				error_count=$((error_count + 1))
+			fi
+
+		done
+
+		line_number=$((line_number + 1))
+	done < $file
+	echo "Total num of lines in file: $file and no of lines: $line_number and total no of errors: $error_count " >> $outFile 
+
+done
+
+echo "task ends"
+
+exit 0
