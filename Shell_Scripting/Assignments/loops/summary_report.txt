@@ -1,0 +1,15 @@
+Total num of lines in file: ./Log10.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log11.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log12.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log13.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log14.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log15.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log1.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log2.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log3.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log4.log and no of lines: 11 and total no of errors: 12 
+Total num of lines in file: ./Log5.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log6.log and no of lines: 12 and total no of errors: 13 
+Total num of lines in file: ./Log7.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log8.log and no of lines: 2 and total no of errors: 1 
+Total num of lines in file: ./Log9.log and no of lines: 2 and total no of errors: 1 

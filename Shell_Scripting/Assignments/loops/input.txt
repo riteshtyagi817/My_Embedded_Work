@@ -1,0 +1,6 @@
+This is the test file
+to read ERROR line by line from the text file
+by using the concepts of shell scripting
+Good Luck!!
+Error
+ERROR 

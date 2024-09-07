@@ -1,0 +1,3 @@
+ERROR
+to read ERROR line by line from the text file
+ERROR
