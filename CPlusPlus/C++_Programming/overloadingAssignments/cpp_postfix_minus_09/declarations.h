@@ -5,7 +5,7 @@ class Sample{
 	Sample();
 	Sample(int val);
 	Sample(const Sample &source);
-	Sample & operator ++ ();
+	Sample  operator -- (int);
 	int getValue();
 	private:
 	int value;

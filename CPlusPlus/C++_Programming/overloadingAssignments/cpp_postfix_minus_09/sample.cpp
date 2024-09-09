@@ -11,10 +11,10 @@ Sample::Sample(int val){
 Sample::Sample(const Sample &source){
 	this->value = source.value;
 }
-Sample & Sample::operator ++ (){
+Sample  Sample::operator -- (int){
 
-	++(this->value);
-	return *this;	
+	int value  = (this->value)--;
+	return Sample(value);	
 
 }
 int Sample::getValue(){
