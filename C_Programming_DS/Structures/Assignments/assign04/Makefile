@@ -4,8 +4,8 @@ LFLAGS = -o
 
 main:  main.o
 	$(CC) $(LFLAGS) main main.o
-main.o: main.cpp headers.h declarations.h
-	$(CC) $(CFLAGS) main.cpp
+main.o: main.c headers.h declarations.h
+	$(CC) $(CFLAGS) main.c
 
 clean:
 	-rm *.o
