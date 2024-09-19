@@ -55,7 +55,6 @@ TreeNode * createTree(TreeNode *root){
 
 		return root;
 
-
 	}
 	return root;
 #ifdef DEBUG
@@ -63,21 +62,24 @@ TreeNode * createTree(TreeNode *root){
 #endif
 
 }
-void display(TreeNode *root){
+void display(TreeNode *root,char *space){
 
 
 	TreeNode *temp = root;
 	//printf("\t\t");
+	
 	if(temp != NULL){
 		printf("Node value is %d\n",temp->value);
 	        if(temp->child){
+			printf("%s",space);
 			printf("\t\tchild: ");
-			display(temp->child);
+			strcat(space,"\t");
+			display(temp->child,space);
 			printf("\n");
 		}
 		if(temp->brother){
-			printf("\tBrother: ");
-			display(temp->brother);
+			printf("Brother: ");
+			display(temp->brother,space);
 			printf("\n");	
 		}
 	}
@@ -87,3 +89,21 @@ void display(TreeNode *root){
 
 
 }
+void freeTree(TreeNode *root){
+
+	
+	if(root != NULL){
+
+		freeTree(root->child);
+		freeTree(root->brother);
+		free(root);
+		root = NULL;
+	}
+
+	return;
+
+
+}
+
+
+

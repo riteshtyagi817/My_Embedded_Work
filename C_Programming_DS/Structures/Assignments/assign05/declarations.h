@@ -8,5 +8,6 @@ typedef struct TreeNode{
 
 }TreeNode;
 TreeNode * createTree(TreeNode *root);
-void display(TreeNode *root);
+void display(TreeNode *root,char *space);
+void freeTree(TreeNode *root);
 #endif
