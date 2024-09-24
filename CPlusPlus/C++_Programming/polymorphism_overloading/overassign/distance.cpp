@@ -19,7 +19,7 @@ namespace mywork{
 		cout << __func__ << " end " << endl;
 #endif
 	}
-	~DistFeet::DistFeet(){
+	DistFeet::~DistFeet(){
 #ifdef DEBUG
 		cout << __func__ << " start " << endl;
 #endif
@@ -30,13 +30,13 @@ namespace mywork{
 #endif
 
 	}
-	DistMeter & operator = (const DistFeet &other){
+	DistMeter & DistMeter::operator = (const DistFeet &other){
 
 #ifdef DEBUG
 		cout << __func__ << " start " << endl;
 #endif
-		double feet = other.feet;
-		double inches = other.inches;
+		double feet = other.getFeet();
+		double inches = other.getInches();
 
 		double total_inches = feet*12 + inches;
 		
@@ -57,7 +57,7 @@ namespace mywork{
 #endif
 
 	}
-	DistFeet::display(){
+	void DistFeet::display(){
 
 #ifdef DEBUG
 		cout << __func__ << " start " << endl;
@@ -70,7 +70,7 @@ namespace mywork{
 #endif
 
 	}
-	DistMeter::DistMeter(),meter(0.0),centi(0.0){
+	DistMeter::DistMeter():meter(0.0),centi(0.0){
 
 #ifdef DEBUG
 		cout << __func__ << " start " << endl;
@@ -82,7 +82,7 @@ namespace mywork{
 #endif
 
 	}
-	DistMeter::DistMeter(double meter,double centi),meter(meter),centi(centi){
+	DistMeter::DistMeter(double meter,double centi):meter(meter),centi(centi){
 
 #ifdef DEBUG
 		cout << __func__ << " start " << endl;
@@ -94,7 +94,7 @@ namespace mywork{
 #endif
 
 	}
-	~DistMeter::DistMeter(){
+	DistMeter::~DistMeter(){
 
 #ifdef DEBUG
 		cout << __func__ << " start " << endl;
@@ -104,7 +104,7 @@ namespace mywork{
 		cout << __func__ << " end " << endl;
 #endif
 	}
-	DistMeter::display(){
+	void DistMeter::display(){
 
 #ifdef DEBUG
 		cout << __func__ << " start " << endl;

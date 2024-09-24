@@ -15,25 +15,25 @@ int main(){
 	
 	double feet = 0.0;
 	double inches  = 0.0;
-	double meters = 0.0;
-	double centi = 0.0;
 
 
-	cout << "Enter the distance in feet and inches for the object " << end;
+	cout << "Enter the distance in feet and inches for the object " << endl;
 	cout << "Feet: " ;
 	cin >> feet;
 	cout << "Inches: ";
 	cin >> inches;
 
-	cout << "Enter the distance in meter and centimeters for the object " << end;
-	cout << "meters: " ;
-	cin >> meters;
-	cout << "centimeters: ";
-	cin >> centi;
 
+	DistFeet distobj(feet,inches);
+	cout << "First object display:\n";
+        distobj.display();
 
+	DistMeter distmet;
 
+	distmet = distobj;
 
+	cout << "After assignment showing another object:" << endl;
+	distmet.display();	
 
 	return 0;
 }

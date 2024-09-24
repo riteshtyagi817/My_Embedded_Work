@@ -8,6 +8,13 @@ namespace mywork{
 			DistFeet(double feet, double inches);
 			~DistFeet();
 			void display();
+			double getFeet()const{
+				return feet;
+			}
+			double getInches()const {
+				return inches;
+
+			}
 
 		private:
 			double feet;
@@ -20,7 +27,7 @@ namespace mywork{
 			DistMeter();
 			DistMeter(double meter,double centi);
 			~DistMeter();
-			DistFeet & operator = (const DistFeet &other);
+			DistMeter & operator = (const DistFeet &other);
 			void display();
 		private:
 			double meter;
