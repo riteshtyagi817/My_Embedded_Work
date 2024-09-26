@@ -1,8 +1,9 @@
 #ifndef DECLARATIONS_H
 #define DECLARATIONS_H
+//class DistKm;
 namespace mywork{
 
-
+	class DistKm;
 	class DistMile{
 
 		public:
@@ -12,14 +13,14 @@ namespace mywork{
 			double getMiles();
 			double getMeters();
 			void printDistMile();
-			Distkm operator ()(const DistMile &other);
+			DistKm operator ()(double miles, double meters);
 		private:
 			double miles;
 			double meters;
 
 
 	};
-	DistKm{
+	class DistKm{
 
 		public:
 			DistKm();
