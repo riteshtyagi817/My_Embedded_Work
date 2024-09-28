@@ -6,12 +6,12 @@ DEBUG =
 
 main: main.o tempdegree.o tempfar.o
 	$(CC) $(LFLAGS) main.o tempdegree.o tempfar.o
-main.o: main.c headers.h declarations.h
-	$(CC) $(CFLAGS) main.c
-tempdegree.o: tempdegree.c headers.h declarations.h
-	$(CC) $(CFLAGS) tempdegree.c 
-tempfar.o: tempfar.c headers.h declarations.h
-	$(CC) $(CFLAGS) tempfar.c
+main.o: main.cpp headers.h declarations.h
+	$(CC) $(CFLAGS) main.cpp
+tempdegree.o: tempdegree.cpp headers.h declarations.h
+	$(CC) $(CFLAGS) tempdegree.cpp 
+tempfar.o: tempfar.cpp headers.h declarations.h
+	$(CC) $(CFLAGS) tempfar.cpp
 
 clean:
 	-rm *.o
