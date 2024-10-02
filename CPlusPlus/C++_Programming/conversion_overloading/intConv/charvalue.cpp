@@ -1,7 +1,7 @@
 #include "headers.h"
 #include "declarations.h"
 namespace mywork{
-	Int::Int():value(0){
+	Char::Char():val('\0'){
 #ifdef DEBUG
 	cout << __func__ << " start  " << endl;
 #endif
@@ -11,7 +11,7 @@ namespace mywork{
 #endif
 
 	}
-	Int::Int(uint8_t value):value(value){
+	Char::Char(char ch):val(ch){
 
 #ifdef DEBUG
 	cout << __func__ << " start  " << endl;
@@ -22,7 +22,7 @@ namespace mywork{
 #endif
 
 	}
-	Int::~Int(){
+	Char::~Char(){
 
 #ifdef DEBUG
 	cout << __func__ << " start  " << endl;
@@ -34,26 +34,26 @@ namespace mywork{
 #endif
 
 	}
-	void Int::display(){
+	void Char::display(){
 
 #ifdef DEBUG
 	cout << __func__ << " start  " << endl;
 #endif
-	cout << " One byte unsigned int value: ";
-	cout << value << endl;
+	cout << " char value in object: ";
+	cout << val << endl;
 
 #ifdef DEBUG
 	cout << __func__ << " end  " << endl;
 #endif
 
 	}
-	Int::operator char() const{
+	Char::operator int() const{
 
 #ifdef DEBUG
 	cout << __func__ << " start  " << endl;
 #endif
-	char ch = value;
-	return ch;
+	int value = val;
+	return value;
 
 #ifdef DEBUG
 	cout << __func__ << " end  " << endl;
