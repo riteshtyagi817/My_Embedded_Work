@@ -64,6 +64,21 @@ void printStack(Stack *s){
 	printf("%s end \n", __func__);
 #endif
 }
+void freeStack(Stack *s){
+
+#ifdef DEBUG
+	printf("%s start \n", __func__);
+#endif
+	free(s->arr);
+	//free(s);
+	//s = NULL;
+	s->arr = NULL;
+
+#ifdef DEBUG
+	printf("%s end \n", __func__);
+#endif
+
+}
 
 
 
