@@ -1,13 +1,28 @@
 #include "headers.h"
 #include "declarations.h"
 
+
+
+void init(Stack *st,int c){
+	st->capacity = c;
+	st->curr_size = 0;
+	st->arr = (int *)calloc(st->capacity,sizeof(int));
+	if(!st->arr){
+
+		perror("Some Issue during allocaton inside the structure\n");
+	}
+
+
+
+}
 void push(Stack *st, int value){
 
 #ifdef DEBUG
 	printf("%s start \n", __func__);
 #endif
 	if(st->curr_size == st->capacity){
-		
+
+			printf("doubling the capacity\n");		
 			int newC = st->capacity*2;
 			int *newArr = (int *)calloc(newC,sizeof(int));
 			if(!newArr){
@@ -18,8 +33,9 @@ void push(Stack *st, int value){
 
 				newArr[i] = st->arr[i];
 			}
-			str->capacity = newC;
-			free(arr);
+			st->capacity = newC;
+			free(st->arr);
+			st->arr = newArr;
 
 	}
 	st->arr[st->curr_size] = value;
@@ -47,7 +63,7 @@ int pop(Stack *st){
 	printf("%s end \n", __func__);
 #endif
 }
-void printStack(Stack *s){
+void printStack(Stack *st){
 
 #ifdef DEBUG
 	printf("%s start \n", __func__);

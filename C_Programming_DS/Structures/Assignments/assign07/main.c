@@ -8,14 +8,29 @@ int main(){
 #endif
 	int capacity = 0;
 	printf("Enter the initial capacity of the stack: ");
-	scanf("&d",&capacity);
+	scanf("%d",&capacity);
 
-	Stack st(capacity);
+	Stack st;
+	init(&st,capacity);
+	push(&st,13);
+	printStack(&st);
+	push(&st,14);
+	printStack(&st);
+	push(&st,15);
+	printStack(&st);
+	push(&st,16);
+	printStack(&st);
+	push(&st,17);
+	printStack(&st);
 
-	st.push(&st,13);
+	printf("Popping the value: %d\n",pop(&st));
+	printf("Popping the value: %d\n",pop(&st));
+	printf("Popping the value: %d\n",pop(&st));
 
-	
-		
+	printStack(&st);
+
+
+	freeStack(&st);
 
 
 #ifdef DEBUG
