@@ -31,10 +31,10 @@ void addData(Buffer *b, int value){
 			b->data[i] = 0;
 		}
 	}
-	b->data[curr_size] = value;
-	curr_size++;
-	if(curr_size == capacity){
-		b->ifFull = true;
+	b->data[b->curr_size] = value;
+	b->curr_size++;
+	if(b->curr_size == b->capacity){
+		b->isFull = true;
 	}	
 	
 
@@ -48,10 +48,64 @@ void compressData(Buffer *b){
 #ifdef DEBUG
 	printf("%s start\n",__func__);
 #endif
-	
+	bool isDup = false;
+	int temp[b->capacity];
+	if(b->curr_size == 0){
 
+		printf("Sorry we have no data as of now\n");
+		return;
+	}
+	int count_idx = 0;
+	temp[count_idx] = b->data[0];
+	count_idx++;
+	for(int i = 1; i < b->curr_size;++i){
+		isDup = false;
+		for(int j = i; j >=0;j--){
+
+			if(b->data[i] == b->data[j] || b->data[i] == 0){
+				isDup = true;
+				break;
+			}
+		}
+		if(isDup == false){
+			temp[count_idx] = b->data[i];
+			count_idx++;
+		}
+
+
+	}
+	int *newData = (int *)malloc(count_idx*sizeof(int));
+	if(!newData){
+		perror("some issue during malloc in compress\n");
+		exit(EXIT_FAILURE);
+	}
+	for(int i = 0; i < count_idx;++i){
+		newData[i] = temp[i];
+
+	}
+	free(b->data);
+	b->data = NULL;
+	b->data = newData;
+	return;
 
 #ifdef DEBUG
 	printf("%s end\n",__func__);
 #endif
+}
+void display(Buffer *b){
+
+#ifdef DEBUG
+	printf("%s start\n",__func__);
+#endif
+	for(int i = 0; i < b->curr_size;++i){
+
+		printf("%d ",b->data[i]);
+		
+	}
+	printf("\n");
+
+#ifdef DEBUG
+	printf("%s end\n",__func__);
+#endif
+
 }
