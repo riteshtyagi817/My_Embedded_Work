@@ -13,4 +13,5 @@ void initStruct(Buffer *b,int size);
 void addData(Buffer *b, int value);
 void compressData(Buffer *b);
 void display(Buffer *b);
+void freeBuff(Buffer *b);
 #endif

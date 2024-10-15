@@ -60,7 +60,7 @@ void compressData(Buffer *b){
 	count_idx++;
 	for(int i = 1; i < b->curr_size;++i){
 		isDup = false;
-		for(int j = i; j >=0;j--){
+		for(int j = i-1; j >=0;j--){
 
 			if(b->data[i] == b->data[j] || b->data[i] == 0){
 				isDup = true;
@@ -86,6 +86,8 @@ void compressData(Buffer *b){
 	free(b->data);
 	b->data = NULL;
 	b->data = newData;
+	b->curr_size = count_idx;
+	b->capacity = count_idx;
 	return;
 
 #ifdef DEBUG
@@ -109,3 +111,18 @@ void display(Buffer *b){
 #endif
 
 }
+void freeBuff(Buffer *b){
+
+#ifdef DEBUG
+	printf("%s start\n",__func__);
+#endif
+	free(b->data);
+	b->curr_size = 0;
+	b->capacity = 0;
+
+#ifdef DEBUG
+	printf("%s end\n",__func__);
+#endif
+}
+
+

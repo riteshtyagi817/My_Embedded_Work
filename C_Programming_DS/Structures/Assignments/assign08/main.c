@@ -22,8 +22,9 @@ int main(int arg,char *argv[]){
 	display(&b);
 	compressData(&b);
 	display(&b);
-
-
+	printf(" freeing the buffer\n");
+	freeBuff(&b);
+	
 
 
 	return 0;
