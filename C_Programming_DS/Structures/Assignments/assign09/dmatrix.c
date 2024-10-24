@@ -50,18 +50,6 @@ void setValue(DynamicMatrix *dm, int row, int col, int value){
 	printf("%s end\n");
 #endif
 }
-void transposeMatrix(DynamicMatrix *dm, int m, int n){
-
-#ifdef DEBUG
-	printf("%s start\n");
-#endif
-	
-
-#ifdef DEBUG
-	printf("%s end\n");
-#endif
-
-}
 void printMatrix(DynamicMatrix *dm, int m, int n){
 
 #ifdef DEBUG
@@ -76,6 +64,40 @@ void printMatrix(DynamicMatrix *dm, int m, int n){
 		printf("\n");
 
 	}
+
+#ifdef DEBUG
+	printf("%s end\n");
+#endif
+	return;
+}
+void transposeMatrix(DynamicMatrix *dm, int m, int n){
+
+#ifdef DEBUG
+	printf("%s start\n");
+#endif
+
+	/* First method for transpose using extra space */
+
+	int temp[m][n];
+	for(int i = 0; i < m;++i){
+
+		for(int j = 0; j < n;++j){
+			temp[i][j] = dm->data[i][j];
+		}
+	}
+	for(int i = 0; i < m;++i){
+
+		for(int j  = 0; j < n;j++){
+
+			dm->data[i][j] = temp[i][j];
+		}
+
+	}
+	return;
+
+
+
+
 
 #ifdef DEBUG
 	printf("%s end\n");
