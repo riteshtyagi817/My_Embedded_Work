@@ -75,9 +75,10 @@ void transposeMatrix(DynamicMatrix *dm, int m, int n){
 #ifdef DEBUG
 	printf("%s start\n");
 #endif
+	int temp  = 0;
 
 	/* First method for transpose using extra space */
-
+#if 0
 	int temp[m][n];
 	for(int i = 0; i < m;++i){
 
@@ -89,7 +90,20 @@ void transposeMatrix(DynamicMatrix *dm, int m, int n){
 
 		for(int j  = 0; j < n;j++){
 
-			dm->data[i][j] = temp[i][j];
+			dm->data[i][j] = temp[j][i];
+		}
+
+	}
+#endif	
+	/* another method for transpose in place */
+	
+	for(int i = 0; i < m;++i){
+
+		for(int j  = i+1; j < n;j++){
+
+			temp = dm->data[i][j];
+			dm->data[i][j] = dm->data[j][i];	
+			dm->data[j][i] = temp;
 		}
 
 	}
@@ -104,3 +118,26 @@ void transposeMatrix(DynamicMatrix *dm, int m, int n){
 #endif
 
 }
+void freeMatrix(DynamicMatrix *dm,int rows, int cols){
+#ifdef DEBUG
+	printf("%s start\n", __func__);
+#endif
+	for(int i = 0; i < rows;++i){
+		
+		free(dm->data[i]);
+		dm->data[i] = NULL;
+
+
+	}
+	free(dm->data);
+
+
+#ifdef DEBUG
+	printf("%s end\n", __func__);
+#endif
+
+}
+
+
+
+

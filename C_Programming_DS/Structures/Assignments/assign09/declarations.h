@@ -11,5 +11,5 @@ int getValue(DynamicMatrix *dm,int row, int col);
 void setValue(DynamicMatrix *dm, int row, int col, int value);
 void transposeMatrix(DynamicMatrix *dm, int m, int n);
 void printMatrix(DynamicMatrix *dm, int m, int n);
-
+void freeMatrix(DynamicMatrix *dm,int rows, int cols);
 #endif

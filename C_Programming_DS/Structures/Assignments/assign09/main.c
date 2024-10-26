@@ -21,14 +21,17 @@ int main(){
 			
 			scanf("%d",&value);
 			setValue(&dm,i,j,value);
-
 			
 		}
 
 	}
+	printf("Before transpose\n");
+	printMatrix(&dm, rows,cols);
+	transposeMatrix(&dm, rows,cols);
+	printf("After transpose\n");
+	printMatrix(&dm, rows,cols);
 
-
-
+	freeMatrix(&dm, rows, cols);
 #ifdef DEBUG 
 	printf("%s end\n",__func__);
 #endif
