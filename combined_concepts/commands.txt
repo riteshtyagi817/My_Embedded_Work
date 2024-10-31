@@ -1,0 +1,16 @@
+ldd test
+readelf -a test
+arm-linux-gnueabihf-gcc -g -o test test.c
+readelf -a test
+ps aux
+cd /proc/6816/
+sudo cat maps
+readelf -a test1
+gcc -S -o test2.s test2.c
+g++ -S -o test2.s test2.c
+c++filt _Z8getValuev
+g++ -S -o test3.s test3.c
+g++ -S -o test4.s test4.c
+g++ -v -S -o test4.s test4.c
+g++ -v -o test4 test4.c
+gcc -save-temps -o test2 test2.c
