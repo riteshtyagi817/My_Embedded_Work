@@ -14,3 +14,9 @@ g++ -S -o test4.s test4.c
 g++ -v -S -o test4.s test4.c
 g++ -v -o test4 test4.c
 gcc -save-temps -o test2 test2.c
+cd /lib/x86_64-linux-gnu/ldscripts/
+objdump -DS test > test.obj
+gcc -static -o test test.c -Wl,--verbose
+ld --verbose
+gcc -O0 -S -o test.s test.c
+gcc -O2 -Q --help=optimizers
