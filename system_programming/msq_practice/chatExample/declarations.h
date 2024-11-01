@@ -9,5 +9,5 @@ typedef struct myMsg{
 }Msg;
 int createQueue();
 void sendMsg(int mqid,Msg *msg);
-void receiveMsg(int mqid, Msg *msg);
+int receiveMsg(int mqid, Msg *msg);
 #endif
