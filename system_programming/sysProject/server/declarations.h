@@ -23,4 +23,5 @@ void createPipe(Infra *infra);
 void createFifo(Infra *infra);
 void createMsq(Infra *infra);
 void createShm(Infra *infra);
+void freeInfra(Infra *infra);
 #endif
