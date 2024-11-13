@@ -1,15 +1,48 @@
 #include "declarations.h"
 
 
-void createInfra(Infra *infra){
+static void createPipe(Infra *infra);
+static void createFifo(Infra *infra);
+static void createMsq(Infra *infra);
+static void createShm(Infra *infra);
+
+void * createInfra(void *arg){
 
 #ifdef DEBUG
 	printf("%s start \n",__func__);
 #endif
+	// Memory allocation for Infra
+	Infra *infra = (Infra *)malloc(sizeof(Infra));
+	if(!infra){
 
+		perror("Malloc failed while allocating infra\n");
+		return fptrArr[0]((void *)"FAILURE");
+	}
 	memset(infra,'\0',sizeof(Infra));
+	
+	// pipe creation
+	infra->pipeFd = (int *)calloc(2,sizeof(int));
+	if(!infra->pipeFd){
+
+		perror("Malloc failed while allocating memory for pipe array\n");
+		return fptrArr[0]((void *)"FAILURE");
+
+	}	
 	createPipe(infra);
+
+
+	// FIFO creation
+	
+
+	infra->fifo = (char *)calloc(10,sizeof(char));
+	if(!infra->fifo){
+
+		perror("Malloc failed while allocating memory for fifo\n");
+                return fptrArr[0]((void *)"FAILURE");
+	}
+	strcpy(infra->fifo,MYFIFO);
 	createFifo(infra);
+
 	createMsq(infra);
 	createShm(infra);
 	freeInfra(infra);
@@ -20,14 +53,13 @@ void createInfra(Infra *infra){
 }
 void createPipe(Infra *infra){
 
-
 #ifdef DEBUG
 	printf("%s start \n",__func__);
 #endif
 	int ret = pipe(infra->pipeFd);
 	if(ret < 0){
 		perror("some Issue with Pipe Creation\n");
-		exit(EXIT_FAILURE);
+		return fptrArr[0]((void *)"FAILURE");
 	}
 	printf("pipe created successfully\n");
 #ifdef DEBUG
