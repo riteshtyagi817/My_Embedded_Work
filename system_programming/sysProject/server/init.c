@@ -1,4 +1,6 @@
 #include "declarations.h"
+#include "../common/dataStructures.h"
+void * (*fptrArr[NFUNC])(void *);
 
 void init(){
 #ifdef DEBUG
@@ -6,7 +8,7 @@ void init(){
 #endif
 
 	fptrArr[0] = exitServer;
-	fptrArr[0] = createInfra;
+	fptrArr[1] = createInfra;
 
 
 #ifdef DEBUG

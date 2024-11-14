@@ -4,9 +4,10 @@
 #define NFUNC 2
 #endif
 
+
 void init();
 
-extern void * (*fptrArr[NFUNC])(void *);
+extern void * (*fptrArr[])(void *);
 extern void * createInfra(void *arg);
 extern void * exitServer(void *arg);
 

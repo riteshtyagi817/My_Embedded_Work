@@ -1,8 +1,17 @@
 #ifndef DATA_STRUCTURES_H
 #define DATA_STRUCTURES_H
+#include "headers.h"
 
 #ifndef MYFIFO
-#define MYFIFO "./srvFiFo"
+#define MYFIFO "../myFiFo"
+#endif
+
+#ifndef MSQID
+#define MSQID 24
+#endif
+
+#ifndef SHDMID 
+#define SHDMID 26
 #endif
 
 typedef struct Message{

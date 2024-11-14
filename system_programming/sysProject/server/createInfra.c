@@ -1,11 +1,33 @@
+#include "../common/dataStructures.h"
 #include "declarations.h"
-
+ 
 
 static void createPipe(Infra *infra);
 static void createFifo(Infra *infra);
 static void createMsq(Infra *infra);
 static void createShm(Infra *infra);
+static void freeInfra(Infra *infra);
+void * exitServer(void *arg){
 
+#ifdef DEBUG
+	printf("%s start \n",__func__);
+#endif
+	
+	char *msg = (char *)arg;
+	if(0 == strncmp(msg,"FAILURE",7)){
+
+		
+		exit(EXIT_FAILURE);
+	}
+	else{
+		exit(EXIT_SUCCESS);
+
+	}
+	return NULL;
+#ifdef DEBUG
+	printf("%s end \n",__func__);
+#endif
+}
 void * createInfra(void *arg){
 
 #ifdef DEBUG
@@ -43,9 +65,16 @@ void * createInfra(void *arg){
 	strcpy(infra->fifo,MYFIFO);
 	createFifo(infra);
 
+	// message queue creation
 	createMsq(infra);
+
+	// shared memory creation
 	createShm(infra);
+	
+	// freeing the infra
 	freeInfra(infra);
+	
+	return (void *)infra;
 #ifdef DEBUG
 	printf("%s end \n",__func__);
 #endif
@@ -59,7 +88,7 @@ void createPipe(Infra *infra){
 	int ret = pipe(infra->pipeFd);
 	if(ret < 0){
 		perror("some Issue with Pipe Creation\n");
-		return fptrArr[0]((void *)"FAILURE");
+		fptrArr[0]((void *)"FAILURE");
 	}
 	printf("pipe created successfully\n");
 #ifdef DEBUG
@@ -94,13 +123,7 @@ void createFifo(Infra *infra){
 	}
 	printf("Fifo has been created\n");
 	system("ipcs");
-	fd = open(MYFIFO,O_RDWR);
-	if(fd < 0){
-
-		perror("could not open the fifo\n");
-		exit(EXIT_FAILURE);
-	}
-	infra->fifoDsc = fd;
+	
 	return;
 
 
@@ -114,7 +137,7 @@ void createMsq(Infra *infra){
 #ifdef DEBUG
 	printf("%s start \n",__func__);
 #endif
-	int msqid = msgget((key_t)24,IPC_CREAT);
+	int msqid = msgget((key_t)MSQID,IPC_CREAT);
 	if(msqid < 0){
 		perror("Message Queue could not be created\n");
 		exit(EXIT_FAILURE);
@@ -134,7 +157,7 @@ void createShm(Infra *infra){
 #ifdef DEBUG
 	printf("%s start \n",__func__);
 #endif
-	int shmid = shmget((key_t)26,4096,IPC_CREAT);
+	int shmid = shmget((key_t)SHDMID,sizeof(Result),IPC_CREAT);
 	if(shmid < 0){
 
 		perror("Shared memory could not be created\n");
@@ -155,7 +178,7 @@ void freeInfra(Infra *infra){
 #ifdef DEBUG
 	printf("%s start \n",__func__);
 #endif
-	system("rm ./srvFiFo");
+	system("rm ../myFiFo");
 	system("ipcrm -Q 24");
 	system("ipcrm -M 26");
 
