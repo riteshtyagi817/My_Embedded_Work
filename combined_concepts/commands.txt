@@ -21,3 +21,5 @@ ld --verbose
 gcc -O0 -S -o test.s test.c
 gcc -O2 -Q --help=optimizers
 gcc -O1 -S -o demo.s demo.c
+docker pull swidzinski/cmake:examples
+docker run -it swidzinski/cmake:examples

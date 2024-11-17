@@ -33,6 +33,8 @@ void * createInfra(void *arg){
 #ifdef DEBUG
 	printf("%s start \n",__func__);
 #endif
+	
+	//freeInfra(infra);
 	// Memory allocation for Infra
 	Infra *infra = (Infra *)malloc(sizeof(Infra));
 	if(!infra){
@@ -72,7 +74,7 @@ void * createInfra(void *arg){
 	createShm(infra);
 	
 	// freeing the infra
-	freeInfra(infra);
+	//freeInfra(infra);
 	
 	return (void *)infra;
 #ifdef DEBUG
