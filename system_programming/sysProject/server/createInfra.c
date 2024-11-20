@@ -159,7 +159,7 @@ void createShm(Infra *infra){
 #ifdef DEBUG
 	printf("%s start \n",__func__);
 #endif
-	int shmid = shmget((key_t)SHDMID,sizeof(Result),IPC_CREAT);
+	int shmid = shmget((key_t)SHDMID,sizeof(Result),IPC_CREAT|0666);
 	if(shmid < 0){
 
 		perror("Shared memory could not be created\n");

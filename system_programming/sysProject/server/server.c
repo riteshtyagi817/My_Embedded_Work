@@ -6,6 +6,8 @@ int main(int agrc, char *argv[]){
 #ifdef DEBUG 
 	printf("%s %d start %s\n",__FILE__,__LINE__,__func__);
 #endif
+	void *Res = NULL;
+	Result *res = NULL;
 	int fifoFd;
 	init();
 	pid_t pid;
@@ -85,7 +87,23 @@ int main(int agrc, char *argv[]){
 				else{
 					printf("written %d bytes\n",bytes_write);
 
-				}	
+				}
+				sleep(2);
+				// at this point we need to read the result from shared memory which has been put up by vendor\n");
+			
+				printf("Printing shmid in server: %d\n",infra->shmid);
+				Res = shmat(infra->shmid,(void *)0,0);
+				if(!Res){
+					perror("could not attach the shared memory in the server\n");
+					exit(EXIT_FAILURE);
+
+
+				}
+				res = (Result *)Res;
+				printf("address attached:%p\n",Res);
+				printf("read the data from shared memory\n");
+				printf("Displaying the data read from the shared memory\n");
+				printf("Pid: %ld and Result:%f\n", res->pid, res->result);
 
 
 

@@ -10,12 +10,8 @@ int main(int argc, char *argv[]){
 	int bytes_read = 0;
 	int shmid = 0;
 	char *data ;
-	Result *res = (Result *)calloc(1,sizeof(Result));
-	if(!res){
-
-		perror("calloc failed in adder\n");
-		exit(EXIT_FAILURE);
-	}
+	void *Res = NULL;
+	Result *res = NULL;
 	Request *req = (Request *)calloc(1, sizeof(Request));
 	if(!req){
 
@@ -34,19 +30,29 @@ int main(int argc, char *argv[]){
 
 
 
-	// Finding the result and sending back to shared memory
-	res->pid =  req->pid;
-	res->result = req->opr1 + req->opr2;
 
 	// getting the shared memory id and then write the response to it
 	
 
 	shmid = shmget((key_t)SHDMID, sizeof(Result),IPC_CREAT|0666);
-	
-	
+	if(shmid < 0){
+		perror("could not get shared memory id in vendor\n");
+		exit(EXIT_FAILURE);
 
-	
-	
+	}
+	printf("Printing shmid in vendor:%d\n", shmid);
+	Res = shmat(shmid, (void *)0,0);
+	if(!Res){
+		perror("could not attach the memory in vendor\n");
+		exit(EXIT_FAILURE);
+	}
+	res = (Result *)Res;
+	printf("address attached:%p\n", res);
+	res->pid = req->pid;
+	res->result = req->opr1 + req->opr2;
+
+	printf("Written the result to shared memory: pid : %ld and result: %f\n",res->pid, res->result);
+
 
 
 #ifdef DEBUG

@@ -39,7 +39,7 @@ typedef struct Request{
 typedef struct Result{
 
 	long pid;
-	int result;
+	float result;
 
 }Result;
 #endif
