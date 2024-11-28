@@ -139,7 +139,7 @@ void createMsq(Infra *infra){
 #ifdef DEBUG
 	printf("%s start \n",__func__);
 #endif
-	int msqid = msgget((key_t)MSQID,IPC_CREAT);
+	int msqid = msgget((key_t)MSQID,IPC_CREAT|0666);
 	if(msqid < 0){
 		perror("Message Queue could not be created\n");
 		exit(EXIT_FAILURE);

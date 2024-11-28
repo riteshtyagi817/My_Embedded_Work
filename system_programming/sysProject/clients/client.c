@@ -6,6 +6,9 @@ int main(int argc, char *argv[]){
 	printf("%s start\n",__func__);
 #endif
 	int fifoFd;
+	Msg msg;
+	Result res;
+	int ret  = 0;
 	int bytes_write;
 	Request *req = (Request *)calloc(1,sizeof(Request));
 	if(!req){
@@ -32,6 +35,23 @@ int main(int argc, char *argv[]){
 			exit(EXIT_FAILURE);
 		}
 		printf("%d bytes written\n",bytes_write);
+		sleep(2);
+		// will try to read the result from the message queue
+		memset(&msg, '\0',0);
+		memset(&res, '\0',sizeof(Res));
+		
+		int msqID = msgget((key_t)MSQID,IPC_CREAT|0666);
+		ret = msgrcv
+
+
+
+
+
+
+
+
+
+
 			
 	}
 	else{

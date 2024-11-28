@@ -14,7 +14,9 @@ int main(int agrc, char *argv[]){
 	int bytes_read = 0;
 	Infra *infra = NULL;
 	int bytes_write = 0;
+	int ret = 0;
 	char strpipeFd[4];
+	Msg msg;
 	memset(strpipeFd, '\0',sizeof(strpipeFd));
 	infra = (Infra *)(*fptrArr[1])(NULL);
 	Request *req = (Request *)calloc(1,sizeof(Request));
@@ -104,9 +106,19 @@ int main(int agrc, char *argv[]){
 				printf("read the data from shared memory\n");
 				printf("Displaying the data read from the shared memory\n");
 				printf("Pid: %ld and Result:%f\n", res->pid, res->result);
+				// will write the data into the message queue
+				memset(&msg,'\0',sizeof(msg));
+
+				memcpy(&msg,res,sizeof(Res));
 
 
+				ret  = msgsnd(infra->msqId,(void *)&msg,sizeof(Res),0);
+				if(ret  < 0){
+					perror("msgsnd failed\n");
+					exit(EXIT_FAILURE);
 
+				}
+				printf("Result written to the queue successfully\n");
 			}	
 
 		}
