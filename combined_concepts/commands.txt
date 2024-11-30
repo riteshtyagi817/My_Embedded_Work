@@ -38,3 +38,5 @@ gcc -g -o test test.c -ltest -L/home/ritesht/lib/
 gcc -static -g -o test test.c -ltest -L/home/ritesht/lib/
 gcc -v -g -o test test.c
 cat /proc/8593/maps
+sudo tail -f /var/log/messages
+dmesg -w
