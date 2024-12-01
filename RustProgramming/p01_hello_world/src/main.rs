@@ -1,3 +1,6 @@
 fn main() {
-    println!("Hello, Ritesh!");
+
+	let a: i32 = -500;
+	let unsigned: u32 = 500;
+	println!("Signed: {} and Unsigned: {}",a, unsigned);
 }
