@@ -37,11 +37,26 @@ int main(int argc, char *argv[]){
 		printf("%d bytes written\n",bytes_write);
 		sleep(2);
 		// will try to read the result from the message queue
-		memset(&msg, '\0',0);
-		memset(&res, '\0',sizeof(Res));
+		memset(&(msg.data), '\0',sizeof(msg.data));
+		memset(&res, '\0',sizeof(Result));
 		
 		int msqID = msgget((key_t)MSQID,IPC_CREAT|0666);
-		ret = msgrcv
+		if(msqID < 0){
+			perror("Could not get the msq id in client\n");
+			exit(EXIT_FAILURE);
+
+		}
+		ret = msgrcv(msqID,&msg,sizeof(msg.data),getpid(),0);
+		if(ret < 0){
+			perror("some issue with msgrcv in client\n");
+			exit(EXIT_FAILURE);
+		}
+		printf("%d bytes received in client through msg\n",ret);
+		if(ret > 0){
+			memcpy(&res,&(msg.data),sizeof(Result));
+			printf("we received result as %f and pid %ld\n",res.result,res.pid);
+
+		}
 
 
 

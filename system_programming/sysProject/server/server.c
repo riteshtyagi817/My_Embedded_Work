@@ -107,12 +107,12 @@ int main(int agrc, char *argv[]){
 				printf("Displaying the data read from the shared memory\n");
 				printf("Pid: %ld and Result:%f\n", res->pid, res->result);
 				// will write the data into the message queue
-				memset(&msg,'\0',sizeof(msg));
+				memset(&(msg.data),'\0',sizeof(msg.data));
 
-				memcpy(&msg,res,sizeof(Res));
+				memcpy(&(msg.data),res,sizeof(Result));
+				msg.msgType = res->pid;
 
-
-				ret  = msgsnd(infra->msqId,(void *)&msg,sizeof(Res),0);
+				ret  = msgsnd(infra->msqId,(void *)&msg,sizeof(msg.data),0);
 				if(ret  < 0){
 					perror("msgsnd failed\n");
 					exit(EXIT_FAILURE);
@@ -128,15 +128,6 @@ int main(int agrc, char *argv[]){
 
 	}
 
-	/*
-	fd = open(MYFIFO,O_RDWR);
-        if(fd < 0){
-
-                perror("could not open the fifo\n");
-                exit(EXIT_FAILURE);
-        }
-        infra->fifoDsc = fd;
-	*/
 
 #ifdef DEBUG
 	printf("%s %d end %s\n",__FILE__,__LINE__,__func__);

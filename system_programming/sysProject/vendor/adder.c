@@ -47,7 +47,7 @@ int main(int argc, char *argv[]){
 		exit(EXIT_FAILURE);
 	}
 	res = (Result *)Res;
-	printf("address attached:%p\n", res);
+	printf("address attached in vendor:%p\n", res);
 	res->pid = req->pid;
 	res->result = req->opr1 + req->opr2;
 
