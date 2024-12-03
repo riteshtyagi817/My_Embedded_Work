@@ -11,4 +11,5 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include<stddef.h>
+#include <sys/sem.h>
 #endif

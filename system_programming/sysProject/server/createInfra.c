@@ -7,6 +7,7 @@ static void createFifo(Infra *infra);
 static void createMsq(Infra *infra);
 static void createShm(Infra *infra);
 static void freeInfra(Infra *infra);
+static void createSem(Infra *infra);
 void * exitServer(void *arg){
 
 #ifdef DEBUG
@@ -75,11 +76,37 @@ void * createInfra(void *arg){
 	
 	// freeing the infra
 	//freeInfra(infra);
-	
+	createSem(infra);
+
 	return (void *)infra;
 #ifdef DEBUG
 	printf("%s end \n",__func__);
 #endif
+
+}
+void createSem(Infra *infra){
+
+
+
+	infra->semCli  = semget(SEMCLI, 4,IPC_CREAT|0666);
+	if(infra->semCli == -1){
+
+		perror("Issue while creating semcli\n");
+		fptrArr[0]((void *)"FAILURE");
+	}
+	for(int i = 0; i < 4;++i){
+		infra->su[i].val = 1;
+		if(semctl(infra->semCli, i,SETVAL, infra->su[i]) == -1){
+			perror("Some Issue in semctl\n");
+			fptrArr[0]((void *)"FAILURE");
+
+		}
+
+
+	}
+
+
+
 
 }
 void createPipe(Infra *infra){
@@ -91,7 +118,7 @@ void createPipe(Infra *infra){
 	if(ret < 0){
 		perror("some Issue with Pipe Creation\n");
 		fptrArr[0]((void *)"FAILURE");
-	}
+	} 
 	printf("pipe created successfully\n");
 #ifdef DEBUG
 	printf("%s end \n",__func__);
