@@ -46,3 +46,6 @@ gcc -static -g -o test test.c
 gcc -g -o test test.c
 gcc  -no-pie -g -o test_nopie test.c
  set disable-randomization off
+gcc -g -o test test.c
+readelf -a test
+objdump -Ds test > test.obj
