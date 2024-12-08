@@ -18,12 +18,6 @@
 #define SEMCLI 3333
 #endif
 
-typedef struct Message{
-
-        char data[128];
-        long msgType;
-
-}Msg;
  union semun {
                int              val;    /* Value for SETVAL */
                struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
@@ -55,4 +49,13 @@ typedef struct Result{
 	float result;
 
 }Result;
+
+typedef struct Message{
+
+        char data[sizeof(Result)];
+        long msgType;
+
+}Msg;
+
+
 #endif

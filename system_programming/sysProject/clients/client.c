@@ -37,7 +37,9 @@ int main(int argc, char *argv[]){
 		printf("%d bytes written\n",bytes_write);
 		sleep(2);
 		// will try to read the result from the message queue
-		memset(&(msg.data), '\0',sizeof(msg.data));
+		//memset(&(msg.data), '\0',sizeof(msg.data));
+
+		memset(&(msg), '\0',sizeof(msg));
 		memset(&res, '\0',sizeof(Result));
 		
 		int msqID = msgget((key_t)MSQID,IPC_CREAT|0666);

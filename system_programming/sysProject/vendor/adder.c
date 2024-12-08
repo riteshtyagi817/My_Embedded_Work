@@ -35,6 +35,7 @@ int main(int argc, char *argv[]){
 	
 
 	shmid = shmget((key_t)SHDMID, sizeof(Result),IPC_CREAT|0666);
+	printf("Printing shmid in vendor 1:%d\n", shmid);
 	if(shmid < 0){
 		perror("could not get shared memory id in vendor\n");
 		exit(EXIT_FAILURE);
