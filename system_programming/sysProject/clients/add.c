@@ -24,6 +24,10 @@ int main(int argc, char *argv[]){
 	
 	if(!access(MYFIFO,F_OK)){
 
+
+		// we can treat this as a critical section for multiple processes
+		// to use system V semaphore
+	
 		fifoFd = open(MYFIFO,O_WRONLY);
 		if(fifoFd < 0){
 			perror("Some Issue with fifo open\n");
@@ -35,6 +39,11 @@ int main(int argc, char *argv[]){
 			exit(EXIT_FAILURE);
 		}
 		printf("%d bytes written\n",bytes_write);
+
+
+
+
+
 		sleep(2);
 		// will try to read the result from the message queue
 		//memset(&(msg.data), '\0',sizeof(msg.data));

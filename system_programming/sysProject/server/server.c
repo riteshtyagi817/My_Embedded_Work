@@ -1,6 +1,6 @@
 #include "declarations.h"
 #include "../common/dataStructures.h"
-
+Infra *infra = NULL;
 int main(int agrc, char *argv[]){
 
 #ifdef DEBUG 
@@ -12,7 +12,7 @@ int main(int agrc, char *argv[]){
 	init();
 	pid_t pid;
 	int bytes_read = 0;
-	Infra *infra = NULL;
+	//Infra *infra = NULL;
 	int bytes_write = 0;
 	int ret = 0;
 	char strpipeFd[4];

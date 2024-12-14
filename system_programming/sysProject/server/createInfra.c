@@ -2,12 +2,17 @@
 #include "declarations.h"
  
 
+struct sembuf semWait = {0,-1,0};
+struct sembuf semSignal = {0,1,0};
+
 static void createPipe(Infra *infra);
 static void createFifo(Infra *infra);
 static void createMsq(Infra *infra);
 static void createShm(Infra *infra);
 static void freeInfra(Infra *infra);
 static void createSem(Infra *infra);
+static void createPthsem(Infra *infra);
+
 void * exitServer(void *arg){
 
 #ifdef DEBUG
@@ -25,6 +30,18 @@ void * exitServer(void *arg){
 
 	}
 	return NULL;
+#ifdef DEBUG
+	printf("%s end \n",__func__);
+#endif
+}
+void createPthsem(Infra *infra){
+
+#ifdef DEBUG
+	printf("%s start \n",__func__);
+#endif
+	sem_init(&infra->pthsem,0,1);
+
+
 #ifdef DEBUG
 	printf("%s end \n",__func__);
 #endif
@@ -77,6 +94,7 @@ void * createInfra(void *arg){
 	// freeing the infra
 	//freeInfra(infra);
 	createSem(infra);
+	createPthsem(infra);
 
 	return (void *)infra;
 #ifdef DEBUG

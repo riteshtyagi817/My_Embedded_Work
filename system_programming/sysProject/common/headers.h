@@ -12,4 +12,6 @@
 #include <sys/stat.h>
 #include<stddef.h>
 #include <sys/sem.h>
+#include<pthread.h>
+#include<semaphore.h>
 #endif

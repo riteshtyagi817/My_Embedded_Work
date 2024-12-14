@@ -33,6 +33,7 @@ typedef struct Infra{
         int shmid;
 	int semCli;
 	union semun su[4];
+	sem_t pthsem;
 
 }Infra;
 typedef struct Request{
@@ -56,6 +57,7 @@ typedef struct Message{
         long msgType;
 
 }Msg;
-
-
+extern Infra *infra;
+extern struct sembuf semWait;
+extern struct sembuf semSignal;
 #endif
