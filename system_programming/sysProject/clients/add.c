@@ -1,14 +1,18 @@
 #include "../common/headers.h" 
 #include "../common/dataStructures.h"
+
 int main(int argc, char *argv[]){
 
 #ifdef DEBUG
 	printf("%s start\n",__func__);
 #endif
+	struct sembuf semWait;
+	struct sembuf semSignal;
 	int fifoFd;
 	Msg msg;
 	Result res;
 	int ret  = 0;
+	int semCli = 0;
 	int bytes_write;
 	Request *req = (Request *)calloc(1,sizeof(Request));
 	if(!req){
@@ -28,6 +32,26 @@ int main(int argc, char *argv[]){
 		// we can treat this as a critical section for multiple processes
 		// to use system V semaphore
 	
+		semCli = semget(SEMCLI,4,IPC_CREAT|0666);
+		if(semCli == -1){
+
+			perror("Some issue with semget in add.c\n");
+			exit(EXIT_FAILURE);
+
+		}
+
+		sleep(2);
+		semWait.sem_num = 0;
+		semWait.sem_op = -1;
+		semWait.sem_flg = 0;
+
+		printf("inside critical section process id: %d\n",getpid());
+		ret = semop(semCli,&semWait,1);
+		if(ret < 0){
+			printf("some issue with semop\n");
+			exit(EXIT_FAILURE);
+
+		}
 		fifoFd = open(MYFIFO,O_WRONLY);
 		if(fifoFd < 0){
 			perror("Some Issue with fifo open\n");
@@ -38,6 +62,14 @@ int main(int argc, char *argv[]){
 			perror("error in write\n");
 			exit(EXIT_FAILURE);
 		}
+		semSignal.sem_num = 0;
+		semSignal.sem_op = 1;
+		semSignal.sem_flg = 0;
+		if(semop(semCli, &semSignal,1) == -1){
+			perror("some issue with semop\n");
+			exit(EXIT_FAILURE);
+		}
+
 		printf("%d bytes written\n",bytes_write);
 
 

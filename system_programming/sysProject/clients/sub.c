@@ -5,6 +5,9 @@ int main(int argc, char *argv[]){
 #ifdef DEBUG
 	printf("%s start\n",__func__);
 #endif
+	struct sembuf semWait;
+ 	struct sembuf semSignal;
+	int semCli = 0;
 	int fifoFd;
 	Msg msg;
 	Result res;
@@ -24,6 +27,26 @@ int main(int argc, char *argv[]){
 	
 	if(!access(MYFIFO,F_OK)){
 
+		// this is the critical section for system V semaphore
+		
+		semCli = semget(SEMCLI,4,IPC_CREAT|0666);
+		if(semCli == -1){
+			perror("Some issue with semget in add.c\n");
+ 			exit(EXIT_FAILURE);
+
+		}
+		semWait.sem_num = 0;
+                semWait.sem_op = -1;
+                semWait.sem_flg = 0;
+
+		printf("Inside critical section second process\n");
+		ret = semop(semCli,&semWait,1);
+		if(ret < 0){
+			printf("some issue with semop\n");
+ 			exit(EXIT_FAILURE);
+ 
+                 }
+
 		fifoFd = open(MYFIFO,O_WRONLY);
 		if(fifoFd < 0){
 			perror("Some Issue with fifo open\n");
@@ -34,6 +57,15 @@ int main(int argc, char *argv[]){
 			perror("error in write\n");
 			exit(EXIT_FAILURE);
 		}
+		semWait.sem_num = 0;
+ 		semWait.sem_op = -1;
+ 		semWait.sem_flg = 0;
+		if(semop(semCli, &semSignal,1) == -1){
+                          perror("some issue with semop\n");
+                          exit(EXIT_FAILURE);
+                }
+
+
 		printf("%d bytes written\n",bytes_write);
 		sleep(2);
 		// will try to read the result from the message queue

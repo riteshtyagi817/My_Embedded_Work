@@ -57,7 +57,4 @@ typedef struct Message{
         long msgType;
 
 }Msg;
-extern Infra *infra;
-extern struct sembuf semWait;
-extern struct sembuf semSignal;
 #endif

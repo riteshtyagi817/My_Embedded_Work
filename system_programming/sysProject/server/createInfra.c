@@ -2,8 +2,8 @@
 #include "declarations.h"
  
 
-struct sembuf semWait = {0,-1,0};
-struct sembuf semSignal = {0,1,0};
+//struct sembuf semWait = {0,-1,0};
+//struct sembuf semSignal = {0,1,0};
 
 static void createPipe(Infra *infra);
 static void createFifo(Infra *infra);
