@@ -5,8 +5,6 @@ int main(int agrc, char *argv[]){
 #ifdef DEBUG 
 	printf("%s %d start %s\n",__FILE__,__LINE__,__func__);
 #endif
-	void *Res = NULL;
-	Result *res = NULL;
 	init();
 	pid_t pid;
 	Infra *infra = NULL;
@@ -15,9 +13,6 @@ int main(int agrc, char *argv[]){
 	int bytes_write = 0;
 	int ret = 0;
 	pthread_t tid;
-	char strpipeFd[4];
-	Msg msg;
-	memset(strpipeFd, '\0',sizeof(strpipeFd));
 	infra = (Infra *)(*fptrArr[1])(NULL);
 	if(!infra){
 		perror("Some issue during createInfra\n");
@@ -110,6 +105,7 @@ int main(int agrc, char *argv[]){
 
 				// at this point we need to read the result from shared memory which has been put up by vendor\n");
 			
+				/*
 				printf("Printing shmid in server: %d\n",infra->shmid);
 				Res = shmat(infra->shmid,(void *)0,0);
 				if(!Res){
@@ -137,6 +133,8 @@ int main(int agrc, char *argv[]){
 				}
 				printf("Result written to the queue successfully\n");
 
+
+				*/
 
 #ifdef DEBUG
 	printf("%s %d end %s\n",__FILE__,__LINE__,__func__);
