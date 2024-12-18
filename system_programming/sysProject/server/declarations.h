@@ -10,6 +10,7 @@ void init();
 extern void * (*fptrArr[])(void *);
 extern void * createInfra(void *arg);
 extern void * exitServer(void *arg);
+extern void * processRequest(void *arg);
 
 
 #endif

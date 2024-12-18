@@ -7,7 +7,6 @@ int main(int agrc, char *argv[]){
 #endif
 	void *Res = NULL;
 	Result *res = NULL;
-	int fifoFd;
 	init();
 	pid_t pid;
 	Infra *infra = NULL;
@@ -15,23 +14,35 @@ int main(int agrc, char *argv[]){
 	//Infra *infra = NULL;
 	int bytes_write = 0;
 	int ret = 0;
+	pthread_t tid;
 	char strpipeFd[4];
 	Msg msg;
 	memset(strpipeFd, '\0',sizeof(strpipeFd));
 	infra = (Infra *)(*fptrArr[1])(NULL);
-	Request *req = (Request *)calloc(1,sizeof(Request));
-	if(!req){
-		perror("Some Issue during memory alloc in server\n");
-		(*fptrArr[0])("FAILURE");
-
-	}
-
 	if(!infra){
 		perror("Some issue during createInfra\n");
 		(*fptrArr[0])("FAILURE");	
 
 	}
 
+	while(1){
+
+		if(sem_wait(&infra->pthsem) == -1){
+
+			perror("Some issue with sem_wait in server program\n");
+			(*fptrArr[0])("FAILURE");
+		}
+		ret = pthread_create(&tid, NULL, (*fptrArr[2]), (void *)infra);
+		if(ret != 0){
+			perror("Some issue with pthread creation in server\n");
+			(*fptrArr[0])("FAILURE");
+		}
+
+
+
+
+	}
+	/*
 		
 	while(1){
 
@@ -92,6 +103,11 @@ int main(int agrc, char *argv[]){
 
 				}
 				sleep(2);
+
+			*/
+
+
+
 				// at this point we need to read the result from shared memory which has been put up by vendor\n");
 			
 				printf("Printing shmid in server: %d\n",infra->shmid);
@@ -120,14 +136,6 @@ int main(int agrc, char *argv[]){
 
 				}
 				printf("Result written to the queue successfully\n");
-			}	
-
-		}
-
-
-
-
-	}
 
 
 #ifdef DEBUG
