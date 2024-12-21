@@ -204,6 +204,10 @@ void createShm(Infra *infra){
 #ifdef DEBUG
 	printf("%s start \n",__func__);
 #endif
+	if(infra->shmid != 0){
+		system("ipcrm -m infra->shmid");
+
+	}
 	int shmid = shmget((key_t)SHDMID,sizeof(Result),IPC_CREAT|0666);
 	if(shmid < 0){
 

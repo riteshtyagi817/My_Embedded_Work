@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
 
 		}
 
-		sleep(2);
+		//sleep(2);
 		semWait.sem_num = 0;
 		semWait.sem_op = -1;
 		semWait.sem_flg = 0;
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]){
 
 
 
-
+		/*
 
 		sleep(2);
 		// will try to read the result from the message queue
@@ -103,7 +103,7 @@ int main(int argc, char *argv[]){
 
 
 
-
+		*/
 
 
 
