@@ -49,3 +49,5 @@ gcc  -no-pie -g -o test_nopie test.c
 gcc -g -o test test.c
 readelf -a test
 objdump -Ds test > test.obj
+arm-linux-gnueabihf-gcc -g -O0 -o test test.c
+arm-linux-gnueabihf-readelf -a test
