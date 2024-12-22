@@ -30,3 +30,45 @@ bc, dc, eval, expr, factor, false, true
 There are many other commands and utilities that could be added to this list.
 
 
+vmstat
+iotop
+sar
+iostat
+ps
+free
+df
+uptime
+top
+pmap
+netstat
+pstree
+sudo /sbin/insmod <pathto>/module_name.ko
+lsmod
+sudo /sbin/rmmod module_name
+sudo /sbin/modprobe module_name
+sudo /sbin/modprobe -r module_name
+to modeprobe work modules must be installed in /lib/modules/6.8.0-49-generic
+to modeprobe work modules must be installed in /lib/modules/$(uname -r)
+/sbin/modinfo <pathto>/my_module.ko
+sudo modprobe ./3c59x.ko.zst
+sudo modprobe -r 3c59x
+sudo modinfo 3c59x
+sudo dmesg
+dmesg -w
+systemctl [options] command [name]
+systemctl
+systemctl list-units -t service --all
+systemctl list-units -t service
+sudo systemctl start foo
+sudo systemctl start foo.service
+sudo systemctl start /path/to/foo.service
+sudo systemctl stop foo.service
+sudo systemctl enable sshd.service  -- to enable it at the system boot
+sudo systemctl disable sshd.service  -- to disable it at the system boot
+sudo systemctl status servicename
+stress --help
+stressng --help
+stress -c 8 -i 4 -m 6 -t 20s
+stress -m 4 -t 20s
+sudo systemctl restart httpd
+sudo systemctl stop httpd && sudo systemctl start httpd 
