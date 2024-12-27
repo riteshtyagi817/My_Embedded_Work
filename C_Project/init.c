@@ -45,6 +45,7 @@ void *compression6(void *);
 void *compression7(void *);
 
 void *compression8(void *);
+void *decompression4(void *);
 int flag  = 0;
 
 void * getPos(void *arg);
@@ -84,6 +85,7 @@ int init()
 	funcPtr[15] = compression7;
 	funcPtr[16] = compression8;
 	funcPtr[17] = getPos;
+	funcPtr[18] = decompression4;
 
 #ifdef DEBUG
 	printf("%s end\n", __func__);

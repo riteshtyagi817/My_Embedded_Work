@@ -13,3 +13,11 @@ typedef struct
 
 
 }SCompress;
+typedef struct{
+
+	int ifd;
+	char *ma;
+	int size;
+
+
+}DCompress;

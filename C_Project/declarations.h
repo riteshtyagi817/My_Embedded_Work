@@ -54,4 +54,5 @@ extern void * compression8(void *);
 
 extern void * getPos(void *arg);
 
+extern void *decompression4(void *);
 #endif

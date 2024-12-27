@@ -25,7 +25,7 @@ void * compression(void *arg)
 	}
 	scmp.ma = NULL;
 	
-
+	printf("Please provide the filename as the Input file to read\n");
 	// to clear the buffer for next functton call taking input file name
 	getchar(); 
 	scmp.fileFd = (int *)(*funcPtr[6])((void *)"reading");

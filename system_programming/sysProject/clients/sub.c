@@ -40,6 +40,11 @@ int main(int argc, char *argv[]){
                 semWait.sem_flg = 0;
 
 		printf("Inside critical section second process\n");
+		fifoFd = open(MYFIFO,O_WRONLY);
+		if(fifoFd < 0){
+			perror("Some Issue with fifo open\n");
+			exit(EXIT_FAILURE);
+		}
 		ret = semop(semCli,&semWait,1);
 		if(ret < 0){
 			printf("some issue with semop\n");
@@ -47,11 +52,6 @@ int main(int argc, char *argv[]){
  
                  }
 
-		fifoFd = open(MYFIFO,O_WRONLY);
-		if(fifoFd < 0){
-			perror("Some Issue with fifo open\n");
-			exit(EXIT_FAILURE);
-		}
 		bytes_write = write(fifoFd, req,sizeof(Request));
 		if(bytes_write < 0){
 			perror("error in write\n");

@@ -25,7 +25,7 @@ void * openFile(void *arg)
 	}
 
 	memset(inpFile,'\0',20);
-	printf("Enter the input file name for  mode: %s which will be used in compression:\n", mode);
+	printf("Enter the file name for  mode: %s\n", mode);
 	char ch;
 	// another method to clear buffer
 	//while((ch = getchar()) != '\n');

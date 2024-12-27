@@ -37,7 +37,7 @@ void * compression4(void *arg)
 
         // for now I am assuming we will have max length of master array is 16 so that fit length can be 4 bits
 
-
+	printf("Please provide the file name as the compressed file\n");
         int *writeFd = (int *)malloc(sizeof(int));
         if(!writeFd){
 
@@ -220,7 +220,8 @@ void * compression4(void *arg)
         } */
 
 	// need to write the ma into some file and it will act as the key
-	
+
+	printf("Please provide the file name which will be used as the key\n");
         int *keyFd = (int *)malloc(sizeof(int));
         if(!keyFd){
 
