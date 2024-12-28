@@ -33,6 +33,15 @@ void * deCompression(void *arg){
 
 	}
 	dc.size = 0;
+	int keySize = lseek(fileFd, 0, SEEK_END);
+	printf("The key size is %d\n",keySize);
+	lseek(fileFd, 0, SEEK_SET);
+	dc.ma = (char *)malloc(keySize*sizeof(char));
+	if(!dc.ma){
+		perror("Some issue with memory allocation in deCompression\n");
+		return (int *)(*funcPtr[5])((void *)"failure");
+	}
+	memset(dc.ma,'\0',keySize);
 	while(1){
 
 		read_bytes = read(fileFd,&ch,1);
@@ -43,14 +52,33 @@ void * deCompression(void *arg){
 
 	}
 	printf("The size of ma is %d\n",dc.size);
+	// now we need to open the compressed file as well in reading mode
+	
+	printf("Please provide the compressed file name to open\n");
+        dc.ifd = *(int *)(*funcPtr[6])((void *)"reading");
+	if(dc.ifd < 0)
+	{
+                  perror("File opening failed\n");
+                  return (int *)(*funcPtr[5])((void *)"failure");
+  	}
+
+
 	// now we need to find the code length for this and need to call the decompression
 	// function accordingly
+	
     
         int maxBits = *(int *)cMaxBits((void *)dc.ma);
         printf("Max Bits need to represent all the unique characters is %d\n",maxBits);             if(maxBits == 4){
 		(int *)(*funcPtr[18])((void *)&dc);
 	}
 
+	close(dc.ifd);
+	if(dc.ma != NULL){
+
+		free(dc.ma);
+		dc.ma = NULL;
+
+	}
 
 
 	/*

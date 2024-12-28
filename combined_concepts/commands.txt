@@ -1,3 +1,13 @@
+to save desired stages
+-E - preprocessing
+-S - Assembler
+-c - Object code
+for GCC optimization
+-O0 
+-O1
+-O2
+-O3
+-Os
 ldd test
 readelf -a test
 arm-linux-gnueabihf-gcc -g -o test test.c
