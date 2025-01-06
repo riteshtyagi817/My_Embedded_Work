@@ -45,37 +45,36 @@ int main(int argc, char *argv[]){
 		semWait.sem_op = -1;
 		semWait.sem_flg = 0;
 
-		printf("inside critical section process id: %d\n",getpid());
-		fifoFd = open(MYFIFO,O_WRONLY);
-		if(fifoFd < 0){
-			perror("Some Issue with fifo open\n");
-			exit(EXIT_FAILURE);
-		}
 		ret = semop(semCli,&semWait,1);
 		if(ret < 0){
 			printf("some issue with semop\n");
 			exit(EXIT_FAILURE);
 
+		} 
+		fifoFd = open(MYFIFO,O_WRONLY);
+		if(fifoFd < 0){
+			perror("Some Issue with fifo open\n");
+			exit(EXIT_FAILURE);
 		}
+		printf("inside critical section process id: %d\n",getpid());
 		bytes_write = write(fifoFd, req,sizeof(Request));
 		if(bytes_write < 0){
 			perror("error in write\n");
 			exit(EXIT_FAILURE);
-		}
+		} 
+		close(fifoFd);
 		semSignal.sem_num = 0;
 		semSignal.sem_op = 1;
 		semSignal.sem_flg = 0;
 		if(semop(semCli, &semSignal,1) == -1){
 			perror("some issue with semop\n");
 			exit(EXIT_FAILURE);
-		}
+		} 
 
 		printf("%d bytes written\n",bytes_write);
-
-
-
+	//	close(fifoFd);
 		/*
-
+	
 		sleep(2);
 		// will try to read the result from the message queue
 		//memset(&(msg.data), '\0',sizeof(msg.data));

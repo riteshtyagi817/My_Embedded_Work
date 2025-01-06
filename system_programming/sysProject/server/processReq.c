@@ -1,6 +1,6 @@
 #include "../common/dataStructures.h"
 #include "declarations.h"
- 
+int glob = 0; 
 void * processRequest(void *arg){
 
 #ifdef DEBUG
@@ -13,6 +13,7 @@ void * processRequest(void *arg){
 	char strpipeFd[4];
 	void *Res = NULL;
         Result *res = NULL;
+	int count = 0;
 	memset(strpipeFd, '\0',sizeof(strpipeFd));
 	pid_t pid;
 	int ret = 0;
@@ -31,10 +32,14 @@ void * processRequest(void *arg){
 		perror("Some Issue with fifo open\n");
 		(*fptrArr[0])("FAILURE");
 	}
+	printf("after open in server\n");
 	bytes_read = read(fifoFd, req,sizeof(Request));
 	if(bytes_read <= 0){
                         printf("could not read anything.\n");
 	}
+	close(fifoFd);
+	++glob;
+	printf("the glob value in pthread is %d\n",glob);
 	sem_post(&infra->pthsem);
 	printf("Posix thread worked\n");
 	printf("Request read successfully from the fifo\n");
@@ -47,6 +52,7 @@ void * processRequest(void *arg){
 		req = NULL;
 
 	}
+	//close(fifoFd);
 
 	/*
 	pid = fork();

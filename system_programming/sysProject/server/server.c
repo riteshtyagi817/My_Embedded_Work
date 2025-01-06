@@ -19,7 +19,7 @@ int main(int agrc, char *argv[]){
 		(*fptrArr[0])("FAILURE");	
 
 	}
-
+	int count = 0;
 	while(1){
 
 		if(sem_wait(&infra->pthsem) == -1){
@@ -32,9 +32,8 @@ int main(int agrc, char *argv[]){
 			perror("Some issue with pthread creation in server\n");
 			(*fptrArr[0])("FAILURE");
 		}
-
-
-
+		count++;
+		printf("value of count is %d\n",count);
 
 	}
 	/*
