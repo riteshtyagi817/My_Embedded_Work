@@ -33,7 +33,7 @@ int main(int agrc, char *argv[]){
 			(*fptrArr[0])("FAILURE");
 		}
 		count++;
-		printf("value of count is %d\n",count);
+		printf("thread count is %d\n",count);
 
 	}
 	/*

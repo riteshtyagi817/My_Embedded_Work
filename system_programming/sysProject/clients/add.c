@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
 		//sleep(2);
 		semWait.sem_num = 0;
 		semWait.sem_op = -1;
-		semWait.sem_flg = 0;
+		semWait.sem_flg = SEM_UNDO;
 
 		ret = semop(semCli,&semWait,1);
 		if(ret < 0){
@@ -62,11 +62,11 @@ int main(int argc, char *argv[]){
 			perror("error in write\n");
 			exit(EXIT_FAILURE);
 		} 
-		close(fifoFd);
-		semSignal.sem_num = 0;
-		semSignal.sem_op = 1;
-		semSignal.sem_flg = 0;
-		if(semop(semCli, &semSignal,1) == -1){
+		//close(fifoFd);
+		//semWait.sem_num = 0;
+		semWait.sem_op = 1;
+		//semSignal.sem_flg = SEM_UNDO;
+		if(semop(semCli, &semWait,1) == -1){
 			perror("some issue with semop\n");
 			exit(EXIT_FAILURE);
 		} 
