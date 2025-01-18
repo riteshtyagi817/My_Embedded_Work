@@ -1,0 +1,54 @@
+You can invoke sed using commands like those listed in the accompanying table.
+
+Command
+
+Usage
+
+sed -e command <filename>
+
+Specify editing commands at the command line, operate on file and put the output on standard out (e.g. the terminal)
+
+sed -f scriptfile <filename>
+
+Specify a scriptfile containing sed commands, operate on file and put output on standard out
+
+The -e command option allows you to specify multiple editing commands simultaneously at the command line. It is unnecessary if you only have one operation invoked.
+
+
+Now that you know that you can perform multiple editing and filtering operations with sed, let’s explain some of them in more detail. The table explains some basic operations, where pattern is the current string and replace_string is the new string:
+
+Command
+
+Usage
+
+sed s/pattern/replace_string/ file
+
+Substitute first string occurrence in every line
+
+sed s/pattern/replace_string/g file
+
+Substitute all string occurrences in every line
+
+sed 1,3s/pattern/replace_string/g file
+
+Substitute all string occurrences in a range of lines
+
+sed -i s/pattern/replace_string/g file
+
+Save changes for string substitution in the same file
+
+You must use the -i option with care, because the action is not reversible. It is always safer to use sed without the –i option and then replace the file yourself, as shown in the following example:
+
+1
+$ sed s/pattern/replace_string/g file1 > file2
+The above command will replace all occurrences of pattern with replace_string in file1 and move the contents to file2. The contents of file2 can be viewed with cat file2. If you approve, you can then overwrite the original file with mv file2 file1.
+
+Example: To convert 01/02/… to JAN/FEB/…
+
+321
+
+we can use : instead of / 
+like sed -e s:pattern:replace_pattern:g file
+
+
+

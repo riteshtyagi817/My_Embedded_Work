@@ -1,0 +1,34 @@
+cat is short for concatenate and is one of the most frequently used Linux command line utilities. It is often used to read and print files, as well as for simply viewing file contents. To view a file, use the following command: 
+
+1
+$ cat <filename>
+For example, cat readme.txt will display the contents of readme.txt on the terminal. However, the main purpose of cat is often to combine (concatenate) multiple files together. You can perform the actions listed in the table using cat.
+
+The tac command (cat spelled backwards) prints the lines of a file in reverse order. Each line remains the same, but the order of lines is inverted. The syntax of tac is exactly the same as for cat, as in:
+
+21
+$ tac file
+$ tac file1 file2 > newfile
+Command
+
+Usage
+
+cat file1 file2
+
+Concatenate multiple files and display the output; i.e. the entire content of the first file is followed by that of the second file
+
+cat file1 file2 > newfile
+
+Combine multiple files and save the output into a new file
+
+cat file >> existingfile
+
+Append a file to the end of an existing file
+
+cat > file
+
+Any subsequent lines typed will go into the file, until Ctrl-D is typed
+
+cat >> file
+
+Any subsequent lines are appended to the file, until Ctrl-D is typed

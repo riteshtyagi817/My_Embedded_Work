@@ -1,0 +1,38 @@
+awk is invoked as shown in the following screenshot:
+
+
+As with sed, short awk commands can be specified directly at the command line, but a more complex script can be saved in a file that you can specify using the -f option.
+
+Command
+
+<header>
+
+awk 'command'  file
+
+Specify a command directly at the command line
+
+awk -f scriptfile file
+
+Specify a file that contains the script to be executed
+
+The table below explains the basic tasks that can be performed using awk. The input file is read one line at a time, and, for each line, awk matches the given pattern in the given order and performs the requested action. The -F option allows you to specify a particular field separator character. For example, the /etc/passwd file uses ":" to separate the fields, so the -F: option is used with the /etc/passwd file.
+
+The command/action in awk needs to be surrounded with apostrophes (or single-quote (')). awk can be used as follows:
+
+Command
+
+Usage
+
+awk '{ print $0 }' /etc/passwd
+
+Print entire file
+
+awk -F: '{ print $1 }' /etc/passwd
+
+Print first field (column) of every line, separated by a space
+
+awk -F: '{ print $1 $7 }' /etc/passwd 
+
+Print first and seventh field of every line
+
+

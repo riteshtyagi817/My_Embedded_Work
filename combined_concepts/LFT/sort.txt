@@ -1,0 +1,25 @@
+sort is used to rearrange the lines of a text file either in ascending or descending order, according to a sort key. You can also sort by particular fields of a file. The default sort key is the order of the ASCII characters (i.e. essentially alphabetically).
+
+sort can be used as follows:
+
+Syntax
+
+Usage
+
+sort <filename>
+
+Sort the lines in the specified file, according to the characters at the beginning of each line
+
+cat file1 file2 | sort
+
+Combine the two files, then sort the lines and display the output on the terminal
+
+sort -r <filename>
+
+Sort the lines in reverse order
+
+sort -k 3 <filename>
+
+Sort the lines by the 3rd field on each line instead of the beginning
+
+When used with the -u option, sort checks for unique values after sorting the records (lines). It is equivalent to running uniq (which we shall discuss) on the output of sort.
