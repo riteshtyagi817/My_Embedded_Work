@@ -1,0 +1,6 @@
+We will apply split to an American-English dictionary file of over 99,000 lines:
+wc -l american-english
+99171 american-english
+where we have used wc (word count, soon to be discussed) to report on the number of lines in the file. Then, typing:
+split american-english dictionary
+will split the American-English file into 100 equal-sized segments named 'dictionaryxx. The last one will, of course, be somewhat smaller.

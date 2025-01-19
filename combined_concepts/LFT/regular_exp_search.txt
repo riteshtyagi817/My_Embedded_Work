@@ -1,0 +1,61 @@
+Regular expressions are text strings used for matching a specific pattern, or to search for a specific location, such as the start or end of a line or a word. Regular expressions can contain both normal characters, as well as so-called meta-characters, such as * and $.
+
+Many text editors and utilities such as vi, sed, awk, find and grep work extensively with regular expressions. Some of the popular computer languages that use regular expressions include Perl, Python and Ruby. It can get rather complicated, and there are whole books written about regular expressions; thus, we will do no more than skim the surface here.
+
+These regular expressions are different from the wildcards (or meta-characters) used in filename matching in command shells such as bash. The table below lists search patterns and their usage.
+
+Search Patterns
+
+Usage
+
+.(dot)
+
+Match any single character
+
+a|z
+
+Match a or z
+
+$
+
+Match end of string
+
+^
+
+Match beginning of string
+
+*
+
+Match preceding item 0 or more times
+
+For example, consider the following sentence: The quick brown fox jumped over the lazy dog.
+
+Some of the patterns that can be applied to this sentence are as follows:
+
+Command
+
+Usage
+
+a..
+
+matches azy
+
+b.|j.
+
+matches both br and ju
+
+..$
+
+matches og
+
+l.*
+
+matches lazy dog
+
+l.*y
+
+matches lazy
+
+the.*
+
+matches the whole sentence

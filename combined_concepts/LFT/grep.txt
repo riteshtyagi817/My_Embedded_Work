@@ -1,0 +1,21 @@
+grep is extensively used as a primary text searching tool. It scans files for specified patterns and can be used with regular expressions, as well as simple strings, as shown in the table:
+
+Command
+
+Usage
+
+grep [pattern] <filename>
+
+Search for a pattern in a file and print all matching lines
+
+grep -v [pattern] <filename> 
+
+Print all lines that do not match the pattern
+
+grep [0-9] <filename>
+
+Print the lines that contain the numbers 0 through 9
+
+grep -C 3 [pattern] <filename>
+
+Print context of lines (specified number of lines above and below the pattern) for matching the pattern; here, the number of lines is specified as 3

@@ -1,0 +1,21 @@
+wc (word count) counts the number of lines, words, and characters in a file or list of files. Options are given in the table below:
+
+Option
+
+Description
+
+–l
+
+Displays the number of lines
+
+-c
+
+Displays the number of bytes
+
+-w
+
+Displays the number of words
+
+By default, all three of these options are active.
+
+For example, to print only the number of lines contained in a file, type wc -l filename and press the Enter key.

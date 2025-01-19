@@ -1,0 +1,7 @@
+paste can be used to combine fields (such as name or phone number) from different files, as well as combine lines from multiple files. For example, line one from file1 can be combined with line one of file2, line two from file1 can be combined with line two of file2, and so on.
+
+To paste contents from two files, you can do:
+paste file1 file2
+The syntax to use a different delimiter is as follows:
+paste -d, file1 file2
+Common delimiters are 'space', 'tab', '|', 'comma', etc.

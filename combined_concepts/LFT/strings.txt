@@ -1,0 +1,6 @@
+strings is used to extract all printable character strings found in the file or files given as arguments. It is useful in locating human-readable content embedded in binary files; for text files, you can just use grep.
+
+For example, to search for the string my_string in a spreadsheet:
+ strings book1.xls | grep my_string
+ The screenshot below shows a search of a number of programs to see which ones have GPL licenses of various versions.
+

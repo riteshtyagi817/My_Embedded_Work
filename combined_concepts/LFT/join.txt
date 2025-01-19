@@ -1,0 +1,3 @@
+To combine two files on a common field, at the command prompt type join file1 file2 and press the Enter key.
+
+For example, the common field (i.e. it contains the same values) among the phonebook and cities files is the phone number, and the result of joining these two files is shown in the screen capture.
