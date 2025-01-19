@@ -6,6 +6,7 @@ int main(int argc, char *argv[]){
 	printf("%s start\n", __func__);
 #endif	
 
+	printf("vendor started\n");
 	int pipeFd = atoi(argv[1]);
 	int bytes_read = 0;
 	int shmid = 0;
@@ -25,15 +26,14 @@ int main(int argc, char *argv[]){
 
 	}
 	printf("Request received from server\n");
-	printf("Request:\n pid: %ld  opr1: %d opr2: %d operation: %c\n",req->pid, req->opr1, req->opr2,
-			req->operation);
+	printf("Request:\n pid: %ld  opr1: %d opr2: %d operation: %c\n",req->pid, req->opr1, 	    req->opr2,req->operation);
 
 
 
 
 	// getting the shared memory id and then write the response to it
 	
-
+	/*
 	shmid = shmget((key_t)SHDMID, sizeof(Result),IPC_CREAT|0666);
 	printf("Printing shmid in vendor 1:%d\n", shmid);
 	if(shmid < 0){
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]){
 
 	printf("Written the result to shared memory: pid : %ld and result: %f\n",res->pid, res->result);
 
-
+	*/
 
 #ifdef DEBUG
 	printf("%s end\n",__func__);

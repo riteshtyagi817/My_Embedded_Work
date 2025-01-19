@@ -70,12 +70,12 @@ void * createInfra(void *arg){
 		return fptrArr[0]((void *)"FAILURE");
 
 	}	
+	// creation of pipe
 	createPipe(infra);
 
 
 	// FIFO creation
 	
-
 	infra->fifo = (char *)calloc(10,sizeof(char));
 	if(!infra->fifo){
 
@@ -83,7 +83,9 @@ void * createInfra(void *arg){
                 return fptrArr[0]((void *)"FAILURE");
 	}
 	strcpy(infra->fifo,MYFIFO);
+	// fifo creation
 	createFifo(infra);
+
 
 	// message queue creation
 	createMsq(infra);
@@ -93,7 +95,10 @@ void * createInfra(void *arg){
 	
 	// freeing the infra
 	//freeInfra(infra);
+	// initialization of 4 system V semaphore sets
 	createSem(infra);
+
+	// posix semaphore creation for multiple threads in a process
 	createPthsem(infra);
 
 	return (void *)infra;

@@ -7,6 +7,7 @@ void * processRequest(void *arg){
 #endif
 
 	int fifoFd;
+	int flag = 0;
 	int bytes_read = 0;
 	int bytes_write = 0;
 	char strpipeFd[4];
@@ -33,25 +34,42 @@ void * processRequest(void *arg){
 	}
 	//printf("after open in server\n");
 	bytes_read = read(fifoFd, req,sizeof(Request));
-	if(bytes_read <= 0){
+	if(bytes_read < 0){
                         printf("could not read anything.\n");
+			sem_post(&infra->pthsem);
+			(*fptrArr[0])("FAILURE");
+
 	}
+	else if(bytes_read == 0){
+
+		printf("read 0 bytes\n");
+		flag = 1;
+
+
+	}
+
 	//close(fifoFd);
 	sem_post(&infra->pthsem);
-	//printf("Posix thread worked\n");
-	//printf("Request read successfully from the fifo\n");
- 	//printf("Printing the received request\n");
- 	printf("Request: pid: %ld oper1: %d oper2:%d %c\n",req->pid, req->opr1,
- 	req->opr2,req->operation);
-	if(req != NULL){
+	if(flag == 0){
+		//printf("Posix thread worked\n");
+		//printf("Request read successfully from the fifo\n");
+		//printf("Printing the received request\n");
+		printf("Request: pid: %ld oper1: %d oper2:%d %c\n",req->pid, req->opr1,
+				req->opr2,req->operation);
+		if(req != NULL){
 
-		free(req);
-		req = NULL;
+			free(req);
+			req = NULL;
 
+		}	
 	}
-	//close(fifoFd);
+	close(fifoFd);
+	if(flag == 1){
+		;
+	}
+	else{
 
-	/*
+	// forking child and parent
 	pid = fork();
 	sprintf(strpipeFd,"%d",*(infra->pipeFd + 0));
 	if(pid == 0){
@@ -61,9 +79,11 @@ void * processRequest(void *arg){
 
                                         case '+':
                                                 execl("../vendor/adder","adder", strpipeFd,NULL);
+						printf("execl issue\n");
                                         break;
                                         case '-':
                                                 execl("../vendor/subt","subt", strpipeFd,NULL);
+						printf("execl issue\n");
                                         break;
                    			default:
                                         break;
@@ -85,7 +105,7 @@ void * processRequest(void *arg){
 			}
 			sleep(2);
 			// at this point we need to read the result from shared memory which has been put up by vendor\n");
-
+			/*
 			printf("Printing shmid in server: %d\n",infra->shmid);
 			Res = shmat(infra->shmid,(void *)0,0);
 			if(!Res){
@@ -113,11 +133,11 @@ void * processRequest(void *arg){
                          }
 			 printf("Result written to the queue successfully\n");
 
-
+			*/
 
 	}
-	*/
-
+	
+	}
 
 #ifdef DEBUG
 	printf("%s function end\n",__func__);

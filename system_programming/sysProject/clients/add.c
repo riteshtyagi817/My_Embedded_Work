@@ -62,17 +62,21 @@ int main(int argc, char *argv[]){
 			perror("error in write\n");
 			exit(EXIT_FAILURE);
 		} 
-		//close(fifoFd);
-		//semWait.sem_num = 0;
-		semWait.sem_op = 1;
-		//semSignal.sem_flg = SEM_UNDO;
-		if(semop(semCli, &semWait,1) == -1){
+		semSignal.sem_num = 0;
+		semSignal.sem_op = 1;
+		semSignal.sem_flg = SEM_UNDO;
+		
+		if(semop(semCli, &semSignal,1) == -1){
 			perror("some issue with semop\n");
 			exit(EXIT_FAILURE);
 		} 
 
 		printf("%d bytes written\n",bytes_write);
-	//	close(fifoFd);
+		
+		sleep(2);
+		close(fifoFd);
+		// reading the result from the message queue
+
 		/*
 	
 		sleep(2);
@@ -103,12 +107,6 @@ int main(int argc, char *argv[]){
 
 
 		*/
-
-
-
-
-
-
 			
 	}
 	else{
