@@ -18,6 +18,9 @@
 #define SEMCLI 3333
 #endif
 
+#ifndef SHDPOSIX
+#define SHDPOSIX 27
+#endif
  union semun {
                int              val;    /* Value for SETVAL */
                struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
@@ -34,6 +37,8 @@ typedef struct Infra{
 	int semCli;
 	union semun su[4];
 	sem_t pthsem;
+	sem_t *semRes;
+	int shmResultId;
 
 }Infra;
 typedef struct Request{

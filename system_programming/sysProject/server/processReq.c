@@ -7,7 +7,7 @@ void * processRequest(void *arg){
 #endif
 
 	int fifoFd;
-	int flag = 0;
+	//int flag = 0;
 	int bytes_read = 0;
 	int bytes_write = 0;
 	char strpipeFd[4];
@@ -18,6 +18,7 @@ void * processRequest(void *arg){
 	pid_t pid;
 	int ret = 0;
 	Msg msg;
+	
 	Request *req = (Request *)calloc(1,sizeof(Request));
         if(!req){
              perror("Some Issue during memory alloc in server\n");
@@ -34,40 +35,21 @@ void * processRequest(void *arg){
 	}
 	//printf("after open in server\n");
 	bytes_read = read(fifoFd, req,sizeof(Request));
-	if(bytes_read < 0){
+	if(bytes_read <= 0){
                         printf("could not read anything.\n");
 			sem_post(&infra->pthsem);
 			(*fptrArr[0])("FAILURE");
 
 	}
-	else if(bytes_read == 0){
 
-		printf("read 0 bytes\n");
-		flag = 1;
-
-
-	}
 
 	//close(fifoFd);
 	sem_post(&infra->pthsem);
-	if(flag == 0){
 		//printf("Posix thread worked\n");
 		//printf("Request read successfully from the fifo\n");
 		//printf("Printing the received request\n");
 		printf("Request: pid: %ld oper1: %d oper2:%d %c\n",req->pid, req->opr1,
 				req->opr2,req->operation);
-		if(req != NULL){
-
-			free(req);
-			req = NULL;
-
-		}	
-	}
-	close(fifoFd);
-	if(flag == 1){
-		;
-	}
-	else{
 
 	// forking child and parent
 	pid = fork();
@@ -75,9 +57,11 @@ void * processRequest(void *arg){
 	if(pid == 0){
 
 		  printf(" I am in child\n");
+		  	printf("req->operation:%c \n",req->operation);
                                 switch(req->operation){
-
+					
                                         case '+':
+						printf("just before execl\n");
                                                 execl("../vendor/adder","adder", strpipeFd,NULL);
 						printf("execl issue\n");
                                         break;
@@ -94,6 +78,7 @@ void * processRequest(void *arg){
 	}
 	else {
 			printf(" I am in parent\n");
+			printf("req->operation: %c\n",req->operation);
 			bytes_write = write(*(infra->pipeFd + 1),req, sizeof(Request));
 			if(bytes_write <= 0){
                                         
@@ -103,9 +88,8 @@ void * processRequest(void *arg){
 				printf("written %d bytes\n",bytes_write);
 
 			}
-			sleep(2);
 			// at this point we need to read the result from shared memory which has been put up by vendor\n");
-			/*
+			
 			printf("Printing shmid in server: %d\n",infra->shmid);
 			Res = shmat(infra->shmid,(void *)0,0);
 			if(!Res){
@@ -114,6 +98,7 @@ void * processRequest(void *arg){
 
 
 			}
+			sleep(2);
 			res = (Result *)Res;
 			printf("address attached:%p\n",Res);
 			printf("read the data from shared memory\n");
@@ -133,9 +118,7 @@ void * processRequest(void *arg){
                          }
 			 printf("Result written to the queue successfully\n");
 
-			*/
-
-	}
+			
 	
 	}
 

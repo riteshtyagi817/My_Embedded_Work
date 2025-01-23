@@ -73,13 +73,11 @@ int main(int argc, char *argv[]){
 
 		printf("%d bytes written\n",bytes_write);
 		
-		sleep(2);
-		close(fifoFd);
 		// reading the result from the message queue
 
-		/*
+		
 	
-		sleep(2);
+		
 		// will try to read the result from the message queue
 		//memset(&(msg.data), '\0',sizeof(msg.data));
 
@@ -106,7 +104,7 @@ int main(int argc, char *argv[]){
 
 
 
-		*/
+		
 			
 	}
 	else{

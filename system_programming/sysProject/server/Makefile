@@ -4,8 +4,10 @@ LFLAGS = -o
 #DEBUG =
 DEBUG = -DDEBUG
 
-server: server.o createInfra.o init.o processReq.o
-	$(CC) $(LFLAGS) server server.o createInfra.o init.o processReq.o
+server: server.o createInfra.o init.o processReq.o processRes.o
+	$(CC) $(LFLAGS) server server.o createInfra.o init.o processReq.o processRes.o
+processRes.o: processRes.c declarations.h
+	$(CC) $(CLFAGS) $(DEBUG) processRes.c
 processReq.o: processReq.c declarations.h
 	$(CC) $(CLFAGS) $(DEBUG) processReq.c
 server.o: server.c declarations.h

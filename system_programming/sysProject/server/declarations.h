@@ -11,6 +11,6 @@ extern void * (*fptrArr[])(void *);
 extern void * createInfra(void *arg);
 extern void * exitServer(void *arg);
 extern void * processRequest(void *arg);
-
+extern void *processResult(void *arg);
 
 #endif

@@ -10,6 +10,8 @@ void init(){
 	fptrArr[0] = exitServer;
 	fptrArr[1] = createInfra;
 	fptrArr[2] = processRequest;
+	fptrArr[3] = processResult;
+
 
 #ifdef DEBUG
 	printf("%s end\n",__func__);

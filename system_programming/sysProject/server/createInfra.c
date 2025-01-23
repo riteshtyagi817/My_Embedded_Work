@@ -222,6 +222,16 @@ void createShm(Infra *infra){
 	printf("Shared memory got created\n");
 	system("ipcs");
 	infra->shmid = shmid;
+
+	shmid = shmget((key_t)SHDPOSIX,sizeof(sem_t),IPC_CREAT|0666);
+	if(shmid < 0){
+
+		perror("Shared memory could not be created\n");
+		exit(EXIT_FAILURE);
+	}
+	printf("Shared memory got created\n");
+	system("ipcs");
+	infra->shmResultId = shmid;
 	return;
 
 
