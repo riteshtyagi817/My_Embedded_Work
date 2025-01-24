@@ -35,12 +35,13 @@ void * processRequest(void *arg){
 	}
 	//printf("after open in server\n");
 	bytes_read = read(fifoFd, req,sizeof(Request));
-	if(bytes_read <= 0){
+	if(bytes_read < 0){
                         printf("could not read anything.\n");
 			sem_post(&infra->pthsem);
 			(*fptrArr[0])("FAILURE");
 
 	}
+	
 
 
 	//close(fifoFd);
@@ -88,36 +89,6 @@ void * processRequest(void *arg){
 				printf("written %d bytes\n",bytes_write);
 
 			}
-			// at this point we need to read the result from shared memory which has been put up by vendor\n");
-			
-			printf("Printing shmid in server: %d\n",infra->shmid);
-			Res = shmat(infra->shmid,(void *)0,0);
-			if(!Res){
-				perror("could not attach the shared memory in the server\n");
-				exit(EXIT_FAILURE);
-
-
-			}
-			sleep(2);
-			res = (Result *)Res;
-			printf("address attached:%p\n",Res);
-			printf("read the data from shared memory\n");
-			printf("Displaying the data read from the shared memory\n");
-			printf("Pid: %ld and Result:%f\n", res->pid, res->result);
-			// will write the data into the message queue
-			memset(&(msg.data),'\0',sizeof(msg.data));
-
-			memcpy(&(msg.data),res,sizeof(Result));
-			msg.msgType = res->pid;
-
-			ret  = msgsnd(infra->msqId,(void *)&msg,sizeof(msg.data),0);
-                        if(ret  < 0){
-                        	perror("msgsnd failed\n");
-               			exit(EXIT_FAILURE);
-
-                         }
-			 printf("Result written to the queue successfully\n");
-
 			
 	
 	}

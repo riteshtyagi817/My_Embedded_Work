@@ -1,5 +1,6 @@
 #include "../common/dataStructures.h"
 #include "../common/headers.h"
+void *writeSharedMemory(void *arg);
 int main(int argc, char *argv[]){
 
 #ifdef DEBUG
@@ -29,29 +30,12 @@ int main(int argc, char *argv[]){
 	printf("Request received from server\n");
 	printf("Request:\n pid: %ld  opr1: %d opr2: %d operation: %c\n",req->pid, req->opr1, 	    req->opr2,req->operation);
 
-
-
-
-
-	// getting the shared memory id and then write the response to it
-	
-	
-	shmid = shmget((key_t)SHDMID, sizeof(Result),IPC_CREAT|0666);
-	printf("Printing shmid in vendor 1:%d\n", shmid);
-	if(shmid < 0){
-		perror("could not get shared memory id in vendor\n");
-		exit(EXIT_FAILURE);
-
-	}
-	printf("Printing shmid in vendor:%d\n", shmid);
-	Res = shmat(shmid, (void *)0,0);
-	if(!Res){
-		perror("could not attach the memory in vendor\n");
+	res = (Result *)calloc(1,sizeof(Result));
+	if(!res){
+		perror("calloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
-	res = (Result *)Res;
-	printf("address attached in vendor:%p\n", res);
 	res->pid = req->pid;
 	res->result = req->opr1 + req->opr2;
 
@@ -70,5 +54,39 @@ int main(int argc, char *argv[]){
 	printf("%s end\n",__func__);
 		
 #endif
+
+}
+void *writeSharedMemory(void *arg){
+
+	Result *Res = NULL;
+	Result *res = NULL;
+	res = (Result *)arg;
+	int shmid = shmget(SHDPOSIX,sizeof(sem_t),IPC_CREAT|0666);
+	sem_t *semph = shmat(shmid,(void *)0,0);
+	
+	// getting the shared memory id and then write the response to it
+	
+	
+	shmid = shmget((key_t)SHDMID, sizeof(Result),IPC_CREAT|0666);
+	printf("Printing shmid in vendor 1:%d\n", shmid);
+	if(shmid < 0){
+		perror("could not get shared memory id in vendor\n");
+		exit(EXIT_FAILURE);
+
+	}
+	printf("Printing shmid in vendor:%d\n", shmid);
+	Res = (Result *)shmat(shmid, (void *)0,0);
+	if(!Res){
+		perror("could not attach the memory in vendor\n");
+		exit(EXIT_FAILURE);
+
+	}
+	Res->pid = res->pid;
+	Res->result = res->result;
+
+	printf("Written result into shared memory(vendor)\n");
+
+	sem_post(semph);
+
 
 }
