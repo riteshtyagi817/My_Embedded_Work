@@ -1,0 +1,64 @@
+#DOCUMENT FOR THE BOARD BRING UP FOR RASPBERRY PI 4.
+
+Step 1. first create a directory for raspberry board
+
+-->Cmd -: mkdir raspberry-board/
+
+Step 2. download the git 
+
+-->Cmd -: apt-get install git
+
+Step 3. Build the kernel for Raspberry
+
+--> cd raspberry-board/
+
+--> cmd -: sudo apt install git bc bison flex libssl-dev make libc6-dev libncurses5-devlibc6-dev
+
+Step 4. Install the 64-bit toolchain for a 64-bit kernel
+
+--> sudo apt install crossbuild-essential-arm64.
+
+Step 5. set-up the envirment variable for kernel
+
+#Create a script file
+
+--> In cd raspberry board/
+
+--> vim setenviromentvar.sh
+
+--> #! /bin/bash
+
+KERNEL=kernel8
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+#export INSTALL_MOD_PATH=/media/utkarsh/root_fs
+
+#echo $ARCH
+#echo $CROSS_COMPILE
+#echo $INSTALL_MOD_PATH
+
+--> esc --> :wq
+
+-->change the file mode 
+Cmd -: chmod +x (setenviromentvar.sh)
+
+--> source Setenviromentvar.sh
+
+Step 5. Get the kernel sources 
+
+--> git clone --depth=1 https://github.com/raspberrypi/linux.git
+
+Step 6. Build sources of kernel
+
+--> cd linux
+
+-->KERNEL=kernel8
+
+-->make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
+
+Step 7. build with default configs
+
+Cmd -: make  ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
+
+ 
+  
