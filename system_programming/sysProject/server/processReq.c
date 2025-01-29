@@ -80,7 +80,9 @@ void * processRequest(void *arg){
 	else {
 			printf(" I am in parent\n");
 			printf("req->operation: %c\n",req->operation);
-			bytes_write = write(*(infra->pipeFd + 1),req, sizeof(Request));
+			pthread_mutex_lock(&infra->mtx);
+			bytes_write = write(*(infra->pipeFd + 1),req, sizeof(Request));	
+			pthread_mutex_unlock(&infra->mtx);
 			if(bytes_write <= 0){
                                         
 				printf("could not write any bytes to pipe in server\n");

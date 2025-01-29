@@ -14,16 +14,44 @@ int main(int argc, char *argv[]){
 	char *data ;
 	void *Res = NULL;
 	Result *res = NULL;
+	int semCli = 0;
+	int ret  = 0;
+	struct sembuf semWait;
+	struct sembuf semSignal;
 	pthread_t tid;
 	Request *req = (Request *)calloc(1, sizeof(Request));
 	if(!req){
 
 		perror("calloc failed in adder\n");
 		exit(EXIT_FAILURE);
-	}	
+	}
+	semCli = semget(SEMCLI,4,IPC_CREAT|0666);
+        if(semCli == -1){
+		perror("Some issue with semget in add.c\n");
+		exit(EXIT_FAILURE);
+
+        }
+	semWait.sem_num = 2;
+	semWait.sem_op = -1;
+	semWait.sem_flg = SEM_UNDO;
+	ret = semop(semCli,&semWait,1);
+	if(ret < 0){
+		printf("some issue with semop\n");
+		exit(EXIT_FAILURE);
+
+	}
 	bytes_read = read(pipeFd, req, sizeof(Request));
 	if(bytes_read <= 0){
 		printf("could not read anything\n");
+		exit(EXIT_FAILURE);
+
+	}
+	semSignal.sem_num = 2;
+	semSignal.sem_op = 1;
+	semSignal.sem_flg = SEM_UNDO;
+	ret = semop(semCli,&semSignal,1);
+	if(ret < 0){
+		printf("some issue with semop\n");
 		exit(EXIT_FAILURE);
 
 	}
@@ -39,7 +67,7 @@ int main(int argc, char *argv[]){
 	res->pid = req->pid;
 	res->result = req->opr1 + req->opr2;
 
-	int ret = pthread_create(&tid, NULL,writeSharedMemory,(void *)res);
+	ret = pthread_create(&tid, NULL,writeSharedMemory,(void *)res);
 	if(ret != 0){
 
 		perror("some issue in thread creation\n");
@@ -61,6 +89,13 @@ void *writeSharedMemory(void *arg){
 	Result *Res = NULL;
 	Result *res = NULL;
 	res = (Result *)arg;
+	struct sembuf semWait;
+	struct sembuf semSignal;
+	
+	int semCli = 0;
+
+	int ret = 0;
+
 	int shmid = shmget(SHDPOSIX,sizeof(sem_t),IPC_CREAT|0666);
 	sem_t *semph = shmat(shmid,(void *)0,0);
 	
@@ -81,8 +116,40 @@ void *writeSharedMemory(void *arg){
 		exit(EXIT_FAILURE);
 
 	}
+	
+	semCli = semget(SEMCLI,4,IPC_CREAT|0666);
+        if(semCli == -1){
+ 
+		perror("Some issue with semget in add.c\n");
+		exit(EXIT_FAILURE);
+ 	}
+
+	semWait.sem_num = 3;
+	semWait.sem_op = -1;
+	semWait.sem_flg = SEM_UNDO;
+
+	ret = semop(semCli, &semWait,1);
+	if(ret < 0){
+		 printf("some issue with semop\n");
+                 exit(EXIT_FAILURE);
+
+
+	}
 	Res->pid = res->pid;
 	Res->result = res->result;
+
+	semWait.sem_num = 3;
+	semWait.sem_op = 1;
+	semWait.sem_flg = SEM_UNDO;
+
+	ret = semop(semCli, &semSignal,1);
+	if(ret < 0){
+		 printf("some issue with semop\n");
+                 exit(EXIT_FAILURE);
+
+
+	}
+
 
 	printf("Written result into shared memory(vendor)\n");
 

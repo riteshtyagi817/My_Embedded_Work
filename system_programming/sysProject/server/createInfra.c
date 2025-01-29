@@ -101,6 +101,8 @@ void * createInfra(void *arg){
 	// posix semaphore creation for multiple threads in a process
 	createPthsem(infra);
 
+	pthread_mutex_init(&infra->mtx, NULL);
+
 	return (void *)infra;
 #ifdef DEBUG
 	printf("%s end \n",__func__);

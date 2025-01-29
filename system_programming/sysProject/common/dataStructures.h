@@ -39,6 +39,7 @@ typedef struct Infra{
 	sem_t pthsem;
 	sem_t *semRes;
 	int shmResultId;
+	pthread_mutex_t mtx;
 
 }Infra;
 typedef struct Request{

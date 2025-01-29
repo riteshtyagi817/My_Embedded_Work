@@ -10,9 +10,11 @@ int main(int argc, char *argv[]){
 	struct sembuf semSignal;
 	int fifoFd;
 	Msg msg;
-	Result res;
-	int ret  = 0;
 	int semCli = 0;
+	int ret = 0;
+	Result res;
+	//int ret  = 0;
+	//int semCli = 0;
 	int bytes_write;
 	Request *req = (Request *)calloc(1,sizeof(Request));
 	if(!req){
@@ -90,17 +92,41 @@ int main(int argc, char *argv[]){
 			exit(EXIT_FAILURE);
 
 		}
+		semCli = semget(SEMCLI,4,IPC_CREAT|0666);
+		if(semCli == -1){
+
+			perror("Some issue with semget in add.c\n");
+			exit(EXIT_FAILURE);
+
+		}
+		semWait.sem_num = 1;
+		semWait.sem_op = -1;
+		semWait.sem_flg = SEM_UNDO;
+		ret = semop(semCli,&semWait,1);
+		if(ret < 0){
+			printf("some issue with semop\n");
+			exit(EXIT_FAILURE);
+
+		} 
 		ret = msgrcv(msqID,&msg,sizeof(msg.data),getpid(),0);
 		if(ret < 0){
 			perror("some issue with msgrcv in client\n");
 			exit(EXIT_FAILURE);
 		}
+		semSignal.sem_num = 1;
+		semSignal.sem_op = 1;
+		semSignal.sem_flg = SEM_UNDO;	
+		if(semop(semCli, &semSignal,1) == -1){
+			perror("some issue with semop\n");
+			exit(EXIT_FAILURE);
+		} 
 		printf("%d bytes received in client through msg\n",ret);
 		if(ret > 0){
 			memcpy(&res,&(msg.data),sizeof(Result));
 			printf("we received result as %f and pid %ld\n",res.result,res.pid);
 
 		}
+
 
 
 
