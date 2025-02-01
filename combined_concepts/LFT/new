@@ -1,0 +1,17 @@
+total 72
+-rw-rw-r-- 1 ritesh ritesh  2092 Dec 22 08:28 basic_commands.txt
+-rw-rw-r-- 1 ritesh ritesh    40 Jan 19 18:33 check.txt
+-rw-rw-r-- 1 ritesh ritesh    43 Jan 19 19:22 cities
+-rw-rw-r-- 1 ritesh ritesh   710 Dec  8 18:14 few_cmds.txt
+-rw-rw-r-- 1 ritesh ritesh   691 Dec  8 18:14 lab_wastemem.c
+-rwxrwxr-x 1 ritesh ritesh 16392 Dec  8 18:14 lab_wastmem
+-rw-rw-r-- 1 ritesh ritesh  1641 Dec 29 23:03 logging.txt
+-rw-rw-r-- 1 ritesh ritesh  2307 Dec  8 18:14 monitoring_cmds.txt
+-rw-rw-r-- 1 ritesh ritesh    13 Jan 19 18:45 names
+-rw-rw-r-- 1 ritesh ritesh   100 Jan 18 11:59 output
+-rw-rw-r-- 1 ritesh ritesh    26 Jan 19 18:44 phone
+-rw-rw-r-- 1 ritesh ritesh    39 Jan 19 19:19 phonebook
+-rw-rw-r-- 1 ritesh ritesh    97 Jan 18 11:47 somefile
+-rw-rw-r-- 1 ritesh ritesh  3486 Dec 29 23:03 upgrade.txt
+555-123-4567 Seattle 
+555-231-3891 Madison
