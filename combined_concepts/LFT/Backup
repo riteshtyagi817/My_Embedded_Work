@@ -1,0 +1,16 @@
+#!/bin/bash
+Source=$1
+Target=$2
+echo "Source: $Source"
+echo "Target: $Target"
+
+for file in $(find $Source ); do
+	if [[ -d $file ]]
+	then
+		echo "$file.tar.gz"
+		name="$file.tar.gz"
+		tar -cvzf $name $file/
+		cp $name $Target/
+	fi
+done
+
