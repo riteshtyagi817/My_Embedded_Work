@@ -1,1 +1,1 @@
-#define SOCKPATH "../mySocket"
+#define SOCKPATH "/tmp/mySocket"
