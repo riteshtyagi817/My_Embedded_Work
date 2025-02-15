@@ -1,0 +1,33 @@
+The first character in the listing shows the type of file:
+
+Character
+
+Type
+
+-
+
+Normal File
+
+d
+
+Directory
+
+l
+
+Symbolic link
+
+p
+
+Named pipe (FIFO)
+
+s
+
+Unix domain socket
+
+b
+
+Block device node
+
+c
+
+Character device node
