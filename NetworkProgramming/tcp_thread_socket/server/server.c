@@ -11,6 +11,7 @@ int main(){
 	while(1){
 
 		sem_wait(&psem);
+		printf("after sem_wait\n");
 		ret = pthread_create(&pthid, NULL,threadClientWork,(void *)&skFd);
 		if(ret < 0){
 			perror("pthread create failed\n");

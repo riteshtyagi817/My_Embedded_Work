@@ -15,6 +15,7 @@ int main(){
 	svSock.sin_family = AF_INET;
 	svSock.sin_port = htons(6666);
 	svSock.sin_addr.s_addr = inet_addr("127.0.0.1");
+	//svSock.sin_addr.s_addr = inet_addr("192.168.1.13");
 	if(connect(skFd, (struct sockaddr *)&svSock,sizeof(struct sockaddr )) < 0){
 
 		perror("connect failed\n");

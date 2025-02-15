@@ -27,8 +27,9 @@ void * threadClientWork(void *arg){
 		input[read_bytes] = '\0';
 		printf("Read from client: %s\n",input);
 	}
-	sem_post(&psem);
+	//sem_post(&psem);
 	sleep(1);
+	sem_post(&psem);
 	return NULL;
 	
 }
