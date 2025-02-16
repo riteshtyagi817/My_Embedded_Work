@@ -61,3 +61,10 @@ readelf -a test
 objdump -Ds test > test.obj
 arm-linux-gnueabihf-gcc -g -O0 -o test test.c
 arm-linux-gnueabihf-readelf -a test
+gcc -O2 -fprofile-generate=test -o sort_unopt sort.c
+gcc -O2 -fprofile-use=test -o sort_opt sort.c
+size test
+strings test
+ldd test
+ldd -v test
+man syscall

@@ -1,0 +1,3 @@
+route -n
+ip route show
+ip -6 address show

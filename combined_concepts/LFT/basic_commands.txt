@@ -72,3 +72,4 @@ stress -c 8 -i 4 -m 6 -t 20s
 stress -m 4 -t 20s
 sudo systemctl restart httpd
 sudo systemctl stop httpd && sudo systemctl start httpd 
+cat /proc/filesystems | less
