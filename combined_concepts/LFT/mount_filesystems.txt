@@ -1,0 +1,41 @@
+In UNIX-like operating systems, all files are arranged in one big filesystem tree rooted at /. Many different partitions on many different devices may be coalesced together by mounting partitions on various mount points, or directories in the tree.
+
+The full form of the mount command is:
+
+1
+$ sudo mount [-t type] [-o options] device dir
+In most cases, the filesystem type can be deduced automatically from the first few bytes of the partition, and default options can be used, so it can be as simple as:
+
+1
+$ sudo mount /dev/sda8 /usr/local
+Most filesystems need to be loaded at boot and the information required to specify mount points, options, devices, etc., is specified in /etc/fstab:
+
+
+Note that in this example, most of the filesystems are mounted by label; it is also possible to mount by device name or UUID; the following are all equivalent:
+
+54321
+$ sudo mount /dev/sda2   /boot
+$ sudo mount LABEL=boot  /boot
+$ sudo mount    -L boot  /boot
+$ sudo mount UUID=26d58ee2-9d20-4dc7-b6ab-aa87c3cfb69a /boot
+$ sudo mount   -U 26d58ee2-9d20-4dc7-b6ab-aa87c3cfb69a /boot
+The list of currently mounted filesystems can be seen with:
+
+12345678910111213141516171819
+$ sudo mount
+/dev/sda5 on / type ext3 (rw)
+proc on /proc type proc (rw)
+sysfs on /sys type sysfs (rw)
+devpts on /dev/pts type devpts (rw,gid=5,mode=620)
+/dev/sda6 on /RHEL6-32 type ext3 (rw)
+/dev/mapper/VGN-local on /usr/local type ext4 (rw)
+/dev/mapper/VGN-tmp on /tmp type ext4 (rw)
+/dev/mapper/VGN-src on /usr/src type ext4 (rw)
+/dev/mapper/VGN-virtual on /VIRTUAL type ext4 (rw)
+
+If a directory is used as a mount point, its previous contents are hidden under the newly mounted filesystem. A given partition can be mounted in more than one place and changes are effective in all locations.
+
+You can also mount NFS (Network File Systems) as in:
+
+1
+
