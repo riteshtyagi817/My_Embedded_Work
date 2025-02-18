@@ -40,6 +40,7 @@ void * processResult(void *arg){
 
 		memcpy(&(msg.data),res,sizeof(Result));
 		msg.msgType = res->pid;
+		printf("Pid: %ld and Result:%f\n", msg.msgType, res->result);
 
 		ret  = msgsnd(infra->msqId,(void *)&msg,sizeof(msg.data),0);
 		if(ret  < 0){

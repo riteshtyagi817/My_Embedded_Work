@@ -16,6 +16,8 @@ int main(int argc, char *argv[]){
 	Result *res = NULL;
 	int semCli = 0;
 	int ret  = 0;
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
 	struct sembuf semWait;
 	struct sembuf semSignal;
 	pthread_t tid;
@@ -66,8 +68,10 @@ int main(int argc, char *argv[]){
 
 	res->pid = req->pid;
 	res->result = req->opr1 + req->opr2;
+ 
+	pthread_attr_setdetachstate(&attr,PTHREAD_CREATE_JOINABLE);
 
-	ret = pthread_create(&tid, NULL,writeSharedMemory,(void *)res);
+	ret = pthread_create(&tid, &attr,writeSharedMemory,(void *)res);
 	if(ret != 0){
 
 		perror("some issue in thread creation\n");
@@ -76,7 +80,7 @@ int main(int argc, char *argv[]){
 
 	printf("Written the result to shared memory: pid : %ld and result: %f\n",res->pid, res->result);
 
-	sleep(2);
+	//sleep(2);
 
 #ifdef DEBUG
 	printf("%s end\n",__func__);

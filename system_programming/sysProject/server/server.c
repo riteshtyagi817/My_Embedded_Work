@@ -14,6 +14,8 @@ int main(int agrc, char *argv[]){
 	int ret = 0;
 	pthread_t tid;
 	pthread_t threadResult;
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
 	infra = (Infra *)(*fptrArr[1])(NULL);
 	if(!infra){
 		perror("Some issue during createInfra\n");
@@ -22,8 +24,8 @@ int main(int agrc, char *argv[]){
 	}
 	int count = 0;
 	// creating separate thread to read from shared memory
-	
-	ret = pthread_create(&threadResult,NULL,(*fptrArr[3]),(void *)infra);
+	pthread_attr_setdetachstate(&attr,PTHREAD_CREATE_DETACHED);
+	ret = pthread_create(&threadResult,&attr,(*fptrArr[3]),(void *)infra);
 	if(ret != 0){
 		perror("Some issue with pthread creation in server\n");
 		(*fptrArr[0])("FAILURE");
@@ -35,7 +37,7 @@ int main(int agrc, char *argv[]){
 			perror("Some issue with sem_wait in server program\n");
 			(*fptrArr[0])("FAILURE");
 		}
-		ret = pthread_create(&tid, NULL, (*fptrArr[2]), (void *)infra);
+		ret = pthread_create(&tid, &attr, (*fptrArr[2]), (void *)infra);
 		if(ret != 0){
 			perror("Some issue with pthread creation in server\n");
 			(*fptrArr[0])("FAILURE");
