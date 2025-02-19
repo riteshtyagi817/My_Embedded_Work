@@ -1,0 +1,16 @@
+lsof
+lsof +D /usr
+lsof -p 3226
+3226 is a sample pid.
+strace cat /dev/null
+strace cat not_a_file
+// sample command to collect the system call logs of running crummyd daemon. 
+strace -o crymmyd_strace -ff crummyd
+ps -m (to show the threads information as well)
+top -p pid1(to monitor one or more specific process over time)
+time ls(how much CPU time a command uses during its lifetime)
+renice value pid(to change the nice value)
+ps -l(to show the current priority)
+uptime(shows load cpu average 1 , 5 and 15 mins)
+getconf PAGE_SIZE
+ps -o pid,min_flt,maj_flt 3226(to see major and minor page faults)
