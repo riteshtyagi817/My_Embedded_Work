@@ -78,6 +78,7 @@ int main(int argc, char *argv[]){
 		exit(EXIT_FAILURE);
 	}
 
+	pthread_join(tid,NULL);
 	printf("Written the result to shared memory: pid : %ld and result: %f\n",res->pid, res->result);
 
 	//sleep(2);
@@ -141,10 +142,10 @@ void *writeSharedMemory(void *arg){
 	}
 	Res->pid = res->pid;
 	Res->result = res->result;
-
-	semWait.sem_num = 3;
-	semWait.sem_op = 1;
-	semWait.sem_flg = SEM_UNDO;
+	printf("copied the result to Res in vendor\n");
+	semSignal.sem_num = 3;
+	semSignal.sem_op = 1;
+	semSignal.sem_flg = SEM_UNDO;
 
 	ret = semop(semCli, &semSignal,1);
 	if(ret < 0){
