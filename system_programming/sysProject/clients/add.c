@@ -99,6 +99,7 @@ int main(int argc, char *argv[]){
 			exit(EXIT_FAILURE);
 
 		}
+		sleep(10);
 		semWait.sem_num = 1;
 		semWait.sem_op = -1;
 		semWait.sem_flg = SEM_UNDO;
@@ -108,7 +109,7 @@ int main(int argc, char *argv[]){
 			exit(EXIT_FAILURE);
 
 		} 
-		ret = msgrcv(msqID,&msg,sizeof(msg.data),getpid(),0);
+		ret = msgrcv(msqID,&msg,sizeof(msg.data),getpid(),IPC_NOWAIT);
 		if(ret < 0){
 			perror("some issue with msgrcv in client\n");
 			exit(EXIT_FAILURE);
