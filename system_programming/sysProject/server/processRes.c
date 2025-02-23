@@ -12,12 +12,12 @@ void * processResult(void *arg){
 	int ret = 0;
 	Msg msg;
 	// attach the shared memory
-	sem_t *st = (sem_t *)shmat(infra->shmResultId,(void *)NULL,0);
+	PosixSemSvrVend *semStr = (PosixSemSvrVend *)shmat(infra->shmResultId,(void *)NULL,0);
 
-	sem_init(st,1,0);
+	sem_init(&(semStr->srvToVend),1,0);
 	while(1){
 
-		sem_wait(st);
+		sem_wait(&(semStr->srvToVend));
 
 
 		// at this point we need to read the result from shared memory which 			    has been put up by vendor\n");
@@ -31,16 +31,18 @@ void * processResult(void *arg){
 		}
 		//sleep(2);
 		res = (Result *)Res;
-		printf("address attached:%p\n",Res);
-		printf("read the data from shared memory\n");
-		printf("Displaying the data read from the shared memory\n");
-		printf("Pid: %ld and Result:%f\n", res->pid, res->result);
+		//printf("address attached:%p\n",Res);
+		//printf("read the data from shared memory\n");
+		//printf("Displaying the data read from the shared memory\n");
+		printf("Shared memory read in Server Pid: %ld and Result:%f\n", res->pid, res->result);
 		// will write the data into the message queue
 		memset(&(msg.data),'\0',sizeof(msg.data));
 
 		memcpy(&(msg.data),res,sizeof(Result));
 		msg.msgType = res->pid;
-		printf("Pid: %ld and Result:%f\n", msg.msgType, res->result);
+		//printf("Pid: %ld and Result:%f\n", msg.msgType, res->result);
+		sem_post(&(semStr->vendToSrv));
+		
 
 		ret  = msgsnd(infra->msqId,(void *)&msg,sizeof(msg.data),0);
 		if(ret  < 0){
@@ -48,7 +50,7 @@ void * processResult(void *arg){
 			exit(EXIT_FAILURE);
 
 		}
-		printf("Result written to the queue successfully\n");
+		printf("[Server] Result written to the queue successfully\n");
 
 
 	}

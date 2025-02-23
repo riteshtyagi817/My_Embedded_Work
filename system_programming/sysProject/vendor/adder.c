@@ -101,9 +101,11 @@ void *writeSharedMemory(void *arg){
 
 	int ret = 0;
 
-	int shmid = shmget(SHDPOSIX,sizeof(sem_t),IPC_CREAT|0666);
-	sem_t *semph = shmat(shmid,(void *)0,0);
-	
+	//int shmid = shmget(SHDPOSIX,sizeof(sem_t),IPC_CREAT|0666);
+	int shmid = shmget(SHDPOSIX,sizeof(PosixSemSvrVend),IPC_CREAT|0666);
+//	sem_t *semph = shmat(shmid,(void *)0,0);
+	PosixSemSvrVend  *semStr = shmat(shmid,(void *)0,0);
+	sem_init(&(semStr->vendToSrv),1,0);
 	// getting the shared memory id and then write the response to it
 	
 	
@@ -142,7 +144,9 @@ void *writeSharedMemory(void *arg){
 	}
 	Res->pid = res->pid;
 	Res->result = res->result;
-	printf("copied the result to Res in vendor\n");
+	printf("[vendor] copied the result to Res in vendor: pid: %ld , result: %f\n",Res->pid,Res->result);
+	sem_post(&(semStr->srvToVend));
+	sem_wait(&(semStr->vendToSrv));
 	semSignal.sem_num = 3;
 	semSignal.sem_op = 1;
 	semSignal.sem_flg = SEM_UNDO;
@@ -156,9 +160,10 @@ void *writeSharedMemory(void *arg){
 	}
 
 
-	printf("Written result into shared memory(vendor)\n");
+	printf("[vendor]Written result into shared memory(vendor)\n");
 
-	sem_post(semph);
+	//sem_post(semph);
+	//sem_post(semph);
 
 
 }

@@ -63,4 +63,13 @@ typedef struct Message{
         long msgType;
 
 }Msg;
+typedef struct PoxSemSvrVend{
+
+	sem_t srvToVend;
+	sem_t vendToSrv;
+
+
+}PosixSemSvrVend;
+
+
 #endif

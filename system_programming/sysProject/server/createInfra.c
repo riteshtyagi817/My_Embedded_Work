@@ -144,8 +144,8 @@ void createPipe(Infra *infra){
 		perror("some Issue with Pipe Creation\n");
 		fptrArr[0]((void *)"FAILURE");
 	} 
-	printf("pipe created successfully\n");
 #ifdef DEBUG
+	printf("pipe created successfully\n");
 	printf("%s end \n",__func__);
 #endif
 	return;
@@ -175,15 +175,15 @@ void createFifo(Infra *infra){
 		perror("Process cannot access this file  path\n");
 		exit(EXIT_FAILURE);
 	}
-	printf("Fifo has been created\n");
-	system("ipcs");
 	
-	return;
 
 
 #ifdef DEBUG
+	printf("Fifo has been created\n");
+	system("ipcs");
 	printf("%s end \n",__func__);
 #endif
+	return;
 }
 
 void createMsq(Infra *infra){
@@ -197,14 +197,14 @@ void createMsq(Infra *infra){
 		exit(EXIT_FAILURE);
 
 	}
-	printf("Message Queue got created\n");
-	system("ipcs");
 	infra->msqId = msqid;
-	return;
 
 #ifdef DEBUG
+	printf("Message Queue got created\n");
+	system("ipcs");
 	printf("%s end \n",__func__);
 #endif
+	return;
 }
 void createShm(Infra *infra){
 
@@ -221,17 +221,18 @@ void createShm(Infra *infra){
 		perror("Shared memory could not be created\n");
 		exit(EXIT_FAILURE);
 	}
-	printf("Shared memory got created\n");
+	printf("Shared memory Result got created\n");
 	system("ipcs");
 	infra->shmid = shmid;
 
-	shmid = shmget((key_t)SHDPOSIX,sizeof(sem_t),IPC_CREAT|0666);
+	//shmid = shmget((key_t)SHDPOSIX,sizeof(sem_t),IPC_CREAT|0666);
+	shmid = shmget((key_t)SHDPOSIX,sizeof(PosixSemSvrVend),IPC_CREAT|0666);
 	if(shmid < 0){
 
 		perror("Shared memory could not be created\n");
 		exit(EXIT_FAILURE);
 	}
-	printf("Shared memory got created\n");
+	printf("Shared memory Posix got created\n");
 	system("ipcs");
 	infra->shmResultId = shmid;
 	return;

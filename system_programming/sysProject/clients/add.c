@@ -99,7 +99,7 @@ int main(int argc, char *argv[]){
 			exit(EXIT_FAILURE);
 
 		}
-		sleep(10);
+		//sleep(5);
 		semWait.sem_num = 1;
 		semWait.sem_op = -1;
 		semWait.sem_flg = SEM_UNDO;
@@ -109,8 +109,10 @@ int main(int argc, char *argv[]){
 			exit(EXIT_FAILURE);
 
 		} 
-		ret = msgrcv(msqID,&msg,sizeof(msg.data),getpid(),IPC_NOWAIT);
+		//ret = msgrcv(msqID,&msg,sizeof(msg.data),getpid(),IPC_NOWAIT);
+		ret = msgrcv(msqID,&msg,sizeof(msg.data),getpid(),0);
 		if(ret < 0){
+			printf("we could not get pid %d data\n",getpid()); 
 			perror("some issue with msgrcv in client\n");
 			exit(EXIT_FAILURE);
 		}
