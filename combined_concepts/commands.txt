@@ -68,3 +68,11 @@ strings test
 ldd test
 ldd -v test
 man syscall
+gcc -g -O0 -o test test.c
+objdump -DS test > test.obj
+objdump -f test
+objcopy -j .interp test test_new
+readelf -a test_new
+clang -emit-llvm -S test.c -o test.ll
+lli ./test.ll
+clang -x ir test.ll -o test

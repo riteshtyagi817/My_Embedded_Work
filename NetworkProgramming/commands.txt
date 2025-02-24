@@ -1,3 +1,8 @@
 route -n
 ip route show
 ip -6 address show
+ip -6 route show
+ping www.google.com
+ping -4 www.google.com
+ping -6 www.google.com
+host www.google.com
