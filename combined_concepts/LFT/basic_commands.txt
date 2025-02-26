@@ -73,3 +73,8 @@ stress -m 4 -t 20s
 sudo systemctl restart httpd
 sudo systemctl stop httpd && sudo systemctl start httpd 
 cat /proc/filesystems | less
+gcc -fPIC -c test.c
+gcc -fPIC -c test1.c
+gcc -fPIC -shared -Wl,-soname=myLib.so.1 *.o -o myLib.so.1.o -lc
+ln -s myLib.so.1.o myLib.so.1
+ln -s myLib.so.1.o myLib.so
