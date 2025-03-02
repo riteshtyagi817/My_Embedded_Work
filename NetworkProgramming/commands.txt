@@ -6,3 +6,9 @@ ping www.google.com
 ping -4 www.google.com
 ping -6 www.google.com
 host www.google.com
+ifconfig
+ip address add address/subnet dev interface
+ip route add default via gw-address dev interface
+ip route del default
+ip route add 192.168.45.0/24 via 10.23.2.44
+ip route del 192.168.45.0/24

@@ -14,3 +14,10 @@ ps -l(to show the current priority)
 uptime(shows load cpu average 1 , 5 and 15 mins)
 getconf PAGE_SIZE
 ps -o pid,min_flt,maj_flt 3226(to see major and minor page faults)
+vmstat 2
+iostat
+pidstat
+pidstat -p pid
+sudo iotop
+ps -ef
+ps -aux
