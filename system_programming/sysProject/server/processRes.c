@@ -3,7 +3,7 @@
 void * processResult(void *arg){
 
 #ifdef DEBUG
-	printf("%s function start\n",__func__);
+	LOG("%s function start\n",__func__);
 #endif
 
 	Infra *infra = (Infra *)arg;
@@ -22,7 +22,7 @@ void * processResult(void *arg){
 
 		// at this point we need to read the result from shared memory which 			    has been put up by vendor\n");
 
-		printf("Printing shmid in server: %d\n",infra->shmid);
+		LOG("Printing shmid in server: %d\n",infra->shmid);
 		Res = shmat(infra->shmid,(void *)0,0);
 		if(!Res){
 			perror("could not attach the shared memory in the server\n");
@@ -31,16 +31,16 @@ void * processResult(void *arg){
 		}
 		//sleep(2);
 		res = (Result *)Res;
-		//printf("address attached:%p\n",Res);
-		//printf("read the data from shared memory\n");
-		//printf("Displaying the data read from the shared memory\n");
-		printf("Shared memory read in Server Pid: %ld and Result:%f\n", res->pid, res->result);
+		//LOG("address attached:%p\n",Res);
+		//LOG("read the data from shared memory\n");
+		//LOG("Displaying the data read from the shared memory\n");
+		LOG("Shared memory read in Server Pid: %ld and Result:%f\n", res->pid, res->result);
 		// will write the data into the message queue
 		memset(&(msg.data),'\0',sizeof(msg.data));
 
 		memcpy(&(msg.data),res,sizeof(Result));
 		msg.msgType = res->pid;
-		//printf("Pid: %ld and Result:%f\n", msg.msgType, res->result);
+		//LOG("Pid: %ld and Result:%f\n", msg.msgType, res->result);
 		sem_post(&(semStr->vendToSrv));
 		
 
@@ -50,14 +50,14 @@ void * processResult(void *arg){
 			exit(EXIT_FAILURE);
 
 		}
-		printf("[Server] Result written to the queue successfully\n");
+		LOG("[Server] Result written to the queue successfully\n");
 
 
 	}
 
 
 #ifdef DEBUG
-	printf("%s function end\n",__func__);
+	LOG("%s function end\n",__func__);
 #endif
 
 }

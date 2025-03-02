@@ -3,7 +3,7 @@
 int main(int agrc, char *argv[]){
 
 #ifdef DEBUG 
-	printf("%s %d start %s\n",__FILE__,__LINE__,__func__);
+	LOG("%s %d start %s\n",__FILE__,__LINE__,__func__);
 #endif
 	init();
 	pid_t pid;
@@ -43,12 +43,12 @@ int main(int agrc, char *argv[]){
 			(*fptrArr[0])("FAILURE");
 		}
 		count++;
-		printf("thread count is %d\n",count);
+		LOG("thread count is %d\n",count);
 
 	}
 
 #ifdef DEBUG
-	printf("%s %d end %s\n",__FILE__,__LINE__,__func__);
+	LOG("%s %d end %s\n",__FILE__,__LINE__,__func__);
 #endif
 
 

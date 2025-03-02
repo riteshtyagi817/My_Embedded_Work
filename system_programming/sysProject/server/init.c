@@ -4,7 +4,7 @@ void * (*fptrArr[NFUNC])(void *);
 
 void init(){
 #ifdef DEBUG
-	printf("%s start\n",__func__);
+	LOG("%s start\n",__func__);
 #endif
 
 	fptrArr[0] = exitServer;
@@ -14,7 +14,7 @@ void init(){
 
 
 #ifdef DEBUG
-	printf("%s end\n",__func__);
+	LOG("%s end\n",__func__);
 #endif
 
 }

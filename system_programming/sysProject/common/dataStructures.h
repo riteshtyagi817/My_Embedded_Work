@@ -70,6 +70,6 @@ typedef struct PoxSemSvrVend{
 
 
 }PosixSemSvrVend;
-
+#define LOG(msg,...) printf("%s:%d:  "msg"\n",__func__, __LINE__,##__VA_ARGS__)
 
 #endif

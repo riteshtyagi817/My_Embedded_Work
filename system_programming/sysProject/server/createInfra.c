@@ -16,7 +16,7 @@ static void createPthsem(Infra *infra);
 void * exitServer(void *arg){
 
 #ifdef DEBUG
-	printf("%s start \n",__func__);
+	LOG("%s start \n",__func__);
 #endif
 	
 	char *msg = (char *)arg;
@@ -31,25 +31,25 @@ void * exitServer(void *arg){
 	}
 	return NULL;
 #ifdef DEBUG
-	printf("%s end \n",__func__);
+	LOG("%s end \n",__func__);
 #endif
 }
 void createPthsem(Infra *infra){
 
 #ifdef DEBUG
-	printf("%s start \n",__func__);
+	LOG("%s start \n",__func__);
 #endif
 	sem_init(&infra->pthsem,0,1);
 
 
 #ifdef DEBUG
-	printf("%s end \n",__func__);
+	LOG("%s end \n",__func__);
 #endif
 }
 void * createInfra(void *arg){
 
 #ifdef DEBUG
-	printf("%s start \n",__func__);
+	LOG("%s start \n",__func__);
 #endif
 	
 	//freeInfra(infra);
@@ -105,7 +105,7 @@ void * createInfra(void *arg){
 
 	return (void *)infra;
 #ifdef DEBUG
-	printf("%s end \n",__func__);
+	LOG("%s end \n",__func__);
 #endif
 
 }
@@ -137,7 +137,7 @@ void createSem(Infra *infra){
 void createPipe(Infra *infra){
 
 #ifdef DEBUG
-	printf("%s start \n",__func__);
+	LOG("%s start \n",__func__);
 #endif
 	int ret = pipe(infra->pipeFd);
 	if(ret < 0){
@@ -145,15 +145,15 @@ void createPipe(Infra *infra){
 		fptrArr[0]((void *)"FAILURE");
 	} 
 #ifdef DEBUG
-	printf("pipe created successfully\n");
-	printf("%s end \n",__func__);
+	LOG("pipe created successfully\n");
+	LOG("%s end \n",__func__);
 #endif
 	return;
 }
 void createFifo(Infra *infra){
 
 #ifdef DEBUG
-	printf("%s start \n",__func__);
+	LOG("%s start \n",__func__);
 #endif
 	int fd = 0;
 	if(access(MYFIFO,F_OK)){
@@ -179,9 +179,9 @@ void createFifo(Infra *infra){
 
 
 #ifdef DEBUG
-	printf("Fifo has been created\n");
+	LOG("Fifo has been created\n");
 	system("ipcs");
-	printf("%s end \n",__func__);
+	LOG("%s end \n",__func__);
 #endif
 	return;
 }
@@ -189,7 +189,7 @@ void createFifo(Infra *infra){
 void createMsq(Infra *infra){
 
 #ifdef DEBUG
-	printf("%s start \n",__func__);
+	LOG("%s start \n",__func__);
 #endif
 	int msqid = msgget((key_t)MSQID,IPC_CREAT|0666);
 	if(msqid < 0){
@@ -200,16 +200,16 @@ void createMsq(Infra *infra){
 	infra->msqId = msqid;
 
 #ifdef DEBUG
-	printf("Message Queue got created\n");
+	LOG("Message Queue got created\n");
 	system("ipcs");
-	printf("%s end \n",__func__);
+	LOG("%s end \n",__func__);
 #endif
 	return;
 }
 void createShm(Infra *infra){
 
 #ifdef DEBUG
-	printf("%s start \n",__func__);
+	LOG("%s start \n",__func__);
 #endif
 	if(infra->shmid != 0){
 		system("ipcrm -m infra->shmid");
@@ -221,7 +221,7 @@ void createShm(Infra *infra){
 		perror("Shared memory could not be created\n");
 		exit(EXIT_FAILURE);
 	}
-	printf("Shared memory Result got created\n");
+	LOG("Shared memory Result got created\n");
 	system("ipcs");
 	infra->shmid = shmid;
 
@@ -232,20 +232,20 @@ void createShm(Infra *infra){
 		perror("Shared memory could not be created\n");
 		exit(EXIT_FAILURE);
 	}
-	printf("Shared memory Posix got created\n");
+	LOG("Shared memory Posix got created\n");
 	system("ipcs");
 	infra->shmResultId = shmid;
 	return;
 
 
 #ifdef DEBUG
-	printf("%s end \n",__func__);
+	LOG("%s end \n",__func__);
 #endif
 }
 void freeInfra(Infra *infra){
 
 #ifdef DEBUG
-	printf("%s start \n",__func__);
+	LOG("%s start \n",__func__);
 #endif
 	system("rm ../myFiFo");
 	system("ipcrm -Q 24");
@@ -253,7 +253,7 @@ void freeInfra(Infra *infra){
 
 
 #ifdef DEBUG
-	printf("%s end \n",__func__);
+	LOG("%s end \n",__func__);
 #endif
 
 }

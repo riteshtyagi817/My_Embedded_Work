@@ -3,7 +3,7 @@
 void * processRequest(void *arg){
 
 #ifdef DEBUG
-	printf("%s function start\n",__func__);
+	LOG("%s function start\n",__func__);
 #endif
 
 	int fifoFd;
@@ -33,10 +33,10 @@ void * processRequest(void *arg){
 		perror("Some Issue with fifo open\n");
 		(*fptrArr[0])("FAILURE");
 	}
-	//printf("after open in server\n");
+	//LOG("after open in server\n");
 	bytes_read = read(fifoFd, req,sizeof(Request));
 	if(bytes_read < 0){
-                        printf("could not read anything.\n");
+                        LOG("could not read anything.\n");
 			sem_post(&infra->pthsem);
 			(*fptrArr[0])("FAILURE");
 
@@ -46,10 +46,10 @@ void * processRequest(void *arg){
 
 	//close(fifoFd);
 	sem_post(&infra->pthsem);
-		//printf("Posix thread worked\n");
-		//printf("Request read successfully from the fifo\n");
-		//printf("Printing the received request\n");
-		printf("Request: pid: %ld oper1: %d oper2:%d %c\n",req->pid, req->opr1,
+		//LOG("Posix thread worked\n");
+		//LOG("Request read successfully from the fifo\n");
+		//LOG("Printing the received request\n");
+		LOG("Request: pid: %ld oper1: %d oper2:%d %c\n",req->pid, req->opr1,
 				req->opr2,req->operation);
 
 	// forking child and parent
@@ -57,18 +57,18 @@ void * processRequest(void *arg){
 	sprintf(strpipeFd,"%d",*(infra->pipeFd + 0));
 	if(pid == 0){
 
-		  printf(" I am in child\n");
-		  	printf("req->operation:%c \n",req->operation);
+		  LOG(" I am in child\n");
+		  	LOG("req->operation:%c \n",req->operation);
                                 switch(req->operation){
 					
                                         case '+':
-						printf("just before execl\n");
+						LOG("just before execl\n");
                                                 execl("../vendor/adder","adder", strpipeFd,NULL);
-						printf("execl issue\n");
+						LOG("execl issue\n");
                                         break;
                                         case '-':
                                                 execl("../vendor/subt","subt", strpipeFd,NULL);
-						printf("execl issue\n");
+						LOG("execl issue\n");
                                         break;
                    			default:
                                         break;
@@ -78,17 +78,17 @@ void * processRequest(void *arg){
 
 	}
 	else {
-			printf(" I am in parent\n");
-			printf("req->operation: %c\n",req->operation);
+			LOG(" I am in parent\n");
+			LOG("req->operation: %c\n",req->operation);
 			pthread_mutex_lock(&infra->mtx);
 			bytes_write = write(*(infra->pipeFd + 1),req, sizeof(Request));	
 			pthread_mutex_unlock(&infra->mtx);
 			if(bytes_write <= 0){
                                         
-				printf("could not write any bytes to pipe in server\n");
+				LOG("could not write any bytes to pipe in server\n");
 
 			}else{
-				printf("written %d bytes\n",bytes_write);
+				LOG("written %d bytes\n",bytes_write);
 
 			}
 			
@@ -96,7 +96,7 @@ void * processRequest(void *arg){
 	}
 
 #ifdef DEBUG
-	printf("%s function end\n",__func__);
+	LOG("%s function end\n",__func__);
 #endif
 
 }

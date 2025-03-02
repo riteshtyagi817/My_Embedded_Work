@@ -4,10 +4,10 @@ void *writeSharedMemory(void *arg);
 int main(int argc, char *argv[]){
 
 #ifdef DEBUG
-	printf("%s start\n", __func__);
+	LOG("%s start\n", __func__);
 #endif	
 
-	printf("vendor started\n");
+	LOG("vendor started\n");
 	int pipeFd = atoi(argv[1]);
 	int bytes_read = 0;
 	int shmid = 0;
@@ -38,13 +38,13 @@ int main(int argc, char *argv[]){
 	semWait.sem_flg = SEM_UNDO;
 	ret = semop(semCli,&semWait,1);
 	if(ret < 0){
-		printf("some issue with semop\n");
+		LOG("some issue with semop\n");
 		exit(EXIT_FAILURE);
 
 	}
 	bytes_read = read(pipeFd, req, sizeof(Request));
 	if(bytes_read <= 0){
-		printf("could not read anything\n");
+		LOG("could not read anything\n");
 		exit(EXIT_FAILURE);
 
 	}
@@ -53,12 +53,12 @@ int main(int argc, char *argv[]){
 	semSignal.sem_flg = SEM_UNDO;
 	ret = semop(semCli,&semSignal,1);
 	if(ret < 0){
-		printf("some issue with semop\n");
+		LOG("some issue with semop\n");
 		exit(EXIT_FAILURE);
 
 	}
-	printf("Request received from server\n");
-	printf("Request:\n pid: %ld  opr1: %d opr2: %d operation: %c\n",req->pid, req->opr1, 	    req->opr2,req->operation);
+	LOG("Request received from server\n");
+	LOG("Request:\n pid: %ld  opr1: %d opr2: %d operation: %c\n",req->pid, req->opr1, 	    req->opr2,req->operation);
 
 	res = (Result *)calloc(1,sizeof(Result));
 	if(!res){
@@ -79,12 +79,12 @@ int main(int argc, char *argv[]){
 	}
 
 	pthread_join(tid,NULL);
-	printf("Written the result to shared memory: pid : %ld and result: %f\n",res->pid, res->result);
+	LOG("Written the result to shared memory: pid : %ld and result: %f\n",res->pid, res->result);
 
 	//sleep(2);
 
 #ifdef DEBUG
-	printf("%s end\n",__func__);
+	LOG("%s end\n",__func__);
 		
 #endif
 
@@ -110,13 +110,13 @@ void *writeSharedMemory(void *arg){
 	
 	
 	shmid = shmget((key_t)SHDMID, sizeof(Result),IPC_CREAT|0666);
-	printf("Printing shmid in vendor 1:%d\n", shmid);
+	LOG("Printing shmid in vendor 1:%d\n", shmid);
 	if(shmid < 0){
 		perror("could not get shared memory id in vendor\n");
 		exit(EXIT_FAILURE);
 
 	}
-	printf("Printing shmid in vendor:%d\n", shmid);
+	LOG("Printing shmid in vendor:%d\n", shmid);
 	Res = (Result *)shmat(shmid, (void *)0,0);
 	if(!Res){
 		perror("could not attach the memory in vendor\n");
@@ -137,14 +137,14 @@ void *writeSharedMemory(void *arg){
 
 	ret = semop(semCli, &semWait,1);
 	if(ret < 0){
-		 printf("some issue with semop\n");
+		 LOG("some issue with semop\n");
                  exit(EXIT_FAILURE);
 
 
 	}
 	Res->pid = res->pid;
 	Res->result = res->result;
-	printf("[vendor] copied the result to Res in vendor: pid: %ld , result: %f\n",Res->pid,Res->result);
+	LOG("[vendor] copied the result to Res in vendor: pid: %ld , result: %f\n",Res->pid,Res->result);
 	sem_post(&(semStr->srvToVend));
 	sem_wait(&(semStr->vendToSrv));
 	semSignal.sem_num = 3;
@@ -153,14 +153,14 @@ void *writeSharedMemory(void *arg){
 
 	ret = semop(semCli, &semSignal,1);
 	if(ret < 0){
-		 printf("some issue with semop\n");
+		 LOG("some issue with semop\n");
                  exit(EXIT_FAILURE);
 
 
 	}
 
 
-	printf("[vendor]Written result into shared memory(vendor)\n");
+	LOG("[vendor]Written result into shared memory(vendor)\n");
 
 	//sem_post(semph);
 	//sem_post(semph);

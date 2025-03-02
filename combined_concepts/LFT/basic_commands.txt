@@ -78,3 +78,8 @@ gcc -fPIC -c test1.c
 gcc -fPIC -shared -Wl,-soname=myLib.so.1 *.o -o myLib.so.1.o -lc
 ln -s myLib.so.1.o myLib.so.1
 ln -s myLib.so.1.o myLib.so
+cat /proc/4066/maps
+pmap -d 4066
+gcc --print-search-dirs 
+LD_DEBUG=all ls 
+man syscall

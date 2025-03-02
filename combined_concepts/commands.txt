@@ -76,3 +76,8 @@ readelf -a test_new
 clang -emit-llvm -S test.c -o test.ll
 lli ./test.ll
 clang -x ir test.ll -o test
+sha256sum test
+cp /proc/4738/exe test_exe
+gcc --print-search-dirs
+LD_DEBUG=all ls
+man syscall

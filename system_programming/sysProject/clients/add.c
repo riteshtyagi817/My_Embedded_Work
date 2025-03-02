@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]){
 
 #ifdef DEBUG
-	printf("%s start\n",__func__);
+	LOG("start");
 #endif
 	struct sembuf semWait;
 	struct sembuf semSignal;
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]){
 
 		ret = semop(semCli,&semWait,1);
 		if(ret < 0){
-			printf("some issue with semop\n");
+			LOG("some issue with semop\n");
 			exit(EXIT_FAILURE);
 
 		} 
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]){
 			perror("Some Issue with fifo open\n");
 			exit(EXIT_FAILURE);
 		}
-		printf("inside critical section process id: %d\n",getpid());
+		LOG("inside critical section process id: %d\n",getpid());
 		bytes_write = write(fifoFd, req,sizeof(Request));
 		if(bytes_write < 0){
 			perror("error in write\n");
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]){
 			exit(EXIT_FAILURE);
 		} 
 
-		printf("%d bytes written\n",bytes_write);
+		LOG("%d bytes written\n",bytes_write);
 		
 		// reading the result from the message queue
 
@@ -105,14 +105,14 @@ int main(int argc, char *argv[]){
 		semWait.sem_flg = SEM_UNDO;
 		ret = semop(semCli,&semWait,1);
 		if(ret < 0){
-			printf("some issue with semop\n");
+			LOG("some issue with semop\n");
 			exit(EXIT_FAILURE);
 
 		} 
 		//ret = msgrcv(msqID,&msg,sizeof(msg.data),getpid(),IPC_NOWAIT);
 		ret = msgrcv(msqID,&msg,sizeof(msg.data),getpid(),0);
 		if(ret < 0){
-			printf("we could not get pid %d data\n",getpid()); 
+			LOG("we could not get pid %d data\n",getpid()); 
 			perror("some issue with msgrcv in client\n");
 			exit(EXIT_FAILURE);
 		}
@@ -123,10 +123,10 @@ int main(int argc, char *argv[]){
 			perror("some issue with semop\n");
 			exit(EXIT_FAILURE);
 		} 
-		printf("%d bytes received in client through msg\n",ret);
+		LOG("%d bytes received in client through msg\n",ret);
 		if(ret > 0){
 			memcpy(&res,&(msg.data),sizeof(Result));
-			printf("we received result as %f and pid %ld\n",res.result,res.pid);
+			LOG("we received result as %f and pid %ld\n",res.result,res.pid);
 
 		}
 
@@ -137,7 +137,7 @@ int main(int argc, char *argv[]){
 			
 	}
 	else{
-		printf("Could not find the fifo created to write\n");
+		LOG("Could not find the fifo created to write\n");
 		
 
 
@@ -148,7 +148,7 @@ int main(int argc, char *argv[]){
 	return 0;
 #ifdef DEBUG
 
-	printf("%s end\n",__func__);
+	LOG("end");
 #endif
 
 
