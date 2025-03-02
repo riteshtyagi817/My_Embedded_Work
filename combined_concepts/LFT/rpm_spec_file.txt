@@ -1,0 +1,107 @@
+A spec file is a collection of package information and shell scripts. Many of of the shell scripts are very short (one line scripts are common). Each script performs one of the tasks necessary in building, installing, or uninstalling a package. The main sections of the file are:
+
+Section Name
+
+Required?
+
+Section Type
+
+Purpose
+
+Header (start of file)
+
+Y
+
+Data fields
+
+Provide the rpm -i data
+
+%description
+
+Y
+
+ASCII text
+
+Provide a text description of the package
+
+%prep
+
+Y
+
+Shell script
+
+Unpack source code and apply patches
+
+%changelog
+
+Y
+
+Change history
+
+History of changes
+
+%build
+
+Y
+
+Shell script
+
+Build the binary from the unpacked sources
+
+%install
+
+Y
+
+Shell script
+
+Copy the binaries to their destination
+
+%files
+
+Y
+
+List
+
+Every file that the package provides is listed
+
+%clean
+
+N
+
+Shell script
+
+Cleans up the sources after a build is done
+
+%pre
+
+N
+
+Shell script
+
+Steps to take before installation of package
+
+%post
+
+N
+
+Shell script
+
+Steps to take after installation of package
+
+%preun
+
+N
+
+Shell script
+
+Steps to take before removal of package
+
+%postun
+
+N
+
+Shell script
+
+Steps to take after removal of package
+
+Note that RPM makes heavy use of macros. The file /usr/lib/rpm/macros contains those already available and may be worth examining.

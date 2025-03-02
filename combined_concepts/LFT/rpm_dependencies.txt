@@ -1,0 +1,32 @@
+In the spec file you may specify three types of dependency information:
+
+Capabilities that this package provides
+
+Capabilities that this package requires
+
+Packages that this package requires.
+
+A capability is a required function or class of functions. You can see what libraries a package requires with:
+
+1
+$ rpm -qR package
+as in:
+
+
+You can also see what libraries a package provides as in:
+
+
+The names you see as the capabilities is not the full path name of the library; instead, it is what is called the soname of the library.
+
+Any dynamic libraries in the files section of the spec are automatically added as capabilities that the package provides. In addition, RPM will automatically run scripts (called find-requires and find-provides) that determine which dynamic libraries your binary requires, so these will automatically be added to the list of capabilities that your package requires.
+
+If your package has other requirements besides dynamic libraries, you can specify that another package must be installed by putting code of this format in the header section of your spec file:
+
+123
+requires: package
+requires: package >= version
+requires: package >= version-build
+In addition to the >= test (which requires that a package of the version specified or later is installed), you can also use >, =, <, and <=.
+
+
+
