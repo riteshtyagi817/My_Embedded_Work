@@ -81,3 +81,7 @@ cp /proc/4738/exe test_exe
 gcc --print-search-dirs
 LD_DEBUG=all ls
 man syscall
+gcc -O0 -g -o vdso vdso1.c
+time ./vdso 1
+time ./vdso 2
+time ./vdso 3
