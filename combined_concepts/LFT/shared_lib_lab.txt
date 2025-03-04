@@ -1,0 +1,20 @@
+To see what shared libraries vim uses do:
+
+1
+$ ldd /usr/bin/vim
+which will show you the full shared library names and their locations on the filesystem.
+
+You can gain further information about the actual shared memory segments used by starting up an instance of vim and making sure you know the pid of the process, such as by doing:
+
+12
+$ vim &
+[1] 25716
+which says the pid is 25716. You can gain this detailed information by doing either:
+
+1
+$ cat /proc/pid/maps (i.e., cat /proc/25716/maps)
+or
+
+1
+$ pmap -d 2 pid (i.e., pmap -d 25716)
+Note that while there are probably separate executables for vi and vim on your system (/bin/vi and /usr/bin/vim) you probably have a default alias in your command shell that invokes vim when you type vi, so to get vi directly you have to give the full path name. Try doing the above for /bin/vi as well.
