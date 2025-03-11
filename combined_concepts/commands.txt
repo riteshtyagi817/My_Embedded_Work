@@ -85,3 +85,5 @@ gcc -O0 -g -o vdso vdso1.c
 time ./vdso 1
 time ./vdso 2
 time ./vdso 3
+LD_SHOW_AUXV=1 ./vdso 3
+htop
