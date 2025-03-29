@@ -1,0 +1,83 @@
+If you already have git installed, a nifty way to get the latest version is to use git itself. If your network connection is good enough, download from the public repository by doing:
+
+1
+$ git clone -v https://github.com/git/git.git
+if you do not have git already installed, you can download a zipped archive from the same site, and then unpack it and the rest of the instructions for compiling and installing will be the same.
+
+The full git repository will take up about 145 MB after being downloaded. Note that most of this space is taken up by the .git directory, which contains the whole revision history. The archive itself is much smaller.
+
+If you have git installed, you can see what version you are running with:
+
+2
+$ git --version
+git version 2.27.0
+To see what the latest version of git is in the downloaded repository, go to the git directory created during the cloning operation:
+
+1
+$ cd git
+There are a number of methods, including:
+
+4
+$ git tag
+.....
+v2.29.3
+.....
+ where we have located the highest version number that is tagged. However, that might not be accurate, as use of tags is voluntary. For example, doing:
+
+986745321
+$ git log
+commit 7e391989789db82983665667013a46eabc6fc570 (HEAD -> master, origin/master, origin/HEAD)
+Author: Junio C Hamano <gitster@pobox.com>
+Date:   Fri Apr 30 13:38:07 2021 +0900
+
+    The thirteenth batch
+    
+    Signed-off-by: Junio C Hamano <gitster@pobox.com>
+....
+may indicate a later version, which we can check once we prep, compile, and install using the steps we mentioned earlier:
+
+3
+$ cd git
+$ make
+$ sudo make install
+With this particular version, after compilation one finds:
+
+2
+$ ./git --version
+git version 2.31.1.442.g7e39198978
+By default, if you compile and then install, everything will be placed under your $HOME directory, with the executables all in the bin directory therein. However, you can specify an alternative when you compile, as in:
+
+1
+$ make prefix=/usr/local
+or
+
+1
+$ make prefix=/opt
+If you then place the new directory in your path, you will be using the newer version of git, rather than the installed ones, as in:
+
+1
+$ export PATH=/opt/bin:$PATH
+When you compile with the make command, it is possible you may have to install some additional software (usually for header files). For example, on Red Hat Enterprise Linux distributions and their close kin, you might need to do:
+
+1
+$ yum install curl-devel expat-devel openssl-devel
+or, on deb-based systems:
+
+1
+$ apt-get install libcurl4-gnutls-dev libexpat1-dev libssl-dev gettext
+As an alternative that loses some functionality, you can do:
+
+1
+$ make prefix=/opt NO_CURL=1 NO_EXPAT=1 NO_SSL=1
+Reading the Makefile will show you other such options.
+
+Once you have compiled, you can do:
+
+1
+$ make prefix=/opt install
+and you have the latest version installed, which you can always use by putting it earlier in your path than the system version.
+
+To learn further about all of this, read the README, INSTALL and Makefile files in the main git source directory.
+
+
+Completed

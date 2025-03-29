@@ -1,0 +1,29 @@
+The source for git can be obtained from the 
+GitHub git repository
+. While you can download a zipped archive file from here, or a binary package for your distribution from the 
+git website
+, if you already have a version of git installed, you might as well use it directly to clone the git source repository. To do this, type:
+
+1
+$ git clone -v https://github.com/git/git.git
+Then you can prep, compile and install git by following the standard prescription:
+
+4321
+$ cd git
+$ ./configure
+$ make
+$ sudo make prefix=/usr install
+Note: You may not need the ./configure step.
+
+The above will install git under your home directory.
+
+If you want to put it in the system directory, you can instead do:
+
+21
+$ make prefix=/usr
+$ sudo make install
+Unfortunately, it is quite possible you will be missing some of the necessary ingredients on your system to compile and install git from source, and it is impossible for us to give you a completely accurate prescription. This is due to both the variations among Linux distributions, and the variation in the precise software deployment on your machine and the history of installations and upgrades. If the compilation fails, hopefully you will get an error messages un-cryptic enough to help you go out and obtain the missing parts of the recipe.
+
+Even if you have an easily installed binary package for git, you may be lusting for the latest version and have no other recourse than to compile from the source. We hope it is not too difficult.
+
+Note that once you have git installed, the easiest way to update your version is to use git itself, which is kind of cute.
