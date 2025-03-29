@@ -83,3 +83,5 @@ pmap -d 4066
 gcc --print-search-dirs 
 LD_DEBUG=all ls 
 man syscall
+git help
+git help commit

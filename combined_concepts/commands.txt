@@ -87,3 +87,5 @@ time ./vdso 2
 time ./vdso 3
 LD_SHOW_AUXV=1 ./vdso 3
 htop
+mount
+gcc -S -O0 -o test7.s test7.c
