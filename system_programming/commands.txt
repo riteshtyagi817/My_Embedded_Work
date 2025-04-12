@@ -21,3 +21,5 @@ pidstat -p pid
 sudo iotop
 ps -ef
 ps -aux
+ps -l
+renice neNiceValue pid
