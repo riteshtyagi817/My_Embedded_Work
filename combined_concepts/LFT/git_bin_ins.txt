@@ -1,0 +1,49 @@
+For any recent Linux distribution, it is most likely that git will already be installed on your system. To check this, do:
+
+1
+$ which git
+If you get something like /usr/bin/git as output, you have got at least the main git infrastructure. However, if you have an older Linux distribution, you may have to take care of installation yourself.
+
+In most cases, you would install the binary packages appropriate for your distribution, unless you are a purist, in which case you can compile from source, as we will discuss shortly. You might want to do this if you are trying to use a more recent version than the one your Linux distribution is using. Using the binary packages will save you a lot of pain about making sure you have all the libraries and development packages you need to install properly.
+
+In the following, we will assume you are logged in as the root user, or much better, just use sudo for the installation steps.
+
+For Red Hat and related rpm-based distributions, such as Red Hat Enterprise Linux (and close relatives, such as CentOS and Fedora), typing:
+
+1
+$ sudo dnf list git*
+will show git and its related packages, which can then be installed with:
+
+1
+ $ sudo dnf install git* cgit
+ cgit is no longer present in the repositories for RHEL/CentOS 8 (use yum instead of dnf for the older RHEL/CentOS 7 distribution versions). 
+
+Note that the git-cvs and git-svn packages are only needed if you are interested in converting back and forth with CVS and/or Subversion repositories.
+
+On SUSE-based systems, the relevant packages can be found by:
+
+1
+$ sudo zypper search git
+and the most important plumbing installed by:
+
+1
+$ sudo zypper install git git-core
+On a deb-based system, such as Debian or Ubuntu, the fullest install would be:
+
+21
+$ sudo apt install git-core git-gui gitweb cgit gitk git-daemon-run \
+                       git-cvs git-svn gettext
+For Gentoo systems, the appropriate command is:
+
+1
+$ sudo emerge -a dev-util/git
+The exact instructions and package names may vary from version to version, even within the same Linux distribution. Thus, you should be familiar with your package manager and how to find any missing ingredients and install them.
+
+If you are running on a Windows platform, versions of git exist there too. If you are running 
+Cygwin
+, you can directly install from the setup menu. For a stand-alone package, you can look at the 
+git for Windows website
+.
+
+
+
