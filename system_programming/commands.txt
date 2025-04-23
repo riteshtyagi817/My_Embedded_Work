@@ -23,3 +23,9 @@ ps -ef
 ps -aux
 ps -l
 renice neNiceValue pid
+nmcli
+man nmcli
+nm-online
+echo 
+echo $MYVARIABLE
+unset MYVARIABLE
