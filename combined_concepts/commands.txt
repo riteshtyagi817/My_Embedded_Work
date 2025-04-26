@@ -89,3 +89,8 @@ LD_SHOW_AUXV=1 ./vdso 3
 htop
 mount
 gcc -S -O0 -o test7.s test7.c
+gcc -S -O0 -o test.s test.c
+gcc  -O0 -o test test.c
+objdump -D test.s > test.obj
+objdump -S test > test.obj
+strip test
