@@ -18,3 +18,7 @@ vim /etc/NetworkManager/NetworkManager.conf
 vim /etc/nsswitch.conf
 vim /etc/hosts
 vim /etc/resolv.conf
+resolvectl status
+netstat -l
+netstat -nt
+vim /etc/services
