@@ -1,0 +1,5 @@
+for floating point numbers avoid (x == y) use something like 
+if(abs(x-y) < 0.0001) {
+
+	// they are equal
+}
