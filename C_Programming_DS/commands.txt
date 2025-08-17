@@ -1,0 +1,8 @@
+vim file1.c file2.c -- open multiple files in vim
+:n - switch to the next file
+:prev - switch to the previous file 
+:split file2.c -- open file2.c in a horizontal split
+:vsplit file2.c -- open file2.c in a vertical split 
+ctrl-w w: switch between split windows
+:!shell command form vim
+vimtutor -- to get the help from vim
