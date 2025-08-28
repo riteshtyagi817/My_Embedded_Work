@@ -1,6 +1,27 @@
-lsof
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+1. top
+this commands shows processes usage
+top --options as below
+spacebar -- updates the display immediately
+M - sort by current resident memory usage
+T - sort by total CPU usage
+P - sort by current CPU usage(default)
+u - displays only one user's processes
+f - select different statistics to display
+? - displays a usage summary for all top commands
+other commands like top -- htop and atop
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2. lsof
+this command shows open files with related  processes.
+lsof/ sudo lsof
+-- will show huge output
+COMMAND -- the command name for the process that holds the file descriptor
+PID - procees id 
+USER - user running the process
+
 lsof +D /usr
 lsof -p 3226
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 3226 is a sample pid.
 strace cat /dev/null
 strace cat not_a_file
