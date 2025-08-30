@@ -1,0 +1,9 @@
+1. bash --version -- to see the bash version
+2. echo $BASH_VERSION -- to print the bash version
+3. lsb_release -a -- to see the operating system being used
+4. echo $HOME -- to print the home directory of the user
+5. echo "$PWD" -- to print the current working directory path
+6. echo Hello, World! -- command echo prints its arguments separated by a single space and terminated with a newline
+7. type test -- this type command will tell what the shell will execute and where it can be found if it is an external file for any given command
+
+8. type -a test -- will display all the commands that match the test
