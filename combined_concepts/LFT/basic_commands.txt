@@ -85,3 +85,7 @@ LD_DEBUG=all ls
 man syscall
 git help
 git help commit
+ln -s /dir_pth . -- to create a sym link in current directory for the dir given
+-ctime , -atime(access(read)), -mtime(modification time) 
+-cmin , -amin
+

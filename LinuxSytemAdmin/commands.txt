@@ -1,0 +1,9 @@
+1. date --> to show the date
++++++++++++++++++++++++++++++++
+2. cal --> to show the calendar
++++++++++++++++++++++++++++++++
+3. ll --> long listing
+++++++++++++++++++++++++++++++++
+4. su - --> to switch to root user
++++++++++++++++++++++++++++++++++++++
+5. vimtutor -- to read or practice about vim usage 
