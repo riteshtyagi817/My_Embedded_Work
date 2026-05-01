@@ -1,0 +1,33 @@
+SOURCES = hello.c helper.c
+OBJS = $(SOURCES:.c=.o)
+TARGET = hello
+
+CC =gcc  # compiler 
+OPTS = -Wall # flags
+LIBS = -lm # libraries
+
+$(TARGET): $(OBJS)
+	$(CC) -o $(TARGET) $(OBJS) $(LIBS)
+
+%.o: %.c
+	$(CC) $(OPTS) -c $< -o $@
+
+clean:
+	rm -f $(OBJS) $(TARGET)
+
+
+_______________________
+simpler one:
+hello: hello.o helper.o
+	gcc -o hello hello.o helper.o -lm
+	
+hello.o: hello.c
+	gcc -c hello.c
+	
+helper.o: helper.c
+	gcc -c helper.c
+	
+clean:
+	rm -f hello.o helper.o hello
+
+
